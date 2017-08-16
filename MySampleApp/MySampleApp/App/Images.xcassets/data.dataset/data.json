@@ -1,0 +1,1095 @@
+{
+   "currentPage":1,
+   "numberOfPages":1,
+   "totalResults":19,
+   "data":[
+      {
+         "id":"amWv0A",
+         "name":"Humidor Series IPA",
+         "nameDisplay":"Humidor Series IPA",
+         "description":"Our flagship beer in the Humidor Series\u00ae is Humidor Series\u00ae India Pale Ale. We start with Jai Alai IPA as a base beer and add the cedar during secondary fermentation. The cedar provides a perfect balance with the assertive hops of Jai Alai to create an entirely new experience.\r\n\r\nWe produce Humidor Series\u00ae India Pale Ale year round, and keep an eye out for other Humidor Series\u00ae beers in our tasting room and limited bottling runs.",
+         "abv":"7.5",
+         "ibu":"70",
+         "glasswareId":5,
+         "srmId":10,
+         "availableId":1,
+         "styleId":30,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/amWv0A\/upload_wimd2x-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/amWv0A\/upload_wimd2x-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/amWv0A\/upload_wimd2x-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "originalGravity":"1.074",
+         "createDate":"2012-01-03 02:43:27",
+         "updateDate":"2015-12-16 09:34:50",
+         "glass":{
+            "id":5,
+            "name":"Pint",
+            "createDate":"2012-01-03 02:41:33"
+         },
+         "srm":{
+            "id":10,
+            "name":"10",
+            "hex":"DE7C00"
+         },
+         "available":{
+            "id":1,
+            "name":"Year Round",
+            "description":"Available year round as a staple beer."
+         },
+         "style":{
+            "id":30,
+            "categoryId":3,
+            "category":{
+               "id":3,
+               "name":"North American Origin Ales",
+               "createDate":"2012-03-21 20:06:45"
+            },
+            "name":"American-Style India Pale Ale",
+            "shortName":"American IPA",
+            "description":"American-style India pale ales are perceived to have medium-high to intense hop bitterness, flavor and aroma with medium-high alcohol content. The style is further characterized by floral, fruity, citrus-like, piney, resinous, or sulfur-like American-variety hop character. Note that one or more of these American-variety hop characters is the perceived end, but the hop characters may be a result of the skillful use of hops of other national origins. The use of water with high mineral content results in a crisp, dry beer. This pale gold to deep copper-colored ale has a full, flowery hop aroma and may have a strong hop flavor (in addition to the perception of hop bitterness). India pale ales possess medium maltiness which contributes to a medium body. Fruity-ester flavors and aromas are moderate to very strong. Diacetyl can be absent or may be perceived at very low levels. Chill and\/or hop haze is allowable at cold temperatures. (English and citrus-like American hops are considered enough of a distinction justifying separate American-style IPA and English-style IPA categories or subcategories. Hops of other origins may be used for bitterness or approximating traditional American or English character. See English-style India Pale Ale",
+            "ibuMin":"50",
+            "ibuMax":"70",
+            "abvMin":"6.3",
+            "abvMax":"7.5",
+            "srmMin":"6",
+            "srmMax":"14",
+            "ogMin":"1.06",
+            "fgMin":"1.012",
+            "fgMax":"1.018",
+            "createDate":"2012-03-21 20:06:45",
+            "updateDate":"2015-04-07 15:26:37"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"nlcQEL",
+         "name":"Imperial Porter",
+         "nameDisplay":"Imperial Porter",
+         "abv":"13.1",
+         "glasswareId":6,
+         "styleId":18,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/nlcQEL\/upload_RHgecw-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/nlcQEL\/upload_RHgecw-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/nlcQEL\/upload_RHgecw-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "servingTemperature":"cool",
+         "servingTemperatureDisplay":"Cool - (8-12C\/45-54F)",
+         "createDate":"2013-04-24 12:47:30",
+         "updateDate":"2015-12-17 03:37:34",
+         "glass":{
+            "id":6,
+            "name":"Snifter",
+            "createDate":"2012-01-03 02:41:33"
+         },
+         "style":{
+            "id":18,
+            "categoryId":1,
+            "category":{
+               "id":1,
+               "name":"British Origin Ales",
+               "createDate":"2012-03-21 20:06:45"
+            },
+            "name":"Brown Porter",
+            "shortName":"Brown Porter",
+            "description":"Brown porters are mid to dark brown (may have red tint) in color. No roast barley or strong burnt\/black malt character should be perceived. Low to medium malt sweetness, caramel and chocolate is acceptable along with medium hop bitterness. This is a lightto medium-bodied beer. Fruity esters are acceptable. Hop flavor and aroma may vary from being negligible to medium in character.",
+            "ibuMin":"20",
+            "ibuMax":"30",
+            "abvMin":"4.5",
+            "abvMax":"6",
+            "srmMin":"20",
+            "srmMax":"35",
+            "ogMin":"1.04",
+            "fgMin":"1.006",
+            "fgMax":"1.014",
+            "createDate":"2012-03-21 20:06:45",
+            "updateDate":"2015-04-07 15:21:43"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"ykRCuh",
+         "name":"Unalienable Rights",
+         "nameDisplay":"Unalienable Rights",
+         "description":"Made entirely from ingredients grown in the United States, Unalienable Rights is subtly hopped in 3 stages to produce a unique flavor profile with below average bitterness. When you first taste it, you'll notice its enjoyable, crisp taste. Adding to the experience is a light citrus aroma and a sessionable light body.",
+         "abv":"8.8",
+         "ibu":"40",
+         "srmId":6,
+         "styleId":25,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/ykRCuh\/upload_cI9HoD-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/ykRCuh\/upload_cI9HoD-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/ykRCuh\/upload_cI9HoD-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "createDate":"2013-08-23 15:01:11",
+         "updateDate":"2015-12-17 06:23:20",
+         "srm":{
+            "id":6,
+            "name":"6",
+            "hex":"F8A600"
+         },
+         "style":{
+            "id":25,
+            "categoryId":3,
+            "category":{
+               "id":3,
+               "name":"North American Origin Ales",
+               "createDate":"2012-03-21 20:06:45"
+            },
+            "name":"American-Style Pale Ale",
+            "shortName":"American Pale",
+            "description":"American pale ales range from deep golden to copper in color. The style is characterized by fruity, floral and citrus-like American-variety hop character producing medium to medium-high hop bitterness, flavor, and aroma. Note that the \"traditional\" style of this beer has its origins with certain floral, fruity, citrus-like, piney, resinous, or sulfur-like American hop varietals. One or more of these hop characters is the perceived end, but the perceived hop characters may be a result of the skillful use of hops of other national origins. American pale ales have medium body and low to medium maltiness. Low caramel character is allowable. Fruity-ester flavor and aroma should be moderate to strong. Diacetyl should be absent or present at very low levels. Chill haze is allowable at cold temperatures.",
+            "ibuMin":"30",
+            "ibuMax":"42",
+            "abvMin":"4.5",
+            "abvMax":"5.6",
+            "srmMin":"6",
+            "srmMax":"14",
+            "ogMin":"1.044",
+            "fgMin":"1.008",
+            "fgMax":"1.014",
+            "createDate":"2012-03-21 20:06:45",
+            "updateDate":"2015-04-07 15:25:18"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"MfVLgC",
+         "name":"Southern Slice",
+         "nameDisplay":"Southern Slice",
+         "abv":"10",
+         "availableId":2,
+         "styleId":93,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/MfVLgC\/upload_FRKCow-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/MfVLgC\/upload_FRKCow-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/MfVLgC\/upload_FRKCow-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "createDate":"2013-10-26 13:08:36",
+         "updateDate":"2015-12-17 07:03:46",
+         "available":{
+            "id":2,
+            "name":"Limited",
+            "description":"Limited availability."
+         },
+         "style":{
+            "id":93,
+            "categoryId":8,
+            "category":{
+               "id":8,
+               "name":"North American Lager",
+               "createDate":"2012-03-21 20:06:46"
+            },
+            "name":"American-Style Lager",
+            "shortName":"American Lager",
+            "description":"Light in body and very light to straw in color, American lagers are very clean and crisp and aggressively carbonated. Flavor components should b e subtle and complex, with no one ingredient dominating the others. Malt sweetness is light to mild. Corn, rice, or other grain or sugar adjuncts are often used. Hop bitterness, flavor and aroma are negligible to very light. Light fruity esters are acceptable. Chill haze and diacetyl should be absent.",
+            "ibuMin":"5",
+            "ibuMax":"13",
+            "abvMin":"3.8",
+            "abvMax":"5",
+            "srmMin":"2",
+            "srmMax":"4",
+            "ogMin":"1.04",
+            "fgMin":"1.006",
+            "fgMax":"1.01",
+            "createDate":"2012-03-21 20:06:46",
+            "updateDate":"2015-04-07 15:39:26"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"KK0mGO",
+         "name":"Bolita",
+         "nameDisplay":"Bolita",
+         "description":"This Double Nut Brown Ale is brewed in honor of the popular Bolita games played in Ybor City, FL. Bolita means little ball, but the profits from the often rigged games were anything but little. A player would pick a number and hope that his bolita came up, while the game operator would employ a variety of tricks to ensure it didn't. There are no tricks in this brew though, just a high gravity brown ale redolent with caramel and toffee like malts and a long nutty finish. Pars well with Baklava, wild game and medium body cigars.",
+         "abv":"9",
+         "ibu":"50",
+         "glasswareId":5,
+         "srmId":28,
+         "availableId":4,
+         "styleId":12,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/KK0mGO\/upload_pbAJwq-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/KK0mGO\/upload_pbAJwq-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/KK0mGO\/upload_pbAJwq-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "originalGravity":"1.092",
+         "createDate":"2012-01-03 02:42:52",
+         "updateDate":"2015-12-16 08:22:46",
+         "glass":{
+            "id":5,
+            "name":"Pint",
+            "createDate":"2012-01-03 02:41:33"
+         },
+         "srm":{
+            "id":28,
+            "name":"28",
+            "hex":"6A0E00"
+         },
+         "available":{
+            "id":4,
+            "name":"Seasonal",
+            "description":"Available at the same time of year, every year."
+         },
+         "style":{
+            "id":12,
+            "categoryId":1,
+            "category":{
+               "id":1,
+               "name":"British Origin Ales",
+               "createDate":"2012-03-21 20:06:45"
+            },
+            "name":"English-Style Brown Ale",
+            "shortName":"English Brown",
+            "description":"English brown ales range from copper to brown in color. They have medium body and range from dry to sweet maltiness with very little hop flavor or aroma. Roast malt tones may sometimes contribute to the flavor and aroma profile. Low to medium-low levels of fruity-ester flavors are appropriate. Diacetyl should be very low, if evident. Chill haze is allowable at cold temperatures.",
+            "ibuMin":"15",
+            "ibuMax":"25",
+            "abvMin":"4",
+            "abvMax":"5.5",
+            "srmMin":"13",
+            "srmMax":"25",
+            "ogMin":"1.04",
+            "fgMin":"1.008",
+            "fgMax":"1.014",
+            "createDate":"2012-03-21 20:06:45",
+            "updateDate":"2015-04-07 15:20:51"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"iwFwkE",
+         "name":"Good Gourd",
+         "nameDisplay":"Good Gourd",
+         "description":"Legend has it that when a pumpkin comes into the world it is possessed by either a good or an evil spirit. Ours got all the good baby! Bursting with real pumpkin flavor and yummy pumpkin spices including Ceylon cinnamon, Jamaican all-spice, Zanzibar cloves and nutmeg, Good Gourd is a celebration of Fall and that spookiest of holidays, Halloween. Pair Good Gourd with pumpkin soup, pumpkin pie and costume parties.",
+         "abv":"8.5",
+         "ibu":"35",
+         "glasswareId":6,
+         "srmId":14,
+         "availableId":7,
+         "styleId":121,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/iwFwkE\/upload_ZpfXDz-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/iwFwkE\/upload_ZpfXDz-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/iwFwkE\/upload_ZpfXDz-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "originalGravity":"1.092",
+         "createDate":"2012-01-03 02:43:17",
+         "updateDate":"2017-01-09 18:47:25",
+         "glass":{
+            "id":6,
+            "name":"Snifter",
+            "createDate":"2012-01-03 02:41:33"
+         },
+         "srm":{
+            "id":14,
+            "name":"14",
+            "hex":"C35900"
+         },
+         "available":{
+            "id":7,
+            "name":"Fall",
+            "description":"Available during the fall months."
+         },
+         "style":{
+            "id":121,
+            "categoryId":11,
+            "category":{
+               "id":11,
+               "name":"Hybrid\/mixed Beer",
+               "createDate":"2012-03-21 20:06:46"
+            },
+            "name":"Pumpkin Beer",
+            "shortName":"Pumpkin Beer",
+            "description":"Pumpkin beers are any beers using pumpkins (Cucurbito pepo) as an adjunct in either mash, kettle, primary or secondary fermentation, providing obvious (ranging from subtle to intense), yet harmonious, qualities. Pumpkin qualities should not be overpowered by hop character. These may or may not be spiced or flavored with other things. A statement by the brewer explaining the nature of the beer is essential for fair assessment in competitions. If this beer is a classic style with pumpkin, the brewer should also specify the classic style.",
+            "ibuMin":"5",
+            "ibuMax":"70",
+            "abvMin":"2.5",
+            "abvMax":"12",
+            "srmMin":"5",
+            "srmMax":"50",
+            "ogMin":"1.03",
+            "fgMin":"1.006",
+            "fgMax":"1.03",
+            "createDate":"2012-03-21 20:06:46",
+            "updateDate":"2015-04-07 15:44:28"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"LFyktf",
+         "name":"Guava Grove",
+         "nameDisplay":"Guava Grove",
+         "description":"One of Tampa's nicknames in addition to the Cigar City is the Big Guava. It earned the moniker from local newspaper columnist Steve Otto in the 1970's. The nickname eventually gave rise to one of Ybor City's most popular annual events, Guavaween. We brew Guava Grove in tribute to Tampa's fruity nickname. Guava Grove is brewed with a French strain of Saison yeast and sees a secondary fermentation on pink guava puree. Slightly tart with a dry finish this is a refined beer that is perfect for sharing. Pairs well with a wide variety of cheeses, seafood and light fruit salads.",
+         "abv":"8",
+         "ibu":"18",
+         "glasswareId":6,
+         "srmId":7,
+         "availableId":6,
+         "styleId":119,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/LFyktf\/upload_Km2vKo-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/LFyktf\/upload_Km2vKo-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/LFyktf\/upload_Km2vKo-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "originalGravity":"1.065",
+         "createDate":"2012-01-03 02:43:19",
+         "updateDate":"2017-01-09 18:47:31",
+         "glass":{
+            "id":6,
+            "name":"Snifter",
+            "createDate":"2012-01-03 02:41:33"
+         },
+         "srm":{
+            "id":7,
+            "name":"7",
+            "hex":"F39C00"
+         },
+         "available":{
+            "id":6,
+            "name":"Summer",
+            "description":"Available during the summer months."
+         },
+         "style":{
+            "id":119,
+            "categoryId":11,
+            "category":{
+               "id":11,
+               "name":"Hybrid\/mixed Beer",
+               "createDate":"2012-03-21 20:06:46"
+            },
+            "name":"Fruit Beer",
+            "shortName":"Fruit Beer",
+            "description":"Fruit beers are any beers using fruit or fruit extracts as an adjunct in either, the mash, kettle, primary or secondary fermentation providing obvious (ranging from subtle to intense), yet harmonious, fruit qualities. Fruit qualities should not be overpowered by hop character. If a fruit (such as juniper berry) has an herbal or spice quality, it is more appropriate to consider it in the herb and spice beers category. Acidic bacterial (not wild yeast) fermentation characters may be evident (but not necessary) they would contribute to acidity and enhance fruity balance. Clear or hazy beer is acceptable in appearance. A statement by the brewer explaining what fruits are used is essential in order for fair assessment in competitions. If this beer is a classic style with fruit, the brewer should also specify the classic style.",
+            "ibuMin":"5",
+            "ibuMax":"70",
+            "abvMin":"2.5",
+            "abvMax":"12",
+            "srmMin":"5",
+            "srmMax":"50",
+            "ogMin":"1.03",
+            "fgMin":"1.006",
+            "fgMax":"1.03",
+            "createDate":"2012-03-21 20:06:46",
+            "updateDate":"2015-04-07 15:44:21"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"wNH1hi",
+         "name":"Hunahpu's Imperial Stout",
+         "nameDisplay":"Hunahpu's Imperial Stout",
+         "description":"In Mayan myth, Hunahpu gave cocoa to the Mayans.\r\nAn Imperial Stout Aged On Cacao Nibs, Madagascar Vanilla Beans, Ancho Chilis, Pasilla Chilis and Cinnamon. \r\nWe celebrate the release of Hunahpu's by hosting Hunahpu's Day the second weekend of every March. In addition to the release of Hunahpu's we feature live music, food vendors, incredible guest taps and many of our own special beers for all to try as well. It's becoming a hell of an event, and promises to only get better.",
+         "abv":"11",
+         "ibu":"80",
+         "glasswareId":6,
+         "srmId":41,
+         "availableId":2,
+         "styleId":43,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/wNH1hi\/upload_O4IR66-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/wNH1hi\/upload_O4IR66-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/wNH1hi\/upload_O4IR66-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "originalGravity":"1.129",
+         "createDate":"2012-01-03 02:43:27",
+         "updateDate":"2017-01-09 18:47:38",
+         "glass":{
+            "id":6,
+            "name":"Snifter",
+            "createDate":"2012-01-03 02:41:33"
+         },
+         "srm":{
+            "id":41,
+            "name":"Over 40",
+            "hex":"000000"
+         },
+         "available":{
+            "id":2,
+            "name":"Limited",
+            "description":"Limited availability."
+         },
+         "style":{
+            "id":43,
+            "categoryId":3,
+            "category":{
+               "id":3,
+               "name":"North American Origin Ales",
+               "createDate":"2012-03-21 20:06:45"
+            },
+            "name":"American-Style Imperial Stout",
+            "shortName":"American Imperial Stout",
+            "description":"Black in color, American-style imperial stouts typically have a high alcohol content. Generally characterized as very robust. The extremely rich malty flavor and aroma are balanced with assertive hopping and fruity-ester characteristics. Bitterness should be moderately high to very high and balanced with full sweet malt character. Roasted malt astringency and bitterness can be moderately perceived but should not overwhelm the overall character. Hop aroma is usually moderately-high to overwhelmingly hop-floral, -citrus or -herbal. Diacetyl (butterscotch) levels should be absent.",
+            "ibuMin":"50",
+            "ibuMax":"80",
+            "abvMin":"7",
+            "abvMax":"12",
+            "srmMin":"40",
+            "srmMax":"40",
+            "ogMin":"1.08",
+            "fgMin":"1.02",
+            "fgMax":"1.03",
+            "createDate":"2012-03-21 20:06:46",
+            "updateDate":"2015-04-07 15:28:49"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"rUJnPa",
+         "name":"Marshal Zhukov's Imperial Stout",
+         "nameDisplay":"Marshal Zhukov's Imperial Stout",
+         "description":"This Russian Imperial Stout is dedicated to Georgy Zhukov, arguably one of the finest generals of World War II. Opaque black in color, with notes of espresso, chocolate, dark toffee and hints of backstrap molasses. The English hop varietals provide a subtle herbal dryness, and finishes with a hearty slap of roasty espresso. Pair Marshal Zhukov\u2019s with Mushroom Solyanka, dark chocolate, cherries and ground wars in Russia.\r\n\r\nWe brew and release Zhukov's in the summer knowing that a beer of this heft reaches its full potential a few months after release. So save a bottle for the cold winter!",
+         "abv":"11",
+         "ibu":"80",
+         "glasswareId":6,
+         "srmId":41,
+         "availableId":6,
+         "styleId":43,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/rUJnPa\/upload_qb8xd4-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/rUJnPa\/upload_qb8xd4-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/rUJnPa\/upload_qb8xd4-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "originalGravity":"1.129",
+         "createDate":"2012-01-03 02:43:40",
+         "updateDate":"2015-12-21 19:56:29",
+         "glass":{
+            "id":6,
+            "name":"Snifter",
+            "createDate":"2012-01-03 02:41:33"
+         },
+         "srm":{
+            "id":41,
+            "name":"Over 40",
+            "hex":"000000"
+         },
+         "available":{
+            "id":6,
+            "name":"Summer",
+            "description":"Available during the summer months."
+         },
+         "style":{
+            "id":43,
+            "categoryId":3,
+            "category":{
+               "id":3,
+               "name":"North American Origin Ales",
+               "createDate":"2012-03-21 20:06:45"
+            },
+            "name":"American-Style Imperial Stout",
+            "shortName":"American Imperial Stout",
+            "description":"Black in color, American-style imperial stouts typically have a high alcohol content. Generally characterized as very robust. The extremely rich malty flavor and aroma are balanced with assertive hopping and fruity-ester characteristics. Bitterness should be moderately high to very high and balanced with full sweet malt character. Roasted malt astringency and bitterness can be moderately perceived but should not overwhelm the overall character. Hop aroma is usually moderately-high to overwhelmingly hop-floral, -citrus or -herbal. Diacetyl (butterscotch) levels should be absent.",
+            "ibuMin":"50",
+            "ibuMax":"80",
+            "abvMin":"7",
+            "abvMax":"12",
+            "srmMin":"40",
+            "srmMax":"40",
+            "ogMin":"1.08",
+            "fgMin":"1.02",
+            "fgMax":"1.03",
+            "createDate":"2012-03-21 20:06:46",
+            "updateDate":"2015-04-07 15:28:49"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"H3Dh7q",
+         "name":"5 Beers for 5 Years: Barleywine",
+         "nameDisplay":"5 Beers for 5 Years: Barleywine",
+         "availableId":2,
+         "styleId":34,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/H3Dh7q\/upload_AKbuSI-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/H3Dh7q\/upload_AKbuSI-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/H3Dh7q\/upload_AKbuSI-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "createDate":"2013-12-17 12:33:22",
+         "updateDate":"2015-12-17 08:55:24",
+         "available":{
+            "id":2,
+            "name":"Limited",
+            "description":"Limited availability."
+         },
+         "style":{
+            "id":34,
+            "categoryId":3,
+            "category":{
+               "id":3,
+               "name":"North American Origin Ales",
+               "createDate":"2012-03-21 20:06:45"
+            },
+            "name":"American-Style Barley Wine Ale",
+            "shortName":"American Barleywine",
+            "description":"American style barley wines range from amber to deep copper-garnet in color and have a full body and high residual malty sweetness. Complexity of alcohols and fruity-ester characters are often high and counterbalanced by assertive bitterness and extraordinary alcohol content. Hop aroma and flavor are at medium to very high levels. American type hops are often used but not necessary for this style. Very low levels of diacetyl may be acceptable. A caramel and\/or toffee aroma and flavor are often part of the character. Characters indicating oxidation, such as vinous (sometimes sherry-like) aromas and\/or flavors, are not generally acceptable in American-style Barley Wine Ale, however if a low level of age-induced oxidation character harmonizes and enhances the overall experience this can be regarded favorably. Chill haze is allowable at cold temperatures.",
+            "ibuMin":"60",
+            "ibuMax":"100",
+            "abvMin":"8.4",
+            "abvMax":"12",
+            "srmMin":"11",
+            "srmMax":"22",
+            "ogMin":"1.09",
+            "fgMin":"1.024",
+            "fgMax":"1.028",
+            "createDate":"2012-03-21 20:06:46",
+            "updateDate":"2015-04-07 15:27:08"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"8MZXxY",
+         "name":"5 Beers for 5 Years: Florida Weisse",
+         "nameDisplay":"5 Beers for 5 Years: Florida Weisse",
+         "availableId":2,
+         "styleId":114,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/8MZXxY\/upload_F91NVu-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/8MZXxY\/upload_F91NVu-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/8MZXxY\/upload_F91NVu-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "createDate":"2014-02-10 12:13:08",
+         "updateDate":"2015-12-17 08:54:24",
+         "available":{
+            "id":2,
+            "name":"Limited",
+            "description":"Limited availability."
+         },
+         "style":{
+            "id":114,
+            "categoryId":11,
+            "category":{
+               "id":11,
+               "name":"Hybrid\/mixed Beer",
+               "createDate":"2012-03-21 20:06:46"
+            },
+            "name":"Fruit Wheat Ale or Lager with or without Yeast",
+            "shortName":"Fruit Wheat Ale",
+            "description":"This beer can be made using either ale or lager yeast. It can be brewed with 30 to 75 percent malted wheat. Fruit or fruit extracts contribute flavor and\/or aroma. Perceived fruit qualities should be authentic and replicate true fruit complexity as much as possible. Color should reflect a degree of fruit's color. Hop rates may be low to medium. Hop characters may be light to moderate in bitterness, flavor and aroma. Fruity-estery aroma and flavor from yeast can be typical but at low levels; however, phenolic, clovelike characteristics should not be perceived. Body should be light to medium in character. Diacetyl should not be perceived. When this style is served with yeast the character should portray a full yeasty mouthfeel and appear hazy to very cloudy. Chill haze is also acceptable. Yeast flavor and aroma should be low to medium but not overpowering the balance and character of malt and hops. Brewer may indicate on the bottle whether the yeast should be intentionally roused or if they prefer that the entry be poured as quietly as possible.",
+            "ibuMin":"10",
+            "ibuMax":"35",
+            "abvMin":"3.8",
+            "abvMax":"5",
+            "srmMin":"2",
+            "srmMax":"10",
+            "ogMin":"1.036",
+            "fgMin":"1.004",
+            "fgMax":"1.016",
+            "createDate":"2012-03-21 20:06:46",
+            "updateDate":"2015-04-07 15:43:55"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"W2qjo7",
+         "name":"5 Beers For 5 Years - Margarita Gose",
+         "nameDisplay":"5 Beers For 5 Years - Margarita Gose",
+         "availableId":2,
+         "styleId":47,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/W2qjo7\/upload_O51YU7-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/W2qjo7\/upload_O51YU7-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/W2qjo7\/upload_O51YU7-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "createDate":"2014-02-10 12:12:26",
+         "updateDate":"2015-12-17 10:15:46",
+         "available":{
+            "id":2,
+            "name":"Limited",
+            "description":"Limited availability."
+         },
+         "style":{
+            "id":47,
+            "categoryId":4,
+            "category":{
+               "id":4,
+               "name":"German Origin Ales",
+               "createDate":"2012-03-21 20:06:46"
+            },
+            "name":"Leipzig-Style Gose",
+            "shortName":"Leipzig Gose",
+            "description":"Traditional examples of Gose are spontaneously fermented, similarly to Belgian-style gueuze\/lambic beers, and should exhibit complexity of acidic, flavor and aroma contributed by introduction of wild yeast and bacteria into the fermentation. A primary difference between Belgian Gueuze and German Gose is that Gose is served at a much younger age. Gose is typically pale gold to pale amber in color and typically contains malted barley, unmalted wheat with some traditional varieties containing oats. Hop character and malt flavors and aromas are negligible. Lemony or other citrus-like qualities are often present in aroma and on the palate. Some versions may have the spicy character of added coriander in aroma and on the palate at low to medium levels. Salt (table salt) character is also traditional in low amounts. Horsey, leathery, earthy aroma and flavors contributed by Brettanomyces yeasts may be evident but have a very low profile, as this beer is not excessively aged. Modern German Gose breweries typically introduce only pure beer yeast strains for fermentation. Low to medium lactic acid character is evident in all examples as sharp, refreshing sourness. Gose is typically enjoyed fresh, carbonated, and cloudy\/hazy with yeast character, and may have evidence of continued fermentation activity. Overall complexity of flavors and aromas are sought while maintaining an ideal balance between acidity, yeast-enhanced spice and refreshment is ideal.",
+            "ibuMin":"10",
+            "ibuMax":"15",
+            "abvMin":"4.4",
+            "abvMax":"5.4",
+            "srmMin":"3",
+            "srmMax":"9",
+            "ogMin":"1.036",
+            "fgMin":"1.008",
+            "fgMax":"1.012",
+            "createDate":"2012-03-21 20:06:46",
+            "updateDate":"2015-04-07 17:09:35"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"67lPiS",
+         "name":"Big Sound Scotch Ale",
+         "nameDisplay":"Big Sound Scotch Ale",
+         "description":"Big Sound Scotch Ale is dedicated to our good buddy Gino, the most punk rock bagpiper you'll ever meet, and the rest of the men and women of Tampa Bay Pipes and Drums. Brown in color, Big Sound has huge notes of dark sweet toffee with underlying mild notes of coffee in the aroma. The flavor starts with a slight note of cherry and then opens into a Goliath of a malt character with notes of dark sweet toffee, slight hints of coffee and mild notes of toasted bread in the finish. Big Sound Scotch Ale pairs well with Haggis, Highland Games, Huge Heads and Enormous Pillows and of course Bagpipe music.",
+         "abv":"8.5",
+         "ibu":"40",
+         "glasswareId":5,
+         "srmId":20,
+         "availableId":4,
+         "styleId":14,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/67lPiS\/upload_CAzraf-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/67lPiS\/upload_CAzraf-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/67lPiS\/upload_CAzraf-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "originalGravity":"1.096",
+         "createDate":"2012-01-03 02:42:49",
+         "updateDate":"2017-01-09 18:42:33",
+         "glass":{
+            "id":5,
+            "name":"Pint",
+            "createDate":"2012-01-03 02:41:33"
+         },
+         "srm":{
+            "id":20,
+            "name":"20",
+            "hex":"9B3200"
+         },
+         "available":{
+            "id":4,
+            "name":"Seasonal",
+            "description":"Available at the same time of year, every year."
+         },
+         "style":{
+            "id":14,
+            "categoryId":1,
+            "category":{
+               "id":1,
+               "name":"British Origin Ales",
+               "createDate":"2012-03-21 20:06:45"
+            },
+            "name":"Strong Ale",
+            "shortName":"Strong Ale",
+            "description":"Light amber to mid-range brown in color, strong ales are medium to full bodied with a malty sweetness and may have low levels of roast malt character. Hop aroma should be minimal and flavor can vary from none to medium in character intensity. Fruity-ester flavors and aromas can contribute to the character of this ale. Bitterness should be minimal but evident and balanced with malt and\/or caramel-like sweetness. Alcohol types can be varied and complex. A rich, often sweet and complex estery character may be evident. Very low levels of diacetyl are acceptable. Chill haze is acceptable at low temperatures. (This style may often be split into two categories, strong and very strong.)",
+            "ibuMin":"30",
+            "ibuMax":"65",
+            "abvMin":"7",
+            "abvMax":"11",
+            "srmMin":"8",
+            "srmMax":"21",
+            "ogMin":"1.06",
+            "fgMin":"1.014",
+            "fgMax":"1.04",
+            "createDate":"2012-03-21 20:06:45",
+            "updateDate":"2015-04-07 15:21:05"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"Q21IU2",
+         "name":"Jose Marti",
+         "nameDisplay":"Jose Marti",
+         "description":"Jos\u00e9 Mart\u00ed was a pivotal figure in Cuban history leading an insurrection that ultimately resulted in Cuban Independence from Spain and was revered by Tampa cigar rollers for his support of cigar factory workers and his fiery speeches in Tampa in support of Cuban Independence. This is a heavily hopped high gravity porter featuring the hopping levels of an India Pale Ale with the rich and roasty malt profile of a robust porter. Heavy hop rates, while uncommon in today's porters were not unknown historically and recipes from the British porter producers of the 1800's evidence hopping rates far in excess of what is common for the style today.",
+         "abv":"8",
+         "ibu":"65",
+         "glasswareId":5,
+         "srmId":39,
+         "availableId":4,
+         "styleId":19,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/Q21IU2\/upload_IU2Z1v-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/Q21IU2\/upload_IU2Z1v-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/Q21IU2\/upload_IU2Z1v-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "originalGravity":"1.079",
+         "createDate":"2012-01-03 02:43:32",
+         "updateDate":"2015-12-16 09:47:59",
+         "glass":{
+            "id":5,
+            "name":"Pint",
+            "createDate":"2012-01-03 02:41:33"
+         },
+         "srm":{
+            "id":39,
+            "name":"39",
+            "hex":"3A070B"
+         },
+         "available":{
+            "id":4,
+            "name":"Seasonal",
+            "description":"Available at the same time of year, every year."
+         },
+         "style":{
+            "id":19,
+            "categoryId":1,
+            "category":{
+               "id":1,
+               "name":"British Origin Ales",
+               "createDate":"2012-03-21 20:06:45"
+            },
+            "name":"Robust Porter",
+            "shortName":"Robust Porter",
+            "description":"Robust porters are black in color and have a roast malt flavor, often reminiscent of cocoa, but no roast barley flavor. These porters have a sharp bitterness of black malt without a highly burnt\/charcoal flavor. Caramel and other malt sweetness should be present and in harmony with other distinguishing porter characters. Robust porters range from medium to full in body and have a malty sweetness. Hop bitterness is medium to high, with hop aroma and flavor ranging from negligible to medium. Diacetyl is acceptable at very low levels. Fruity esters should be evident, balanced with roast malt and hop bitterness.",
+            "ibuMin":"25",
+            "ibuMax":"40",
+            "abvMin":"5",
+            "abvMax":"6.5",
+            "srmMin":"30",
+            "srmMax":"30",
+            "ogMin":"1.045",
+            "fgMin":"1.008",
+            "fgMax":"1.016",
+            "createDate":"2012-03-21 20:06:45",
+            "updateDate":"2015-04-07 15:21:45"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"BkUHeI",
+         "name":"Ginga Ninja",
+         "nameDisplay":"Ginga Ninja",
+         "description":"Red India Pale Ale brewed w. Fresh Ginger\r\n\r\nOnce upon a time there was a young brew master who fell in love with a ginger haired maiden. he loved her fiery locks, quick wit and samurai sharp personality. He proposed marriage and crafted a beer for her, an original red ale brewed with refreshing fresh ginger and a touch of hoppiness that typified her personality. When she took her first sip at their wedding she knew she had made the right choice. Try Tyler\u2019s ginga ninja red ipa brewed with 6 lbs of fresh ginger in every batch and hopped with centennial, cascade & bravo hops. If not at your wedding then on a hot afternoon as you wait on your pig to finish roasting, or while chompin on a crisp apple and a creamy wheel of camembert.",
+         "abv":"6.5",
+         "ibu":"56",
+         "availableId":1,
+         "styleId":30,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/BkUHeI\/upload_cShLcD-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/BkUHeI\/upload_cShLcD-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/BkUHeI\/upload_cShLcD-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "foodPairings":"Seafood, Cheese",
+         "createDate":"2014-09-24 13:21:43",
+         "updateDate":"2015-12-17 18:34:52",
+         "available":{
+            "id":1,
+            "name":"Year Round",
+            "description":"Available year round as a staple beer."
+         },
+         "style":{
+            "id":30,
+            "categoryId":3,
+            "category":{
+               "id":3,
+               "name":"North American Origin Ales",
+               "createDate":"2012-03-21 20:06:45"
+            },
+            "name":"American-Style India Pale Ale",
+            "shortName":"American IPA",
+            "description":"American-style India pale ales are perceived to have medium-high to intense hop bitterness, flavor and aroma with medium-high alcohol content. The style is further characterized by floral, fruity, citrus-like, piney, resinous, or sulfur-like American-variety hop character. Note that one or more of these American-variety hop characters is the perceived end, but the hop characters may be a result of the skillful use of hops of other national origins. The use of water with high mineral content results in a crisp, dry beer. This pale gold to deep copper-colored ale has a full, flowery hop aroma and may have a strong hop flavor (in addition to the perception of hop bitterness). India pale ales possess medium maltiness which contributes to a medium body. Fruity-ester flavors and aromas are moderate to very strong. Diacetyl can be absent or may be perceived at very low levels. Chill and\/or hop haze is allowable at cold temperatures. (English and citrus-like American hops are considered enough of a distinction justifying separate American-style IPA and English-style IPA categories or subcategories. Hops of other origins may be used for bitterness or approximating traditional American or English character. See English-style India Pale Ale",
+            "ibuMin":"50",
+            "ibuMax":"70",
+            "abvMin":"6.3",
+            "abvMax":"7.5",
+            "srmMin":"6",
+            "srmMax":"14",
+            "ogMin":"1.06",
+            "fgMin":"1.012",
+            "fgMax":"1.018",
+            "createDate":"2012-03-21 20:06:45",
+            "updateDate":"2015-04-07 15:26:37"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"u3OD1F",
+         "name":"American Pale Ale",
+         "nameDisplay":"American Pale Ale",
+         "abv":"5.1",
+         "ibu":"52",
+         "styleId":25,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/u3OD1F\/upload_YEHxCR-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/u3OD1F\/upload_YEHxCR-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/u3OD1F\/upload_YEHxCR-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "createDate":"2015-01-14 13:26:05",
+         "updateDate":"2016-05-19 12:43:31",
+         "style":{
+            "id":25,
+            "categoryId":3,
+            "category":{
+               "id":3,
+               "name":"North American Origin Ales",
+               "createDate":"2012-03-21 20:06:45"
+            },
+            "name":"American-Style Pale Ale",
+            "shortName":"American Pale",
+            "description":"American pale ales range from deep golden to copper in color. The style is characterized by fruity, floral and citrus-like American-variety hop character producing medium to medium-high hop bitterness, flavor, and aroma. Note that the \"traditional\" style of this beer has its origins with certain floral, fruity, citrus-like, piney, resinous, or sulfur-like American hop varietals. One or more of these hop characters is the perceived end, but the perceived hop characters may be a result of the skillful use of hops of other national origins. American pale ales have medium body and low to medium maltiness. Low caramel character is allowable. Fruity-ester flavor and aroma should be moderate to strong. Diacetyl should be absent or present at very low levels. Chill haze is allowable at cold temperatures.",
+            "ibuMin":"30",
+            "ibuMax":"42",
+            "abvMin":"4.5",
+            "abvMax":"5.6",
+            "srmMin":"6",
+            "srmMax":"14",
+            "ogMin":"1.044",
+            "fgMin":"1.008",
+            "fgMax":"1.014",
+            "createDate":"2012-03-21 20:06:45",
+            "updateDate":"2015-04-07 15:25:18"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"gAEaU1",
+         "name":"Walla Wheat",
+         "nameDisplay":"Walla Wheat",
+         "description":"This classic wheat beer combines 2 row malt and wheat for a balanced blast of citrus.  We added a twist and fermented this beer with a kolsch yeast strain.  Brewed with Centennial and Magnum hops.",
+         "abv":"5",
+         "styleId":113,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/gAEaU1\/upload_axxkIe-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/gAEaU1\/upload_axxkIe-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/gAEaU1\/upload_axxkIe-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "createDate":"2014-06-05 11:09:23",
+         "updateDate":"2015-12-17 13:28:45",
+         "style":{
+            "id":113,
+            "categoryId":11,
+            "category":{
+               "id":11,
+               "name":"Hybrid\/mixed Beer",
+               "createDate":"2012-03-21 20:06:46"
+            },
+            "name":"Light American Wheat Ale or Lager without Yeast",
+            "shortName":"Wheat Ale",
+            "description":"This beer can be made using either ale or lager yeast. It can be brewed with 30 to 75 percent wheat malt, and hop rates may be low to medium. Hop characters may be light to moderate in bitterness, flavor and aroma. A fruity-estery aroma and flavor are typical but at low levels however, phenolic, clove-like characteristics should not be perceived. Appearance can be clear or with chill haze, golden to light amber, and the body should be light to medium in character. Diacetyl should not be perceived. Because this style is packaged and served without yeast, no yeast characters should be evident in mouthfeel, flavor, or aroma.",
+            "ibuMin":"10",
+            "ibuMax":"35",
+            "abvMin":"3.8",
+            "abvMax":"5",
+            "srmMin":"2",
+            "srmMax":"10",
+            "ogMin":"1.036",
+            "fgMin":"1.004",
+            "fgMax":"1.016",
+            "createDate":"2012-03-21 20:06:46",
+            "updateDate":"2015-04-07 15:42:53"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"rBtWJP",
+         "name":"Cow Boss Imperial Milk Stout",
+         "nameDisplay":"Cow Boss Imperial Milk Stout",
+         "description":"Cow Boss Imperial Milk Stout was brewed in collaboration with Florida's Cattlemen's Foundation. We aged this big stout on Florida cypress wood, which gives the beer a Good Ol' Southern Chocolate Layer Cake character. We used hops that show subtle notes of dark fruit, orange, and anise.",
+         "srmId":41,
+         "availableId":2,
+         "styleId":20,
+         "isOrganic":"Y",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/rBtWJP\/upload_9v1PZ2-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/rBtWJP\/upload_9v1PZ2-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/rBtWJP\/upload_9v1PZ2-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "servingTemperature":"cold",
+         "servingTemperatureDisplay":"Cold - (4-7C\/39-45F)",
+         "createDate":"2015-06-18 16:47:58",
+         "updateDate":"2015-12-18 03:44:10",
+         "srm":{
+            "id":41,
+            "name":"Over 40",
+            "hex":"000000"
+         },
+         "available":{
+            "id":2,
+            "name":"Limited",
+            "description":"Limited availability."
+         },
+         "style":{
+            "id":20,
+            "categoryId":1,
+            "category":{
+               "id":1,
+               "name":"British Origin Ales",
+               "createDate":"2012-03-21 20:06:45"
+            },
+            "name":"Sweet or Cream Stout",
+            "shortName":"Sweet Stout",
+            "description":"Sweet stouts, also referred to as cream stouts, have less roasted bitter flavor and a full-bodied mouthfeel. The style can be given more body with milk sugar (lactose) before bottling. Malt sweetness, chocolate, and caramel flavor should dominate the flavor profile and contribute to the aroma. Hops should balance and suppress some of the sweetness without contributing apparent flavor or aroma. The overall impression should be sweet and full-bodied.",
+            "ibuMin":"15",
+            "ibuMax":"25",
+            "abvMin":"3",
+            "abvMax":"6",
+            "srmMin":"40",
+            "srmMax":"40",
+            "ogMin":"1.045",
+            "fgMin":"1.012",
+            "fgMax":"1.02",
+            "createDate":"2012-03-21 20:06:45",
+            "updateDate":"2015-04-07 15:24:41"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      },
+      {
+         "id":"Ok2HwZ",
+         "name":"Seasonal Sneak",
+         "nameDisplay":"Seasonal Sneak",
+         "description":"An insidious beast that Seasonal Sneak. A few days here. A week there. Before you know it you are hanging a Christmas stocking on your Jack o\u2019 Lantern and hiding painted eggs in the pumpkin pie. But there is no use fighting. Be still and let the cold claw of Seasonal Sneak seize your palate with a tumult of chocolate, pumpkin, and spice flavors. Label designed by Foursixsix",
+         "abv":"7",
+         "ibu":"33",
+         "styleId":121,
+         "isOrganic":"N",
+         "labels":{
+            "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/Ok2HwZ\/upload_IgEN0x-icon.png",
+            "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/Ok2HwZ\/upload_IgEN0x-medium.png",
+            "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/Ok2HwZ\/upload_IgEN0x-large.png"
+         },
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "createDate":"2016-07-18 18:30:39",
+         "updateDate":"2016-07-19 10:01:51",
+         "style":{
+            "id":121,
+            "categoryId":11,
+            "category":{
+               "id":11,
+               "name":"Hybrid\/mixed Beer",
+               "createDate":"2012-03-21 20:06:46"
+            },
+            "name":"Pumpkin Beer",
+            "shortName":"Pumpkin Beer",
+            "description":"Pumpkin beers are any beers using pumpkins (Cucurbito pepo) as an adjunct in either mash, kettle, primary or secondary fermentation, providing obvious (ranging from subtle to intense), yet harmonious, qualities. Pumpkin qualities should not be overpowered by hop character. These may or may not be spiced or flavored with other things. A statement by the brewer explaining the nature of the beer is essential for fair assessment in competitions. If this beer is a classic style with pumpkin, the brewer should also specify the classic style.",
+            "ibuMin":"5",
+            "ibuMax":"70",
+            "abvMin":"2.5",
+            "abvMax":"12",
+            "srmMin":"5",
+            "srmMax":"50",
+            "ogMin":"1.03",
+            "fgMin":"1.006",
+            "fgMax":"1.03",
+            "createDate":"2012-03-21 20:06:46",
+            "updateDate":"2015-04-07 15:44:28"
+         },
+         "fluidSize":{
+            "id":9,
+            "volume":"case",
+            "createDate":"2012-01-03 02:41:33"
+         }
+      }
+   ],
+   "status":"success"
+}
