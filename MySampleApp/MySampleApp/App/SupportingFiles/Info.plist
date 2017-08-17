@@ -4,14 +4,6 @@
 <dict>
 	<key>AWS</key>
 	<dict>
-		<key>DynamoDBObjectMapper</key>
-		<dict>
-			<key>Default</key>
-			<dict>
-				<key>Region</key>
-				<string>us-east-1</string>
-			</dict>
-		</dict>
 		<key>CognitoUserPool</key>
 		<dict>
 			<key>Default</key>
@@ -37,6 +29,14 @@
 					<key>Region</key>
 					<string>us-east-1</string>
 				</dict>
+			</dict>
+		</dict>
+		<key>DynamoDBObjectMapper</key>
+		<dict>
+			<key>Default</key>
+			<dict>
+				<key>Region</key>
+				<string>us-east-1</string>
 			</dict>
 		</dict>
 		<key>IdentityManager</key>
@@ -90,7 +90,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>4</string>
 	<key>FacebookAppID</key>
 	<string>484419865261454</string>
 	<key>FacebookDisplayName</key>

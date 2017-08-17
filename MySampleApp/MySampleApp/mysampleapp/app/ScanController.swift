@@ -368,7 +368,6 @@ class ScanController: UIViewController {
         }
         guard let existingAWSBeer = mainBeerStore.filter({$0._beerEntryId == currentBeer.brewerydb_id}).first else {
             // Add new beer if doesn't exist
-            let currentBeer = currentAWSBeer.returnBeerObject()
             currentBeer.quantity = quantity
             insertAWSBeer(beer: currentBeer)
             self.dismiss(animated: true, completion: {

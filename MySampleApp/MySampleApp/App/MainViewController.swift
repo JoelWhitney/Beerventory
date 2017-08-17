@@ -258,8 +258,21 @@ class MainViewController: UIViewController  {
             return
         }
         self.currentBeer.quantity += quantity
-        //self.updateBeerQuantity(indexPath: currentBeerIndexPath)
-        self.dismiss(animated: true, completion: nil)
+        // update the current aws beer
+        self.currentAWSBeer._beer = currentBeer.beerObjectMap()
+        let objectMapper = AWSDynamoDBObjectMapper.default()
+        objectMapper.save(currentAWSBeer, completionHandler: {(error: Error?) -> Void in
+            if let error = error {
+                print("Amazon DynamoDB Save Error: \(error)")
+                return
+            }
+            print("Item saved.")
+        })
+        self.dismiss(animated: true, completion: {
+            DispatchQueue.main.async(execute: {
+                self.tableView.reloadData()
+            })
+        })
     }
     
     func removeBeers(sender: UIButton){
@@ -269,13 +282,50 @@ class MainViewController: UIViewController  {
         }
         var removedBeer = false
         self.currentBeer.quantity -= quantity
-        if currentBeer.quantity < 1 {
-            //self.removeBeerFromStore(indexPath: self.currentBeerIndexPath)
+        // Remove if <1
+        let objectMapper = AWSDynamoDBObjectMapper.default()
+        if self.currentBeer.quantity < 1 {
             removedBeer = true
+            objectMapper.remove(self.currentAWSBeer, completionHandler:  {(error: Error?) -> Void in
+                if let error = error {
+                    print("Amazon DynamoDB Save Error: \(error)")
+                    return
+                }
+                print("Item deleted.")
+                self.queryWithPartitionKeyWithCompletionHandler { (response, error) in
+                    if let erro = error {
+                        //self.NoSQLResultLabel.text = String(erro)
+                        print("error: \(erro)")
+                    } else if response?.items.count == 0 {
+                        //self.NoSQLResultLabel.text = String("0")
+                        print("No items")
+                    } else {
+                        //self.NoSQLResultLabel.text = String(response!.items)
+                        print("success: \(response!.items)")
+                        self.mainBeerStore = [AWSBeer]()
+                        self.updateItemstoStore(items: response!.items) {
+                            DispatchQueue.main.async(execute: {
+                                self.tableView.reloadData()
+                            })
+                        }
+                    }
+                }
+            })
+        // Update if just different
         } else {
-            //self.updateBeerQuantity(indexPath: currentBeerIndexPath)
+            self.currentAWSBeer._beer = self.currentBeer.beerObjectMap()
+            objectMapper.save(currentAWSBeer, completionHandler: {(error: Error?) -> Void in
+                if let error = error {
+                    print("Amazon DynamoDB Save Error: \(error)")
+                    return
+                }
+                print("Item saved.")
+            })
         }
         self.dismiss(animated: true, completion: {
+            DispatchQueue.main.async(execute: {
+                self.tableView.reloadData()
+            })
             if removedBeer {
                 let alertController2 = UIAlertController(title: "\(self.currentBeer.name) removed", message: "You drank all of your \(self.currentBeer.name). Go get some more!", preferredStyle: UIAlertControllerStyle.alert)
                 alertController2.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
