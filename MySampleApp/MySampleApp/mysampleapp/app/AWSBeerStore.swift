@@ -13,7 +13,7 @@
 //import AWSMobileHubHelper
 //import Foundation
 //
-//class AWSBeerStore: NSObject, Table {
+//class AWSBeerStore: NSObject {
 //    
 //    var tableName: String
 //    var partitionKeyName: String
@@ -170,5 +170,6 @@
 //    }
 //    
 //}
+//
 //
 //

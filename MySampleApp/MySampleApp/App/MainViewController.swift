@@ -12,28 +12,26 @@
 //
 
 import UIKit
-import RxSwift
 import AWSDynamoDB
 import AWSMobileHubHelper
+import SwiftyJSON
 
 class MainViewController: UIViewController  {
     // MARK: - variables/constants
-    var mainBeerStore: BeerStore {
-        let navController = self.navigationController as? NavigationController
-        return navController!.mainBeerStore
-    }
+    var mainBeerStore = [AWSBeer]()
+    
     var alertTextField = UITextField()
-    var filterAllBeers: Variable<[Beer]> = Variable([])
-    var tableViewBeers: Variable<[Beer]> = Variable([])
+//    var filterAllBeers: Variable<[Beer]> = Variable([])
+//    var tableViewBeers: Variable<[Beer]> = Variable([])
+    var currentAWSBeer: AWSBeer!
     var currentBeer: Beer!
     var currentBeerIndexPath: IndexPath!
     var refreshControl: UIRefreshControl!
     var pickerQuantity = "1"
+    let searchDispCont = UISearchController(searchResultsController: nil)
     
     // MARK: Outlets
     @IBOutlet var tableView: UITableView!
-    
-    
     @IBOutlet var settingsButton: UIBarButtonItem!
     
     // MARK: Actions
@@ -48,23 +46,47 @@ class MainViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
-        // tableview
+    
+        queryWithPartitionKeyWithCompletionHandler { (response, error) in
+            if let erro = error {
+                //self.NoSQLResultLabel.text = String(erro)
+                print("error: \(erro)")
+            } else if response?.items.count == 0 {
+                //self.NoSQLResultLabel.text = String("0")
+                print("No items")
+            } else {
+                //self.NoSQLResultLabel.text = String(response!.items)
+                print("success: \(response!.items)")
+                self.updateItemstoStore(items: response!.items) {
+                    DispatchQueue.main.async(execute: {
+                        self.tableView.reloadData()
+                    })
+                }
+            }
+        }
+        
+//        // tableview
         tableView.delegate = self
         tableView.dataSource = self
         // status bar
         let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
         statusBarView.backgroundColor = UIColor(red: 235/255, green: 171/255, blue: 28/255, alpha: 1)
         // search results tableview
-        self.searchDisplayController!.searchResultsTableView.backgroundColor = UIColor(colorLiteralRed: 240/255, green: 198/255, blue: 0/255, alpha: 1.0)
-        self.searchDisplayController!.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        // search bar
-        self.searchDisplayController?.searchBar.isTranslucent = false
-        self.searchDisplayController?.searchBar.isHidden = false
+        searchDispCont.searchResultsUpdater = self
+        searchDispCont.searchBar.delegate = self
+        searchDispCont.dimsBackgroundDuringPresentation = false
+        self.definesPresentationContext = true
+        searchDispCont.hidesNavigationBarDuringPresentation = false
+        tableView.tableHeaderView = searchDispCont.searchBar
+        searchDispCont.searchBar.backgroundColor = UIColor(red: 235/255, green: 171/255, blue: 28/255, alpha: 1)
+        searchDispCont.searchBar.searchBarStyle = .minimal
+        searchDispCont.searchBar.placeholder = "Filter"
+        searchDispCont.searchBar.returnKeyType = UIReturnKeyType.search
+        // ui stuff
         let searchbarBackground = UIView()
         searchbarBackground.backgroundColor = UIColor(red: 235/255, green: 171/255, blue: 28/255, alpha: 1)
         tableView.backgroundView = searchbarBackground
-//        settingsButton.action = #selector(settingsButtonClicked)
-//        settingsButton.target = self
+
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -73,43 +95,82 @@ class MainViewController: UIViewController  {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "blippo", size: 20)!]
         self.navigationController?.topViewController?.title = "BEERVENTORY"
         print("MainViewController will appear")
-        tableView.reloadData()
+        queryWithPartitionKeyWithCompletionHandler { (response, error) in
+            if let erro = error {
+                //self.NoSQLResultLabel.text = String(erro)
+                print("error: \(erro)")
+            } else if response?.items.count == 0 {
+                //self.NoSQLResultLabel.text = String("0")
+                print("No items")
+            } else {
+                //self.NoSQLResultLabel.text = String(response!.items)
+                print("success: \(response!.items)")
+                self.mainBeerStore = [AWSBeer]()
+                self.updateItemstoStore(items: response!.items) {
+                    DispatchQueue.main.async(execute: {
+                        self.tableView.reloadData()
+                    })
+                }
+            }
+        }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        mainBeerStore.saveChanges()
+        //mainBeerStore.saveChanges()
     }
     
     //MARK: Imperative methods
+    func queryWithPartitionKeyDescription() -> String {
+        let partitionKeyValue = AWSIdentityManager.default().identityId!
+        return "Find all items with userId = \(partitionKeyValue)."
+    }
+    func queryWithPartitionKeyWithCompletionHandler(_ completionHandler: @escaping (_ response: AWSDynamoDBPaginatedOutput?, _ error: NSError?) -> Void) {
+        let objectMapper = AWSDynamoDBObjectMapper.default()
+        let queryExpression = AWSDynamoDBQueryExpression()
+
+        queryExpression.keyConditionExpression = "#userId = :userId"
+        queryExpression.expressionAttributeNames = ["#userId": "userId",]
+        queryExpression.expressionAttributeValues = [":userId": AWSIdentityManager.default().identityId!,]
+
+        objectMapper.query(AWSBeer.self, expression: queryExpression) { (response: AWSDynamoDBPaginatedOutput?, error: Error?) in
+            DispatchQueue.main.async(execute: {
+                completionHandler(response, error as? NSError)
+            })
+        }
+    }
+    func updateItemstoStore(items: [AWSDynamoDBObjectModel], onCompletion: () -> Void) {
+        for item in items {
+            let awsBeer = item as! AWSBeer
+            mainBeerStore.append(awsBeer)
+            print("\(mainBeerStore.count) items in beer store")
+        }
+        onCompletion()
+    }
+    
     func handleCancel(alertView: UIAlertAction!) {
         // do cancel stuff here
     }
-    func filterContentForSearchText(searchText: String) {
-        // Filter the array using the filter method
-        if self.mainBeerStore.allBeers.value == [] {
-            self.filterAllBeers.value = []
-            return
-        }
-        self.filterAllBeers.value = self.mainBeerStore.allBeers.value.filter({( beer: Beer) -> Bool in
-            // to start, let's just search by name
-            return beer.name.lowercased().range(of: searchText.lowercased()) != nil
-        })
-        print(filterAllBeers.value)
-    }
+//    func filterContentForSearchText(searchText: String) {
+//        // Filter the array using the filter method
+//        if self.mainBeerStore.allBeers.value == [] {
+//            self.filterAllBeers.value = []
+//            return
+//        }
+//        self.filterAllBeers.value = self.mainBeerStore.allBeers.value.filter({( beer: Beer) -> Bool in
+//            // to start, let's just search by name
+//            return beer.name.lowercased().range(of: searchText.lowercased()) != nil
+//        })
+//        print(filterAllBeers.value)
+//    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "detailsViewController") {
             let yourNextViewController = (segue.destination as! DetailsController)
             yourNextViewController.beer = currentBeer
         }
     }
-//    func settingsButtonClicked() {
-//        let alertController = UIAlertController(title: "Sorrey", message: "Feature not implemented", preferredStyle: UIAlertControllerStyle.alert)
-//        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-//        self.present(alertController, animated: true, completion: nil)
-//    }
     func checkButtonTapped(sender:AnyObject) {
         let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
         let indexPath = self.tableView.indexPathForRow(at: buttonPosition)
@@ -123,26 +184,27 @@ class MainViewController: UIViewController  {
             self.alertTextField = textField
         }
     }
-    func updateBeerQuantity(indexPath: IndexPath){
-        tableViewBeers.value[indexPath.row] = currentBeer
-        self.mainBeerStore.updateBeerQuantity(updatedBeer: self.currentBeer)
-        self.mainBeerStore.saveChanges()
-        self.searchDisplayController!.searchResultsTableView.reloadData()
-        tableView.reloadData()
-    }
-    func removeBeerFromStore(indexPath: IndexPath) {
-        tableViewBeers.value[indexPath.row] = currentBeer
-        self.mainBeerStore.removeBeer(beer: self.currentBeer)
-        self.mainBeerStore.saveChanges()
-        self.searchDisplayController!.searchResultsTableView.reloadData()
-        tableView.reloadData()
-    }
+//    func updateBeerQuantity(indexPath: IndexPath){
+//        tableViewBeers.value[indexPath.row] = currentBeer
+//        self.mainBeerStore.updateBeerQuantity(updatedBeer: self.currentBeer)
+//        self.mainBeerStore.saveChanges()
+//        self.searchDisplayController!.searchResultsTableView.reloadData()
+//        tableView.reloadData()
+//    }
+//    func removeBeerFromStore(indexPath: IndexPath) {
+//        tableViewBeers.value[indexPath.row] = currentBeer
+//        self.mainBeerStore.removeBeer(beer: self.currentBeer)
+//        self.mainBeerStore.saveChanges()
+//        self.searchDisplayController!.searchResultsTableView.reloadData()
+//        tableView.reloadData()
+//    }
     func showPickerInActionSheet(sender: AnyObject) {
         pickerQuantity = "1"
         checkButtonTapped(sender: sender)
-        print(tableViewBeers.value)
+        //print(tableViewBeers.value)
         print(currentBeerIndexPath.row)
-        currentBeer = tableViewBeers.value[currentBeerIndexPath.row]
+        currentAWSBeer = mainBeerStore[currentBeerIndexPath.row]
+        currentBeer = currentAWSBeer.returnBeerObject()
         var actionType: String
         var actionTitle: String
         if sender.tag == 1 {
@@ -196,8 +258,21 @@ class MainViewController: UIViewController  {
             return
         }
         self.currentBeer.quantity += quantity
-        self.updateBeerQuantity(indexPath: currentBeerIndexPath)
-        self.dismiss(animated: true, completion: nil)
+        // update the current aws beer
+        self.currentAWSBeer._beer = currentBeer.beerObjectMap()
+        let objectMapper = AWSDynamoDBObjectMapper.default()
+        objectMapper.save(currentAWSBeer, completionHandler: {(error: Error?) -> Void in
+            if let error = error {
+                print("Amazon DynamoDB Save Error: \(error)")
+                return
+            }
+            print("Item saved.")
+        })
+        self.dismiss(animated: true, completion: {
+            DispatchQueue.main.async(execute: {
+                self.tableView.reloadData()
+            })
+        })
     }
     
     func removeBeers(sender: UIButton){
@@ -207,13 +282,50 @@ class MainViewController: UIViewController  {
         }
         var removedBeer = false
         self.currentBeer.quantity -= quantity
-        if currentBeer.quantity < 1 {
-            self.removeBeerFromStore(indexPath: self.currentBeerIndexPath)
+        // Remove if <1
+        let objectMapper = AWSDynamoDBObjectMapper.default()
+        if self.currentBeer.quantity < 1 {
             removedBeer = true
+            objectMapper.remove(self.currentAWSBeer, completionHandler:  {(error: Error?) -> Void in
+                if let error = error {
+                    print("Amazon DynamoDB Save Error: \(error)")
+                    return
+                }
+                print("Item deleted.")
+                self.queryWithPartitionKeyWithCompletionHandler { (response, error) in
+                    if let erro = error {
+                        //self.NoSQLResultLabel.text = String(erro)
+                        print("error: \(erro)")
+                    } else if response?.items.count == 0 {
+                        //self.NoSQLResultLabel.text = String("0")
+                        print("No items")
+                    } else {
+                        //self.NoSQLResultLabel.text = String(response!.items)
+                        print("success: \(response!.items)")
+                        self.mainBeerStore = [AWSBeer]()
+                        self.updateItemstoStore(items: response!.items) {
+                            DispatchQueue.main.async(execute: {
+                                self.tableView.reloadData()
+                            })
+                        }
+                    }
+                }
+            })
+        // Update if just different
         } else {
-            self.updateBeerQuantity(indexPath: currentBeerIndexPath)
+            self.currentAWSBeer._beer = self.currentBeer.beerObjectMap()
+            objectMapper.save(currentAWSBeer, completionHandler: {(error: Error?) -> Void in
+                if let error = error {
+                    print("Amazon DynamoDB Save Error: \(error)")
+                    return
+                }
+                print("Item saved.")
+            })
         }
         self.dismiss(animated: true, completion: {
+            DispatchQueue.main.async(execute: {
+                self.tableView.reloadData()
+            })
             if removedBeer {
                 let alertController2 = UIAlertController(title: "\(self.currentBeer.name) removed", message: "You drank all of your \(self.currentBeer.name). Go get some more!", preferredStyle: UIAlertControllerStyle.alert)
                 alertController2.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
@@ -272,25 +384,15 @@ extension MainViewController: UITableViewDataSource {
     //        // not implemented
     //    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == self.searchDisplayController!.searchResultsTableView {
-            return self.filterAllBeers.value.count
-        } else {
-            return mainBeerStore.allBeers.value.count // add 1 here if want the No More Beers thing
-        }
+        return mainBeerStore.count // add 1 here if want the No More Beers thing
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         self.tableView.estimatedRowHeight = 135
-        if tableView == self.searchDisplayController!.searchResultsTableView {
-            print("DS search results tableview")
-            tableViewBeers = self.filterAllBeers
-        } else {
-            tableViewBeers = self.mainBeerStore.allBeers
-            print("DS main tableview")
-        }
         // handle all beers
-        if indexPath.row < mainBeerStore.allBeers.value.count {
+        if indexPath.row < mainBeerStore.count {
             let cell = self.tableView!.dequeueReusableCell(withIdentifier: "MainBeerTableCell", for: indexPath) as! MainBeerTableCell
-            let beer = tableViewBeers.value[indexPath.row]
+            let awsBeer = mainBeerStore[indexPath.row]
+            let beer = awsBeer.returnBeerObject()
             // cell details
             cell.beerNameLabel.text = beer.name
             cell.beerStyle.text = beer.style_name
@@ -320,11 +422,7 @@ extension MainViewController: UITableViewDelegate {
         return 135.0
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == self.searchDisplayController!.searchResultsTableView {
-            currentBeer = filterAllBeers.value[indexPath.row]
-        } else {
-            currentBeer = mainBeerStore.allBeers.value[indexPath.row]
-        }
+        currentAWSBeer = mainBeerStore[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
         self.performSegue(withIdentifier: "detailsViewController", sender: self)
     }
@@ -347,18 +445,23 @@ extension MainViewController: UITableViewDelegate {
     }
 }
 
-extension MainViewController: UISearchBarDelegate{
-    
-}
-
-extension MainViewController: UISearchDisplayDelegate {
-    func searchDisplayController(_ controller: UISearchDisplayController!, shouldReloadTableForSearch searchString: String!) -> Bool {
-        print("text changed")
-        self.filterContentForSearchText(searchText: searchString)
-        return true
+extension MainViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("search")
+        //self.tableView.isScrollEnabled = true
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        tableViewBeers = self.mainBeerStore.allBeers
+        print("cancel")
+        //self.searchDispCont.isActive = false
+        //self.searchResultsBeer.value = []
+        //self.tableView.reloadData()
+    }
+}
+
+extension MainViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        print("text changed")
+        //self.filterContentForSearchText(searchText: searchController.searchBar.text!)
     }
 }
 

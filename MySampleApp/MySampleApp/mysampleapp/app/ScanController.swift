@@ -21,10 +21,7 @@ class ScanController: UIViewController {
     var capturePreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
     var prevCodeStringvalue: String = ""
-    var mainBeerStore: BeerStore {
-        let navController = self.navigationController as? NavigationController
-        return navController!.mainBeerStore
-    }
+    var mainBeerStore = [AWSBeer]()
     var scanResultsBeerStore: BeerStore {
         let navController = self.navigationController as? NavigationController
         return navController!.scanResultsBeerStore
@@ -33,6 +30,7 @@ class ScanController: UIViewController {
         let navController = self.navigationController as? NavigationController
         return navController!.scanResultsBeerStore.allBeers.value.count
     }
+    var currentAWSBeer: AWSBeer!
     var currentBeer: Beer!
     var currentBeerIndexPath: IndexPath!
     var alertTextField = UITextField()
@@ -89,11 +87,45 @@ class ScanController: UIViewController {
         //longPressGesture.minimumPressDuration = 0.5 // 1 second press
         //longPressGesture.delegate = self
         //self.tableView.addGestureRecognizer(longPressGesture)
+        queryWithPartitionKeyWithCompletionHandler { (response, error) in
+            if let erro = error {
+                //self.NoSQLResultLabel.text = String(erro)
+                print("error: \(erro)")
+            } else if response?.items.count == 0 {
+                //self.NoSQLResultLabel.text = String("0")
+                print("No items")
+            } else {
+                //self.NoSQLResultLabel.text = String(response!.items)
+                print("success: \(response!.items)")
+                self.updateItemstoStore(items: response!.items) {
+                    DispatchQueue.main.async(execute: {
+                        print("mainBeerStore updated")
+                    })
+                }
+            }
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("ScanController will appear -- \(scanResultsBeerStore.allBeers.value.count) existing results")
         self.navigationController?.topViewController?.title = "Scan"
+        queryWithPartitionKeyWithCompletionHandler { (response, error) in
+            if let erro = error {
+                //self.NoSQLResultLabel.text = String(erro)
+                print("error: \(erro)")
+            } else if response?.items.count == 0 {
+                //self.NoSQLResultLabel.text = String("0")
+                print("No items")
+            } else {
+                //self.NoSQLResultLabel.text = String(response!.items)
+                print("success: \(response!.items)")
+                self.updateItemstoStore(items: response!.items) {
+                    DispatchQueue.main.async(execute: {
+                        print("mainBeerStore updated")
+                    })
+                }
+            }
+        }
         //self.lastSearchCount = scanResultsBeerStore.allBeers.value.count
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -169,6 +201,32 @@ class ScanController: UIViewController {
     }
 
     //MARK: Imperative methods
+    func queryWithPartitionKeyDescription() -> String {
+        let partitionKeyValue = AWSIdentityManager.default().identityId!
+        return "Find all items with userId = \(partitionKeyValue)."
+    }
+    func queryWithPartitionKeyWithCompletionHandler(_ completionHandler: @escaping (_ response: AWSDynamoDBPaginatedOutput?, _ error: NSError?) -> Void) {
+        let objectMapper = AWSDynamoDBObjectMapper.default()
+        let queryExpression = AWSDynamoDBQueryExpression()
+        
+        queryExpression.keyConditionExpression = "#userId = :userId"
+        queryExpression.expressionAttributeNames = ["#userId": "userId",]
+        queryExpression.expressionAttributeValues = [":userId": AWSIdentityManager.default().identityId!,]
+        
+        objectMapper.query(AWSBeer.self, expression: queryExpression) { (response: AWSDynamoDBPaginatedOutput?, error: Error?) in
+            DispatchQueue.main.async(execute: {
+                completionHandler(response, error as? NSError)
+            })
+        }
+    }
+    func updateItemstoStore(items: [AWSDynamoDBObjectModel], onCompletion: () -> Void) {
+        for item in items {
+            let awsBeer = item as! AWSBeer
+            mainBeerStore.append(awsBeer)
+            print("\(mainBeerStore.count) items in beer store")
+        }
+        onCompletion()
+    }
     func handleInitialBeerJSON(beerJSON: JSON, upc_code: String, onCompletion: () -> Void) {
         print("################################### ADD INITIAL BARCODE JSON ################################")
         print("####### STEP 1: GET BEER DATA #######") // STEP 1 HERE
@@ -308,10 +366,10 @@ class ScanController: UIViewController {
             // handle bad no value or text entry
             return
         }
-        // if beer exists update quantity
-        guard let existingBeer = mainBeerStore.allBeers.value.filter({$0.brewerydb_id == currentBeer.brewerydb_id}).first else {
+        guard let existingAWSBeer = mainBeerStore.filter({$0._beerEntryId == currentBeer.brewerydb_id}).first else {
+            // Add new beer if doesn't exist
             currentBeer.quantity = quantity
-            mainBeerStore.addBeerObject(beer: currentBeer)
+            insertAWSBeer(beer: currentBeer)
             self.dismiss(animated: true, completion: {
                 let alertController2 = UIAlertController(title: "\(self.currentBeer.name) added", message: "You added \(self.currentBeer.quantity) \(self.currentBeer.name).", preferredStyle: UIAlertControllerStyle.alert)
                 alertController2.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
@@ -319,11 +377,18 @@ class ScanController: UIViewController {
             })
             return
         }
+        // Update beer quanity if exists
+        let existingBeer = existingAWSBeer.returnBeerObject()
         existingBeer.quantity += quantity
-        // add beer to mainstore
-        mainBeerStore.updateBeerQuantity(updatedBeer: existingBeer)
-        // add beer to aws
-        insertAWSBeer(beer: existingBeer)
+        existingAWSBeer._beer = existingBeer.beerObjectMap()
+        let objectMapper = AWSDynamoDBObjectMapper.default()
+        objectMapper.save(existingAWSBeer, completionHandler: {(error: Error?) -> Void in
+            if let error = error {
+                print("Amazon DynamoDB Save Error: \(error)")
+                return
+            }
+            print("Item saved.")
+        })
         self.dismiss(animated: true, completion: {
             let alertController2 = UIAlertController(title: "\(self.currentBeer.name) added", message: "You now have \(existingBeer.quantity) \(self.currentBeer.name).", preferredStyle: UIAlertControllerStyle.alert)
             alertController2.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
