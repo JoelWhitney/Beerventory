@@ -12,6 +12,7 @@
 //
 
 import UIKit
+import AWSMobileHubHelper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
