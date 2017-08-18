@@ -16,12 +16,13 @@ import UIKit
 import AWSMobileHubHelper
 import QuartzCore
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UITableViewController {
     
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userID: UILabel!
     @IBOutlet var signOutButton: UIButton!
+    
 
     // MARK: - View lifecycle
     
@@ -33,8 +34,8 @@ class SettingsViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        signOutButton.addTarget(self, action: #selector(SettingsViewController.handleLogout), for: .touchUpInside)
         self.configureProfile()
+        signOutButton.addTarget(self, action: #selector(SettingsViewController.handleLogout), for: .touchUpInside)
     }
     func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {
         var imageView: UIImageView = UIImageView(image: image)

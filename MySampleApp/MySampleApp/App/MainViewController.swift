@@ -46,26 +46,28 @@ class MainViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
-    
-        queryWithPartitionKeyWithCompletionHandler { (response, error) in
-            if let erro = error {
-                //self.NoSQLResultLabel.text = String(erro)
-                print("error: \(erro)")
-            } else if response?.items.count == 0 {
-                //self.NoSQLResultLabel.text = String("0")
-                print("No items")
-            } else {
-                //self.NoSQLResultLabel.text = String(response!.items)
-                print("success: \(response!.items)")
-                self.updateItemstoStore(items: response!.items) {
-                    DispatchQueue.main.async(execute: {
-                        self.tableView.reloadData()
-                    })
+        presentSignInViewController()
+        if AWSSignInManager.sharedInstance().isLoggedIn {
+            mainBeerStore = [AWSBeer]()
+            queryWithPartitionKeyWithCompletionHandler { (response, error) in
+                if let erro = error {
+                    //self.NoSQLResultLabel.text = String(erro)
+                    print("error: \(erro)")
+                } else if response?.items.count == 0 {
+                    //self.NoSQLResultLabel.text = String("0")
+                    print("No items")
+                } else {
+                    //self.NoSQLResultLabel.text = String(response!.items)
+                    print("success: \(response!.items)")
+                    self.updateItemstoStore(items: response!.items) {
+                        DispatchQueue.main.async(execute: {
+                            self.tableView.reloadData()
+                        })
+                    }
                 }
             }
         }
-        
-//        // tableview
+        // tableview
         tableView.delegate = self
         tableView.dataSource = self
         // status bar
@@ -95,21 +97,24 @@ class MainViewController: UIViewController  {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "blippo", size: 20)!]
         self.navigationController?.topViewController?.title = "BEERVENTORY"
         print("MainViewController will appear")
-        queryWithPartitionKeyWithCompletionHandler { (response, error) in
-            if let erro = error {
-                //self.NoSQLResultLabel.text = String(erro)
-                print("error: \(erro)")
-            } else if response?.items.count == 0 {
-                //self.NoSQLResultLabel.text = String("0")
-                print("No items")
-            } else {
-                //self.NoSQLResultLabel.text = String(response!.items)
-                print("success: \(response!.items)")
-                self.mainBeerStore = [AWSBeer]()
-                self.updateItemstoStore(items: response!.items) {
-                    DispatchQueue.main.async(execute: {
-                        self.tableView.reloadData()
-                    })
+        presentSignInViewController()
+        if AWSSignInManager.sharedInstance().isLoggedIn {
+            mainBeerStore = [AWSBeer]()
+            queryWithPartitionKeyWithCompletionHandler { (response, error) in
+                if let erro = error {
+                    //self.NoSQLResultLabel.text = String(erro)
+                    print("error: \(erro)")
+                } else if response?.items.count == 0 {
+                    //self.NoSQLResultLabel.text = String("0")
+                    print("No items")
+                } else {
+                    //self.NoSQLResultLabel.text = String(response!.items)
+                    print("success: \(response!.items)")
+                    self.updateItemstoStore(items: response!.items) {
+                        DispatchQueue.main.async(execute: {
+                            self.tableView.reloadData()
+                        })
+                    }
                 }
             }
         }
@@ -354,7 +359,27 @@ class MainViewController: UIViewController  {
             print("Item saved.")
         })
     }
-    
+    func onSignIn (_ success: Bool) {
+        // handle successful sign in
+        if (success) {
+            //self.setupRightBarButtonItem()
+        } else {
+            // handle cancel operation from user
+        }
+    }
+    func presentSignInViewController() {
+        if !AWSSignInManager.sharedInstance().isLoggedIn {
+            mainBeerStore = [AWSBeer]()
+            let loginStoryboard = UIStoryboard(name: "SignIn", bundle: nil)
+            let loginController: SignInViewController = loginStoryboard.instantiateViewController(withIdentifier: "SignIn") as! SignInViewController
+            loginController.canCancel = false
+            loginController.didCompleteSignIn = onSignIn
+            let navController = UINavigationController(rootViewController: loginController)
+            navigationController?.present(navController, animated: true, completion: nil)
+        } else {
+            //
+        }
+    }
 }
 
 // MARK: - UIPicker delegate
