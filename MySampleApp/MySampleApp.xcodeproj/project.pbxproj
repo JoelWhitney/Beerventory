@@ -490,6 +490,11 @@
 					E66DC04E0000000000000000 = {
 						DevelopmentTeam = 5SREPW8963;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -716,7 +721,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AF312FDB64004E71BF79E317 /* Pods-MySampleApp.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MySampleApp/MySampleApp.entitlements;
 				CODE_SIGN_IDENTITY = "iphone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -800,7 +805,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E409A0D203AFA3BD072EC06A /* Pods-MySampleApp.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MySampleApp/MySampleApp.entitlements;
 				CODE_SIGN_IDENTITY = "iphone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
