@@ -51,26 +51,26 @@ class MainViewController: UIViewController  {
         imageView.contentMode = .scaleAspectFit
         self.navigationItem.titleView = imageView
         presentSignInViewController()
-        if AWSSignInManager.sharedInstance().isLoggedIn {
-            mainBeerStore = [AWSBeer]()
-            queryWithPartitionKeyWithCompletionHandler { (response, error) in
-                if let erro = error {
-                    //self.NoSQLResultLabel.text = String(erro)
-                    print("error: \(erro)")
-                } else if response?.items.count == 0 {
-                    //self.NoSQLResultLabel.text = String("0")
-                    print("No items")
-                } else {
-                    //self.NoSQLResultLabel.text = String(response!.items)
-                    print("success: \(response!.items)")
-                    self.updateItemstoStore(items: response!.items) {
-                        DispatchQueue.main.async(execute: {
-                            self.tableView.reloadData()
-                        })
-                    }
-                }
-            }
-        }
+//        if AWSSignInManager.sharedInstance().isLoggedIn {
+//            mainBeerStore = [AWSBeer]()
+//            queryWithPartitionKeyWithCompletionHandler { (response, error) in
+//                if let erro = error {
+//                    //self.NoSQLResultLabel.text = String(erro)
+//                    print("error: \(erro)")
+//                } else if response?.items.count == 0 {
+//                    //self.NoSQLResultLabel.text = String("0")
+//                    print("No items")
+//                } else {
+//                    //self.NoSQLResultLabel.text = String(response!.items)
+//                    print("success: \(response!.items)")
+//                    self.updateItemstoStore(items: response!.items) {
+//                        DispatchQueue.main.async(execute: {
+//                            self.tableView.reloadData()
+//                        })
+//                    }
+//                }
+//            }
+//        }
         // tableview
         tableView.delegate = self
         tableView.dataSource = self
@@ -99,27 +99,27 @@ class MainViewController: UIViewController  {
         super.viewWillAppear(animated)
         navigationController?.setToolbarHidden(true, animated: true)
         print("MainViewController will appear")
-//        presentSignInViewController()
-//        if AWSSignInManager.sharedInstance().isLoggedIn {
-//            mainBeerStore = [AWSBeer]()
-//            queryWithPartitionKeyWithCompletionHandler { (response, error) in
-//                if let erro = error {
-//                    //self.NoSQLResultLabel.text = String(erro)
-//                    print("error: \(erro)")
-//                } else if response?.items.count == 0 {
-//                    //self.NoSQLResultLabel.text = String("0")
-//                    print("No items")
-//                } else {
-//                    //self.NoSQLResultLabel.text = String(response!.items)
-//                    print("success: \(response!.items)")
-//                    self.updateItemstoStore(items: response!.items) {
-//                        DispatchQueue.main.async(execute: {
-//                            self.tableView.reloadData()
-//                        })
-//                    }
-//                }
-//            }
-//        }
+        presentSignInViewController()
+        if AWSSignInManager.sharedInstance().isLoggedIn {
+            mainBeerStore = [AWSBeer]()
+            queryWithPartitionKeyWithCompletionHandler { (response, error) in
+                if let erro = error {
+                    //self.NoSQLResultLabel.text = String(erro)
+                    print("error: \(erro)")
+                } else if response?.items.count == 0 {
+                    //self.NoSQLResultLabel.text = String("0")
+                    print("No items")
+                } else {
+                    //self.NoSQLResultLabel.text = String(response!.items)
+                    print("success: \(response!.items)")
+                    self.updateItemstoStore(items: response!.items) {
+                        DispatchQueue.main.async(execute: {
+                            self.tableView.reloadData()
+                        })
+                    }
+                }
+            }
+        }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

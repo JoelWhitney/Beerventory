@@ -80,7 +80,7 @@ class SettingsViewController: UITableViewController {
                     //self.NoSQLResultLabel.text = String(response!.items)
                     print("success: \(response!.items)")
                     self.removeItemsFromDatabase(items: response!.items) {
-                        print("done deleting")
+                    print("done deleting")
                     }
                 }
             }
@@ -93,7 +93,13 @@ class SettingsViewController: UITableViewController {
         let objectMapper = AWSDynamoDBObjectMapper.default()
         for item in items {
             let awsBeer = item as! AWSBeer
-            objectMapper.remove(awsBeer)
+            objectMapper.remove(awsBeer, completionHandler: {(error: Error?) -> Void in
+                if let error = error {
+                    print("Amazon DynamoDB Save Error: \(error)")
+                    return
+                }
+                print("Item deleted.")
+            })
         }
         onCompletion()
     }
