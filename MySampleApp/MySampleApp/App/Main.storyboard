@@ -2000,7 +2000,6 @@
                     </tableView>
                     <connections>
                         <outlet property="buildLabel" destination="CXQ-mP-i5o" id="pFZ-WT-hco"/>
-                        <outlet property="removeAllBeers" destination="BTE-cm-BFz" id="bGl-7w-ebi"/>
                         <outlet property="removeAllBeersButton" destination="BTE-cm-BFz" id="jce-Rz-N35"/>
                         <outlet property="signOutButton" destination="GGR-sH-ptD" id="g5S-sd-r59"/>
                         <outlet property="userID" destination="K09-TY-FrP" id="l5q-1R-eWu"/>
