@@ -13,6 +13,7 @@
 
 import Foundation
 import UIKit
+import AWSDynamoDB
 import AWSMobileHubHelper
 import QuartzCore
 
@@ -25,8 +26,10 @@ class SettingsViewController: UITableViewController {
     @IBOutlet var versionLabel: UILabel!
     @IBOutlet var buildLabel: UILabel!
 
-    @IBOutlet var removeAllBeers: UIButton!
-    
+    @IBOutlet var removeAllBeersButton: UIButton!
+    let version: String? = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String?
+    let build: String? = Bundle.main.infoDictionary!["CFBundleVersion"] as! String?
+    var mainBeerStore = [AWSBeer]()
     // MARK: - View lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,7 +41,10 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureProfile()
+        versionLabel.text = version
+        buildLabel.text = build
         signOutButton.addTarget(self, action: #selector(SettingsViewController.handleLogout), for: .touchUpInside)
+        removeAllBeersButton.addTarget(self, action: #selector(SettingsViewController.removeAllBeers), for: .touchUpInside)
     }
     func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {
         var imageView: UIImageView = UIImageView(image: image)
@@ -54,6 +60,56 @@ class SettingsViewController: UITableViewController {
         UIGraphicsEndImageContext()
         
         return roundedImage!
+    }
+    func removeAllBeers() {
+        let title = "Remove all beers from inventory"
+        let message = "Are you sure you want to remove all of your beers?"
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        ac.addAction(cancelAction)
+        let deleteAction = UIAlertAction(title: "Remove", style: .destructive, handler: {
+            (action) -> Void in
+            self.queryWithPartitionKeyWithCompletionHandler { (response, error) in
+                if let erro = error {
+                    //self.NoSQLResultLabel.text = String(erro)
+                    print("error: \(erro)")
+                } else if response?.items.count == 0 {
+                    //self.NoSQLResultLabel.text = String("0")
+                    print("No items")
+                } else {
+                    //self.NoSQLResultLabel.text = String(response!.items)
+                    print("success: \(response!.items)")
+                    self.removeItemsFromDatabase(items: response!.items) {
+                        print("done deleting")
+                    }
+                }
+            }
+            
+        })
+        ac.addAction(deleteAction)
+        present(ac, animated: true, completion: nil)
+    }
+    func removeItemsFromDatabase(items: [AWSDynamoDBObjectModel], onCompletion: () -> Void) {
+        let objectMapper = AWSDynamoDBObjectMapper.default()
+        for item in items {
+            let awsBeer = item as! AWSBeer
+            objectMapper.remove(awsBeer)
+        }
+        onCompletion()
+    }
+    func queryWithPartitionKeyWithCompletionHandler(_ completionHandler: @escaping (_ response: AWSDynamoDBPaginatedOutput?, _ error: NSError?) -> Void) {
+        let objectMapper = AWSDynamoDBObjectMapper.default()
+        let queryExpression = AWSDynamoDBQueryExpression()
+        
+        queryExpression.keyConditionExpression = "#userId = :userId"
+        queryExpression.expressionAttributeNames = ["#userId": "userId",]
+        queryExpression.expressionAttributeValues = [":userId": AWSIdentityManager.default().identityId!,]
+        
+        objectMapper.query(AWSBeer.self, expression: queryExpression) { (response: AWSDynamoDBPaginatedOutput?, error: Error?) in
+            DispatchQueue.main.async(execute: {
+                completionHandler(response, error as? NSError)
+            })
+        }
     }
     func configureProfile() {
         let identityManager = AWSIdentityManager.default()

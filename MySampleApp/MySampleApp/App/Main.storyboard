@@ -1886,7 +1886,7 @@
                             </constraints>
                         </view>
                         <sections>
-                            <tableViewSection headerTitle="General" footerTitle="  " id="tim-Iv-t3c">
+                            <tableViewSection headerTitle="General" id="tim-Iv-t3c">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="WjN-yj-wHH">
                                         <rect key="frame" x="0.0" y="198" width="375" height="44"/>
@@ -1971,7 +1971,7 @@
                             <tableViewSection headerTitle="Danger" id="ZCb-d8-Cka">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="tru-7L-M6I">
-                                        <rect key="frame" x="0.0" y="386" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="358" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tru-7L-M6I" id="1cn-li-3Jm">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -2001,6 +2001,7 @@
                     <connections>
                         <outlet property="buildLabel" destination="CXQ-mP-i5o" id="pFZ-WT-hco"/>
                         <outlet property="removeAllBeers" destination="BTE-cm-BFz" id="bGl-7w-ebi"/>
+                        <outlet property="removeAllBeersButton" destination="BTE-cm-BFz" id="jce-Rz-N35"/>
                         <outlet property="signOutButton" destination="GGR-sH-ptD" id="g5S-sd-r59"/>
                         <outlet property="userID" destination="K09-TY-FrP" id="l5q-1R-eWu"/>
                         <outlet property="userImageView" destination="FRX-kK-2b2" id="11W-tq-4Ij"/>
