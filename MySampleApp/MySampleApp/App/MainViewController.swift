@@ -46,6 +46,10 @@ class MainViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
+        let logo = UIImage(named: "logo2.png")
+        let imageView = UIImageView(image:logo)
+        imageView.contentMode = .scaleAspectFit
+        self.navigationItem.titleView = imageView
         presentSignInViewController()
         if AWSSignInManager.sharedInstance().isLoggedIn {
             mainBeerStore = [AWSBeer]()
@@ -94,30 +98,28 @@ class MainViewController: UIViewController  {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setToolbarHidden(true, animated: true)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "blippo", size: 20)!]
-        self.navigationController?.topViewController?.title = "BEERVENTORY"
         print("MainViewController will appear")
-        presentSignInViewController()
-        if AWSSignInManager.sharedInstance().isLoggedIn {
-            mainBeerStore = [AWSBeer]()
-            queryWithPartitionKeyWithCompletionHandler { (response, error) in
-                if let erro = error {
-                    //self.NoSQLResultLabel.text = String(erro)
-                    print("error: \(erro)")
-                } else if response?.items.count == 0 {
-                    //self.NoSQLResultLabel.text = String("0")
-                    print("No items")
-                } else {
-                    //self.NoSQLResultLabel.text = String(response!.items)
-                    print("success: \(response!.items)")
-                    self.updateItemstoStore(items: response!.items) {
-                        DispatchQueue.main.async(execute: {
-                            self.tableView.reloadData()
-                        })
-                    }
-                }
-            }
-        }
+//        presentSignInViewController()
+//        if AWSSignInManager.sharedInstance().isLoggedIn {
+//            mainBeerStore = [AWSBeer]()
+//            queryWithPartitionKeyWithCompletionHandler { (response, error) in
+//                if let erro = error {
+//                    //self.NoSQLResultLabel.text = String(erro)
+//                    print("error: \(erro)")
+//                } else if response?.items.count == 0 {
+//                    //self.NoSQLResultLabel.text = String("0")
+//                    print("No items")
+//                } else {
+//                    //self.NoSQLResultLabel.text = String(response!.items)
+//                    print("success: \(response!.items)")
+//                    self.updateItemstoStore(items: response!.items) {
+//                        DispatchQueue.main.async(execute: {
+//                            self.tableView.reloadData()
+//                        })
+//                    }
+//                }
+//            }
+//        }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

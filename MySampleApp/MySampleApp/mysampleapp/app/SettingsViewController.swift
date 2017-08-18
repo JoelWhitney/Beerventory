@@ -22,8 +22,11 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userID: UILabel!
     @IBOutlet var signOutButton: UIButton!
-    
+    @IBOutlet var versionLabel: UILabel!
+    @IBOutlet var buildLabel: UILabel!
 
+    @IBOutlet var removeAllBeers: UIButton!
+    
     // MARK: - View lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
