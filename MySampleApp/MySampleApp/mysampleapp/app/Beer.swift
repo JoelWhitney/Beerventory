@@ -8,6 +8,8 @@
 
 import UIKit
 import SwiftyJSON
+import AWSDynamoDB
+import AWSMobileHubHelper
 
 class Beer: NSObject, NSCoding {
     // MARK: - variables/constants
@@ -129,6 +131,14 @@ class Beer: NSObject, NSCoding {
             }
         }
         return beerMap
+    }
+    
+    func awsBeer() -> AWSBeer {
+        let itemToCreate: AWSBeer = AWSBeer()
+        itemToCreate._userId = AWSIdentityManager.default().identityId!
+        itemToCreate._beerEntryId = self.brewerydb_id
+        itemToCreate._beer = self.beerObjectMap()
+        return itemToCreate
     }
     
     func beerObjectDescription() -> String {
