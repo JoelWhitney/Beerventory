@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6006500BADEE8E1C6318D005 /* Pods_MySampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D6EAF93D137439A82B1E097 /* Pods_MySampleApp.framework */; };
+		E50C72CF1F49FB6D00B204B2 /* ScrollableBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50C72CE1F49FB6D00B204B2 /* ScrollableBottomSheetViewController.swift */; };
 		E56605221F43A2A10079173E /* BeersTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E566051A1F4390BB0079173E /* BeersTable.swift */; };
 		E56605241F43C2020079173E /* AWSBeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56605231F43C2020079173E /* AWSBeer.swift */; };
 		E566052B1F43CB0C0079173E /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E566052A1F43CB010079173E /* AWSDynamoDB.framework */; };
@@ -173,6 +174,7 @@
 		5D6EAF93D137439A82B1E097 /* Pods_MySampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MySampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF312FDB64004E71BF79E317 /* Pods-MySampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySampleApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MySampleApp/Pods-MySampleApp.release.xcconfig"; sourceTree = "<group>"; };
 		E409A0D203AFA3BD072EC06A /* Pods-MySampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySampleApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MySampleApp/Pods-MySampleApp.debug.xcconfig"; sourceTree = "<group>"; };
+		E50C72CE1F49FB6D00B204B2 /* ScrollableBottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollableBottomSheetViewController.swift; path = MySampleApp/mysampleapp/app/ScrollableBottomSheetViewController.swift; sourceTree = SOURCE_ROOT; };
 		E566051A1F4390BB0079173E /* BeersTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeersTable.swift; sourceTree = "<group>"; };
 		E566051B1F4390BB0079173E /* NoSQLDatabase.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoSQLDatabase.storyboard; sourceTree = "<group>"; };
 		E566051C1F4390BB0079173E /* NoSQLModelHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSQLModelHelpers.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				E5A2D5A91F412390007CF64E /* NavigationController.swift */,
 				E5A2D5AB1F412390007CF64E /* ScanBeerTableCell.swift */,
 				E5A2D5A71F41238F007CF64E /* ScanController.swift */,
+				E50C72CE1F49FB6D00B204B2 /* ScrollableBottomSheetViewController.swift */,
 				E5A2D5AC1F412390007CF64E /* ScanLastCell.swift */,
 				E5A2D5A01F41238E007CF64E /* SearchProgress.swift */,
 				E5A2D5A41F41238F007CF64E /* TabBarController.swift */,
@@ -626,6 +629,7 @@
 				E7A30F048C588A0900000000 /* FacebookIdentityProfile.swift in Sources */,
 				E5A2D5BC1F412391007CF64E /* DetailsContoller.swift in Sources */,
 				E7A30F041BE897CC00000000 /* AppDelegate.swift in Sources */,
+				E50C72CF1F49FB6D00B204B2 /* ScrollableBottomSheetViewController.swift in Sources */,
 				E7A30F04A1AF914B00000000 /* FormTableCell.swift in Sources */,
 				E5A2D5C11F412391007CF64E /* Beer.swift in Sources */,
 				E7A30F04CA825EA600000000 /* TableInputCell.swift in Sources */,
