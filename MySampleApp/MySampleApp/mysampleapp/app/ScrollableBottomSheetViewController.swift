@@ -15,11 +15,13 @@ import AWSMobileHubHelper
 class ScrollableBottomSheetViewController: UIViewController {
     @IBOutlet var headerView: UIView!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var dragHandle: UIButton!
+    
     var searchController: UISearchController!
     var firstIndexPath: IndexPath!
     let fullView: CGFloat = 70
     var partialView: CGFloat {
-        return UIScreen.main.bounds.height - 270
+        return UIScreen.main.bounds.height - 150
     }
     var scanBeerStore = [Beer]()
     var mainBeerStore = [AWSBeer]()
@@ -34,6 +36,7 @@ class ScrollableBottomSheetViewController: UIViewController {
         tableView.dataSource = self
         configureSearchController()
         let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(ScrollableBottomSheetViewController.panGesture))
+        dragHandle.addTarget(self, action: #selector(dragHandleAction), for: .touchUpInside)
         gesture.delegate = self
         view.addGestureRecognizer(gesture)
         queryWithPartitionKeyWithCompletionHandler { (response, error) in
@@ -122,6 +125,15 @@ class ScrollableBottomSheetViewController: UIViewController {
         }
         onCompletion()
     }
+    func dragHandleAction() {
+        let y = self.view.frame.minY
+        if y < fullView {
+            partialHeight()
+        } else {
+            fullHeight()
+        }
+    }
+    
     func configureSearchController() {
         headerView.layer.shadowColor = UIColor(white: 0.0, alpha: 0.5).cgColor
         headerView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
@@ -136,9 +148,13 @@ class ScrollableBottomSheetViewController: UIViewController {
         searchController.searchBar.placeholder = "Scan barcode or search beers"
         searchController.searchBar.returnKeyType = UIReturnKeyType.search
         searchController.searchBar.delegate = self
-        searchController.searchBar.sizeToFit()
         searchController.hidesNavigationBarDuringPresentation = false
-        //self.definesPresentationContext = true
+        //searchController.searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchController.searchBar.contentMode = .redraw
+        self.definesPresentationContext = false
+        //searchController.searchBar.frame = CGRect(x: headerView.frame.origin.x, y: headerView.frame.origin.y + 20 , width: headerView.frame.width - 55, height: 44.0)
+        searchController.searchBar.frame = CGRect(x: headerView.frame.origin.x, y: dragHandle.frame.origin.y + dragHandle.frame.height + 2 , width: headerView.frame.width - 55, height: 44.0)
+        searchController.searchBar.sizeToFit()
         headerView.addSubview(searchController.searchBar)
         //tableView.tableHeaderView = searchController.searchBar
     }
@@ -440,7 +456,7 @@ extension ScrollableBottomSheetViewController: UITableViewDelegate, UITableViewD
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ScanLastCell", for: indexPath) as! ScanLastCell
             if self.scanBeerStore.count == 0 {
-                cell.lastCellLabel.text =  "🍻 Find your Beer today! 🍻"
+                cell.lastCellLabel.text =  "No beers"
             } else {
                 cell.lastCellLabel.text = ""
             }

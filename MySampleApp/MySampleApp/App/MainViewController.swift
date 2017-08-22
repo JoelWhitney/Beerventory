@@ -486,6 +486,7 @@ extension MainViewController: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currentAWSBeer = mainBeerStore[indexPath.row]
+        currentBeer = currentAWSBeer.returnBeerObject()
         tableView.deselectRow(at: indexPath, animated: true)
         self.performSegue(withIdentifier: "detailsViewController", sender: self)
     }

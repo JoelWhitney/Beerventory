@@ -759,10 +759,10 @@
             </objects>
             <point key="canvasLocation" x="3789.5999999999999" y="2193.5532233883059"/>
         </scene>
-        <!--Add Beer-->
+        <!--Create-->
         <scene sceneID="Yoy-hx-exr">
             <objects>
-                <tabBarController title="Add Beer" automaticallyAdjustsScrollViewInsets="NO" id="DOW-6e-CPM" customClass="TabBarController" customModule="MySampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController title="Create" automaticallyAdjustsScrollViewInsets="NO" id="DOW-6e-CPM" customClass="TabBarController" customModule="MySampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="hkK-ap-4dm">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -1882,7 +1882,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="45" sectionHeaderHeight="1" sectionFooterHeight="4" translatesAutoresizingMaskIntoConstraints="NO" id="DHE-Rf-YIR">
-                                <rect key="frame" x="0.0" y="55" width="375" height="612"/>
+                                <rect key="frame" x="0.0" y="75" width="375" height="592"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.77647058820000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.94117647059999998" green="0.77647058820000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -2025,10 +2025,18 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5JA-w4-yrT">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.77647058820000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vSC-8J-7Ic">
+                                        <rect key="frame" x="163.5" y="1" width="47" height="22"/>
+                                        <state key="normal" image="dragHandle"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.6705882353" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="XzO-Ar-XWh"/>
+                                    <constraint firstItem="vSC-8J-7Ic" firstAttribute="top" secondItem="5JA-w4-yrT" secondAttribute="top" id="Ayg-rx-gx9"/>
+                                    <constraint firstItem="vSC-8J-7Ic" firstAttribute="centerX" secondItem="5JA-w4-yrT" secondAttribute="centerX" id="QSK-hq-cAa"/>
+                                    <constraint firstAttribute="height" constant="75" id="XzO-Ar-XWh"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -2044,8 +2052,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TCM-aB-Hp8"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="R0T-xy-kME"/>
                     <connections>
+                        <outlet property="dragHandle" destination="vSC-8J-7Ic" id="mok-qq-gCt"/>
                         <outlet property="headerView" destination="5JA-w4-yrT" id="ITI-4i-7m5"/>
                         <outlet property="tableView" destination="DHE-Rf-YIR" id="kdL-si-VMg"/>
                     </connections>
@@ -2063,6 +2073,7 @@
         <image name="Subtract" width="50" height="50"/>
         <image name="UserIcon" width="150" height="150"/>
         <image name="detailsIcon" width="25" height="25"/>
+        <image name="dragHandle" width="47" height="17"/>
         <image name="keyboard" width="25" height="25"/>
         <image name="nameIcon" width="25" height="25"/>
         <image name="nextIcon" width="50" height="50"/>

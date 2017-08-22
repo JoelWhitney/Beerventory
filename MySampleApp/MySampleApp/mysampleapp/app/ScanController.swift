@@ -86,7 +86,7 @@ class ScanController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("ScanController will appear -- \(scanResultsBeerStore.allBeers.value.count) existing results")
-        self.navigationController?.topViewController?.title = "Scan"
+        self.navigationController?.topViewController?.title = "Add"
 
         //self.lastSearchCount = scanResultsBeerStore.allBeers.value.count
     }
