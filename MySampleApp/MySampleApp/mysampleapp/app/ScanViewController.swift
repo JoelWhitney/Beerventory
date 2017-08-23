@@ -1,5 +1,5 @@
 //
-//  ScanController.swift
+//  ScanViewController.swift
 //  Beerventory
 //
 //  Created by Joel Whitney on 4/20/17.
@@ -14,7 +14,7 @@ import RxCocoa
 import AWSDynamoDB
 import AWSMobileHubHelper
 
-class ScanController: UIViewController {
+class ScanViewController: UIViewController {
     // MARK: - variables/constants
     var codeFont: UIFont?
     var captureSession: AVCaptureSession?
@@ -54,7 +54,7 @@ class ScanController: UIViewController {
     let disposeBag = DisposeBag()
     var pickerQuantity = "1"
     var upc_code = ""
-    var bottomSheetController: ScrollableBottomSheetViewController!
+    //var bottomSheetController: ScrollableBottomSheetViewController!
 
 
     // MARK: Outlets
@@ -73,27 +73,13 @@ class ScanController: UIViewController {
     //MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        tableView.delegate = self
-//        tableView.dataSource = self
-//        self.automaticallyAdjustsScrollViewInsets = false
         self.capturePreviewFrame()
         self.captureDetectionFrame()
-        self.navigationItem.leftBarButtonItem?.isEnabled = false
-        self.navigationItem.rightBarButtonItem?.isEnabled = true
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
-                                                                        NSFontAttributeName: UIFont.boldSystemFont(ofSize: 20)]
+        //initBottomSheetController()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("ScanController will appear -- \(scanResultsBeerStore.allBeers.value.count) existing results")
-        self.navigationController?.topViewController?.title = "Add"
 
-        //self.lastSearchCount = scanResultsBeerStore.allBeers.value.count
-    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //tableView.reloadData()
-        initBottomSheetController()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -105,16 +91,7 @@ class ScanController: UIViewController {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
-//        let captureRectWidth = CGFloat(150.0)
-//        let captureRectHeight = CGFloat(150.0)
-//        
-//        _ = CGRect(x: (screenWidth / 2 - captureRectWidth / 2),
-//                                   y: (screenHeight / 2 - captureRectHeight / 2) / 2,
-//                                   width: captureRectWidth,
-//                                   height: captureRectHeight)
-        
         let captureWindowView = UIView()
-        
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         do {
             // initialize the captureSession object and add input
@@ -164,26 +141,25 @@ class ScanController: UIViewController {
     }
 
     //MARK: Imperative methods
-    //TODO PERMISSION IS NEEDED BEFORE FETCHING
-    func initBottomSheetController() {
-        let loginStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        bottomSheetController = loginStoryboard.instantiateViewController(withIdentifier: "BottomSheet") as! ScrollableBottomSheetViewController
-        addBottomSheetView()
-    }
-    func addBottomSheetView() {
-        // 2- Add bottomSheetVC as a child view
-        self.addChildViewController(bottomSheetController)
-        self.view.addSubview(bottomSheetController.view)
-        self.view.bringSubview(toFront: bottomSheetController.view)
-        bottomSheetController.didMove(toParentViewController: self)
-        
-        // 3- Adjust bottomSheet frame and initial position.
-        let height = view.frame.height
-        let width  = view.frame.width
-        bottomSheetController.view.layer.cornerRadius = 10
-        bottomSheetController.view.clipsToBounds = true
-        bottomSheetController.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
-    }
+//    func initBottomSheetController() {
+//        let loginStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        bottomSheetController = loginStoryboard.instantiateViewController(withIdentifier: "BottomSheet") as! ScrollableBottomSheetViewController
+//        addBottomSheetView()
+//    }
+//    func addBottomSheetView() {
+//        // 2- Add bottomSheetVC as a child view
+//        self.addChildViewController(bottomSheetController)
+//        self.view.addSubview(bottomSheetController.view)
+//        self.view.bringSubview(toFront: bottomSheetController.view)
+//        bottomSheetController.didMove(toParentViewController: self)
+//
+//        // 3- Adjust bottomSheet frame and initial position.
+//        let height = view.frame.height
+//        let width  = view.frame.width
+//        bottomSheetController.view.layer.cornerRadius = 10
+//        bottomSheetController.view.clipsToBounds = true
+//        bottomSheetController.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
+//    }
 
     func addProgressSubview(){
         let progressHUD = SearchProgress(text: "Searching..")
@@ -345,14 +321,14 @@ class ScanController: UIViewController {
 }
 
 // MARK: - UIPicker delegate
-extension ScanController: UIPickerViewDelegate {
+extension ScanViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerQuantity = String(row + 1)
     }
 }
 
 // MARK: - UIPicker delegate
-extension ScanController: UIPickerViewDataSource {
+extension ScanViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -366,7 +342,7 @@ extension ScanController: UIPickerViewDataSource {
 }
 
 // MARK: - Table view data source
-extension ScanController: UITableViewDataSource {
+extension ScanViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if self.lastSearchCount == 0 {
             return "Search results"
@@ -407,7 +383,7 @@ extension ScanController: UITableViewDataSource {
 }
 
 // MARK: - tableView delegate
-extension ScanController: UITableViewDelegate {
+extension ScanViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20.0
     }
@@ -437,7 +413,7 @@ extension ScanController: UITableViewDelegate {
 }
 
 //// MARK: longPress delegate
-//extension ScanController: UIGestureRecognizerDelegate {
+//extension ScanViewController: UIGestureRecognizerDelegate {
 //    func longPress(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {
 //        if longPressGestureRecognizer.state == UIGestureRecognizerState.began {
 //            let touchPoint = longPressGestureRecognizer.location(in: self.tableView)
@@ -470,7 +446,7 @@ extension ScanController: UITableViewDelegate {
 //}
 
 //MARK: AVCapture delegate
-extension ScanController: AVCaptureMetadataOutputObjectsDelegate {
+extension ScanViewController: AVCaptureMetadataOutputObjectsDelegate {
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects results: [Any]!, from connection: AVCaptureConnection!) {
         if results == nil || results.count == 0 { // handle empty results
             qrCodeFrameView?.frame = CGRect.zero
@@ -492,7 +468,7 @@ extension ScanController: AVCaptureMetadataOutputObjectsDelegate {
 //                                DispatchQueue.main.async(execute: {
 //                                    print("reload tableview")
 //                                    self.removeProgressSubview()
-//                                    self.refreshScanControllerState()
+//                                    self.refreshScanViewControllerState()
 //                                    //self.refreshTableView()
 //                                })
 //                            })

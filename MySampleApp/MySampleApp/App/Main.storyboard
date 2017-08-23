@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="awL-t9-NPn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="awL-t9-NPn">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -67,10 +65,10 @@
                                                     <rect key="frame" x="15" y="15" width="345" height="105"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="TopLeft" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="CYM-rR-i17">
-                                                            <rect key="frame" x="8" y="8" width="215" height="20"/>
+                                                            <rect key="frame" x="8" y="8" width="215" height="20.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coors Litebbbbbbbbbbbbbbbbb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qc5-H1-OeG">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="215" height="20"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="215" height="20.5"/>
                                                                     <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                                                     <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -81,16 +79,16 @@
                                                             </constraints>
                                                         </stackView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBR-RD-mYM">
-                                                            <rect key="frame" x="7" y="29" width="79" height="25"/>
+                                                            <rect key="frame" x="7" y="29.5" width="79" height="25"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXo-y8-NYz">
-                                                                    <rect key="frame" x="6" y="4" width="36" height="17.5"/>
+                                                                    <rect key="frame" x="6" y="3.5" width="38" height="18.5"/>
                                                                     <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ck7-34-K4p">
-                                                                    <rect key="frame" x="49" y="4" width="8.5" height="17.5"/>
+                                                                    <rect key="frame" x="51" y="3.5" width="8.5" height="18.5"/>
                                                                     <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -107,22 +105,22 @@
                                                             </constraints>
                                                         </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFI-My-4zt">
-                                                            <rect key="frame" x="13" y="79.5" width="123" height="17"/>
+                                                            <rect key="frame" x="13" y="80.5" width="129.5" height="16"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="American Ale" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8S-3i-Z0b">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="77" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="86.5" height="16"/>
                                                                     <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                                     <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" | " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfE-zP-Ird">
-                                                                    <rect key="frame" x="77" y="0.0" width="14.5" height="17"/>
+                                                                    <rect key="frame" x="86.5" y="0.0" width="14.5" height="16"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.8%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZA-u8-5hi">
-                                                                    <rect key="frame" x="91.5" y="0.0" width="31.5" height="17"/>
+                                                                    <rect key="frame" x="101" y="0.0" width="28.5" height="16"/>
                                                                     <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                                     <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -130,7 +128,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miller Coors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4b-Az-dxa">
-                                                            <rect key="frame" x="13" y="59" width="70.5" height="15.5"/>
+                                                            <rect key="frame" x="13" y="59.5" width="72.5" height="16"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                             <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -253,9 +251,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Beer" id="UQy-Jh-gYK">
                             <connections>
-                                <segue destination="kbU-Gb-jcC" kind="show" id="7QV-qS-gGY">
-                                    <nil key="action"/>
-                                </segue>
+                                <segue destination="zWZ-wg-mbc" kind="show" id="A30-E4-5r2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -335,7 +331,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ece-gO-gCE">
-                                <rect key="frame" x="0.0" y="64" width="375" height="369.5"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="413.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AddBeerDetailsCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddBeerDetailsCell" rowHeight="60" id="F8g-Oq-7Fn" customClass="AddBeerDetailsCell" customModule="MySampleApp" customModuleProvider="target">
@@ -442,10 +438,10 @@
                                         <rect key="frame" x="15" y="15" width="345" height="105"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="TopLeft" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="IfS-wU-YPx">
-                                                <rect key="frame" x="8" y="30" width="215" height="20"/>
+                                                <rect key="frame" x="8" y="31" width="215" height="21"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coors Litebbbbbbbbbbbbbbbbb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEK-Pe-dfG">
-                                                        <rect key="frame" x="0.0" y="0.0" width="215" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="215" height="21"/>
                                                         <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                                         <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -456,22 +452,22 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="knS-Yx-D2l">
-                                                <rect key="frame" x="13" y="76.5" width="123" height="20.5"/>
+                                                <rect key="frame" x="13" y="76.5" width="129.5" height="20.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="American Ale" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMS-gq-fMu">
-                                                        <rect key="frame" x="0.0" y="0.0" width="77" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="86.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                         <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" | " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kda-st-rCa">
-                                                        <rect key="frame" x="77" y="0.0" width="14.5" height="20.5"/>
+                                                        <rect key="frame" x="86.5" y="0.0" width="14.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.8%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIi-P6-4iy">
-                                                        <rect key="frame" x="91.5" y="0.0" width="31.5" height="20.5"/>
+                                                        <rect key="frame" x="101" y="0.0" width="28.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                         <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -479,7 +475,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miller Coors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KoR-wU-hg1">
-                                                <rect key="frame" x="13" y="56" width="70.5" height="15.5"/>
+                                                <rect key="frame" x="13" y="55.5" width="72.5" height="16"/>
                                                 <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                 <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -498,7 +494,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beer Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O76-h2-wtT">
-                                                <rect key="frame" x="8" y="5" width="85.5" height="20"/>
+                                                <rect key="frame" x="8" y="5" width="92.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -565,7 +561,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="awL-t9-NPn" customClass="NavigationController" customModule="MySampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="g3K-Fn-23O">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="g3K-Fn-23O">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -581,7 +577,7 @@
         <!--Scan-->
         <scene sceneID="hbY-s6-VXK">
             <objects>
-                <viewController id="kbU-Gb-jcC" customClass="ScanController" customModule="MySampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kbU-Gb-jcC" customClass="ScanViewController" customModule="MySampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="k2p-4C-1bA"/>
                         <viewControllerLayoutGuide type="bottom" id="Sqm-Ec-tDP"/>
@@ -626,25 +622,16 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Scan" image="Scan" selectedImage="Scan" id="dgd-Gk-yno"/>
                     <navigationItem key="navigationItem" id="PV3-Kd-MrF">
-                        <barButtonItem key="rightBarButtonItem" image="keyboard" id="kyE-bu-5mP">
-                            <connections>
-                                <segue destination="DOW-6e-CPM" kind="show" identifier="tabBarController" id="p4G-vB-M5H">
-                                    <nil key="action"/>
-                                </segue>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="keyboard" id="kyE-bu-5mP"/>
                     </navigationItem>
                     <connections>
                         <outlet property="activitySpinnerView" destination="lHM-XF-tgJ" id="HzL-sI-ShD"/>
                         <outlet property="capturePreviewViewFrame" destination="I10-dg-5zD" id="EwF-mt-uFh"/>
-                        <segue destination="OKR-IF-bM6" kind="show" identifier="detailsViewController" id="hD5-8A-rHC">
-                            <nil key="action"/>
-                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLH-X2-9eW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512.8" y="-107.49625187406298"/>
+            <point key="canvasLocation" x="2548" y="-540"/>
         </scene>
         <!--Summary-->
         <scene sceneID="tzI-tk-TIU">
@@ -683,22 +670,22 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lGk-51-z3X">
-                                <rect key="frame" x="16" y="169.5" width="123" height="20.5"/>
+                                <rect key="frame" x="16" y="169.5" width="129.5" height="20.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="American Ale" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENk-h6-lYz">
-                                        <rect key="frame" x="0.0" y="0.0" width="77" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="86.5" height="20.5"/>
                                         <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" | " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8L-1z-TMq">
-                                        <rect key="frame" x="77" y="0.0" width="14.5" height="20.5"/>
+                                        <rect key="frame" x="86.5" y="0.0" width="14.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.8%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JsB-sf-j8n">
-                                        <rect key="frame" x="91.5" y="0.0" width="31.5" height="20.5"/>
+                                        <rect key="frame" x="101" y="0.0" width="28.5" height="20.5"/>
                                         <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -706,13 +693,13 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miller Coors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZ2-2i-gQC">
-                                <rect key="frame" x="15" y="154" width="70.5" height="15.5"/>
+                                <rect key="frame" x="15" y="153.5" width="72.5" height="16"/>
                                 <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coors Litebbbbbbbbbbbbbbbbb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukg-tj-d87">
-                                <rect key="frame" x="15" y="134" width="250" height="20"/>
+                                <rect key="frame" x="15" y="132.5" width="271.5" height="21"/>
                                 <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -794,7 +781,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Yi-xw-0ni">
-                                <rect key="frame" x="0.0" y="64" width="375" height="419"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="463"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AddBeerDetailsCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddBeerDetailsCell" rowHeight="60" id="uAd-uB-cTE" customClass="AddBeerDetailsCell" customModule="MySampleApp" customModuleProvider="target">
@@ -902,22 +889,22 @@
                                         <rect key="frame" x="15" y="15" width="345" height="105"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FYa-Nw-HoY">
-                                                <rect key="frame" x="13" y="76.5" width="123" height="20.5"/>
+                                                <rect key="frame" x="13" y="76.5" width="129.5" height="20.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="American Ale" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7g-CB-jIr">
-                                                        <rect key="frame" x="0.0" y="0.0" width="77" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="86.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                         <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" | " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyJ-zE-k2B">
-                                                        <rect key="frame" x="77" y="0.0" width="14.5" height="20.5"/>
+                                                        <rect key="frame" x="86.5" y="0.0" width="14.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.8%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYM-3u-Xgl">
-                                                        <rect key="frame" x="91.5" y="0.0" width="31.5" height="20.5"/>
+                                                        <rect key="frame" x="101" y="0.0" width="28.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                         <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -925,7 +912,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miller Coors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Dm-KJ-W2B">
-                                                <rect key="frame" x="13" y="56" width="70.5" height="15.5"/>
+                                                <rect key="frame" x="13" y="55.5" width="72.5" height="16"/>
                                                 <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                 <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -944,10 +931,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tcl-2y-dpx">
-                                                <rect key="frame" x="8" y="30" width="215" height="20"/>
+                                                <rect key="frame" x="8" y="31" width="215" height="21"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coors Litebbbbbbbbbbbbbbbbb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0IB-VF-oD8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="215" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="215" height="21"/>
                                                         <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                                         <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -958,7 +945,7 @@
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brewery Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5u-I6-5bm">
-                                                <rect key="frame" x="8" y="5" width="112.5" height="20"/>
+                                                <rect key="frame" x="8" y="5" width="121.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1034,7 +1021,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jm0-Pq-RaG">
-                                <rect key="frame" x="0.0" y="64" width="375" height="419"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="463"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AddBeerDetailsCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddBeerDetailsCell" rowHeight="60" id="aJR-5V-tLF" customClass="AddBeerDetailsCell" customModule="MySampleApp" customModuleProvider="target">
@@ -1142,22 +1129,22 @@
                                         <rect key="frame" x="15" y="15" width="345" height="105"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oaf-m0-KSo">
-                                                <rect key="frame" x="13" y="76.5" width="123" height="20.5"/>
+                                                <rect key="frame" x="13" y="76.5" width="129.5" height="20.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="American Ale" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gh8-fR-bQA">
-                                                        <rect key="frame" x="0.0" y="0.0" width="77" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="86.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                         <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" | " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRy-2q-gMf">
-                                                        <rect key="frame" x="77" y="0.0" width="14.5" height="20.5"/>
+                                                        <rect key="frame" x="86.5" y="0.0" width="14.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.8%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yhl-HL-ivr">
-                                                        <rect key="frame" x="91.5" y="0.0" width="31.5" height="20.5"/>
+                                                        <rect key="frame" x="101" y="0.0" width="28.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                         <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1165,7 +1152,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miller Coors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gys-fm-VNA">
-                                                <rect key="frame" x="13" y="56" width="70.5" height="15.5"/>
+                                                <rect key="frame" x="13" y="55.5" width="72.5" height="16"/>
                                                 <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                 <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1184,16 +1171,16 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Style Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="337-ky-dIW">
-                                                <rect key="frame" x="8" y="5" width="88" height="20"/>
+                                                <rect key="frame" x="8" y="5" width="94.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Vhp-kv-d09">
-                                                <rect key="frame" x="8" y="30" width="215" height="20"/>
+                                                <rect key="frame" x="8" y="31" width="215" height="21"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coors Litebbbbbbbbbbbbbbbbb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyK-UF-iVk">
-                                                        <rect key="frame" x="0.0" y="0.0" width="215" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="215" height="21"/>
                                                         <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                                         <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1272,7 +1259,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfc-Xw-tgR">
-                                <rect key="frame" x="16" y="162" width="88" height="20.5"/>
+                                <rect key="frame" x="16" y="118" width="88" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1291,22 +1278,22 @@
                                         <rect key="frame" x="15" y="15" width="345" height="105"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n90-OR-IMo">
-                                                <rect key="frame" x="13" y="76.5" width="123" height="20.5"/>
+                                                <rect key="frame" x="13" y="76.5" width="129.5" height="20.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="American Ale" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIY-k7-y99">
-                                                        <rect key="frame" x="0.0" y="0.0" width="77" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="86.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                         <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" | " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWi-Hf-oia">
-                                                        <rect key="frame" x="77" y="0.0" width="14.5" height="20.5"/>
+                                                        <rect key="frame" x="86.5" y="0.0" width="14.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.8%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IyS-9C-UrQ">
-                                                        <rect key="frame" x="91.5" y="0.0" width="31.5" height="20.5"/>
+                                                        <rect key="frame" x="101" y="0.0" width="28.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                         <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1314,7 +1301,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miller Coors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aiD-UN-xd2">
-                                                <rect key="frame" x="13" y="56" width="70.5" height="15.5"/>
+                                                <rect key="frame" x="13" y="55.5" width="72.5" height="16"/>
                                                 <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                 <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1333,10 +1320,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Hm0-F9-heU">
-                                                <rect key="frame" x="8" y="30" width="215" height="20"/>
+                                                <rect key="frame" x="8" y="31" width="215" height="21"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coors Litebbbbbbbbbbbbbbbbb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFJ-f7-nOJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="215" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="215" height="21"/>
                                                         <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                                         <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1347,7 +1334,7 @@
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVB-LN-7pR">
-                                                <rect key="frame" x="8" y="5" width="99" height="20"/>
+                                                <rect key="frame" x="8" y="5" width="105.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1381,7 +1368,7 @@
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="umo-66-2LU">
-                                <rect key="frame" x="16" y="190.5" width="343" height="70"/>
+                                <rect key="frame" x="16" y="146.5" width="343" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="esR-0S-0pT"/>
@@ -1390,25 +1377,25 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="% ABV" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jZ-uG-S7Q">
-                                <rect key="frame" x="16" y="270.5" width="50.5" height="20.5"/>
+                                <rect key="frame" x="16" y="226.5" width="50.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UPC Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpe-DR-6tO">
-                                <rect key="frame" x="145" y="270.5" width="80" height="20.5"/>
+                                <rect key="frame" x="145" y="226.5" width="80" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="% ABV" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xwx-Iq-jFK">
-                                <rect key="frame" x="16" y="298.5" width="63.5" height="30"/>
+                                <rect key="frame" x="16" y="254.5" width="63.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="UPC Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0sa-Kk-YJz">
-                                <rect key="frame" x="149" y="298.5" width="88" height="30"/>
+                                <rect key="frame" x="149" y="254.5" width="88" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -1466,12 +1453,13 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="PZa-XY-vvW" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Name" image="nameIcon" id="jOi-AI-Ws3"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OZP-iJ-NAm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OZP-iJ-NAm">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="A5j-VU-sY1">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -1488,7 +1476,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="PJ9-77-cmQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Brewery" image="orgIcon" id="fTx-fh-OMg"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oyO-RG-ScQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oyO-RG-ScQ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1507,7 +1495,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="gek-1K-zSc" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Style" image="styleIcon" id="RJp-WQ-9pL"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fHE-RP-wNc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fHE-RP-wNc">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1526,7 +1514,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="yGN-9C-qfD" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Details" image="detailsIcon" id="vpb-jW-zMQ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cry-eI-waK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="cry-eI-waK">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1545,7 +1533,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="qNR-ms-kpm" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Summary" image="summaryIcon" id="RkV-Ae-BrC"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="t5R-Tk-eBh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="t5R-Tk-eBh">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1584,22 +1572,22 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zdd-zx-kHe">
-                                <rect key="frame" x="16" y="169.5" width="123" height="20.5"/>
+                                <rect key="frame" x="16" y="169.5" width="129.5" height="20.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="American Ale" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Rs-80-0FV">
-                                        <rect key="frame" x="0.0" y="0.0" width="77" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="86.5" height="20.5"/>
                                         <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" | " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v59-hZ-Xl1">
-                                        <rect key="frame" x="77" y="0.0" width="14.5" height="20.5"/>
+                                        <rect key="frame" x="86.5" y="0.0" width="14.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.8%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4c-qO-Vo0">
-                                        <rect key="frame" x="91.5" y="0.0" width="31.5" height="20.5"/>
+                                        <rect key="frame" x="101" y="0.0" width="28.5" height="20.5"/>
                                         <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1607,13 +1595,13 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miller Coors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6Q-L7-yO9">
-                                <rect key="frame" x="15" y="154" width="70.5" height="15.5"/>
+                                <rect key="frame" x="15" y="153.5" width="72.5" height="16"/>
                                 <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coors Litebbbbbbbbbbbbbbbbb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KgV-sp-ga1">
-                                <rect key="frame" x="15" y="134" width="250" height="20"/>
+                                <rect key="frame" x="15" y="132.5" width="271.5" height="21"/>
                                 <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1666,7 +1654,7 @@
         <scene sceneID="zGi-QM-Dma">
             <objects>
                 <tableViewController title="Settings" id="tfS-md-tmk" customClass="SettingsViewController" customModule="MySampleApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ngb-ji-D3T">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ngb-ji-D3T">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1748,7 +1736,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="WjN-yj-wHH">
                                         <rect key="frame" x="0.0" y="198" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WjN-yj-wHH" id="eJI-gh-mIG">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WjN-yj-wHH" id="eJI-gh-mIG">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -1776,7 +1764,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="31N-JO-YpZ">
                                         <rect key="frame" x="0.0" y="242" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="31N-JO-YpZ" id="W2v-Uc-BU3">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="31N-JO-YpZ" id="W2v-Uc-BU3">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -1804,7 +1792,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="H6X-DT-cvN">
                                         <rect key="frame" x="0.0" y="286" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H6X-DT-cvN" id="70q-JE-N0Z">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H6X-DT-cvN" id="70q-JE-N0Z">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -1827,10 +1815,10 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Danger" id="ZCb-d8-Cka">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="tru-7L-M6I">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="tru-7L-M6I">
                                         <rect key="frame" x="0.0" y="358" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tru-7L-M6I" id="1cn-li-3Jm">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tru-7L-M6I" id="1cn-li-3Jm">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -1869,20 +1857,20 @@
             </objects>
             <point key="canvasLocation" x="-434.39999999999998" y="-941.37931034482767"/>
         </scene>
-        <!--BottomSheet-->
+        <!--SearchResultsViewController-->
         <scene sceneID="tsw-YD-rWG">
             <objects>
-                <viewController storyboardIdentifier="BottomSheet" title="BottomSheet" id="I1Y-WQ-XH4" customClass="ScrollableBottomSheetViewController" customModule="MySampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BottomSheet" title="SearchResultsViewController" id="I1Y-WQ-XH4" customClass="SearchResultsViewController" customModule="MySampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rVk-mI-G1J"/>
                         <viewControllerLayoutGuide type="bottom" id="c6C-O3-fmk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bf1-D8-vCJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="45" sectionHeaderHeight="1" sectionFooterHeight="4" translatesAutoresizingMaskIntoConstraints="NO" id="DHE-Rf-YIR">
-                                <rect key="frame" x="0.0" y="75" width="375" height="592"/>
+                                <rect key="frame" x="0.0" y="75" width="375" height="532"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.77647058820000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.94117647059999998" green="0.77647058820000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -1901,10 +1889,10 @@
                                                     <rect key="frame" x="15" y="15" width="345" height="105"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="TopLeft" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="z1x-kY-p5r">
-                                                            <rect key="frame" x="8" y="8" width="215" height="20"/>
+                                                            <rect key="frame" x="8" y="8" width="215" height="21"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coors Litebbbbbbbbbbbbbbbbb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3L-3R-qZR">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="215" height="20"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="215" height="21"/>
                                                                     <fontDescription key="fontDescription" name="CenturyGothic-Bold" family="Century Gothic" pointSize="17"/>
                                                                     <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -1915,22 +1903,22 @@
                                                             </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uO7-Pf-FtQ">
-                                                            <rect key="frame" x="13" y="76" width="123" height="20.5"/>
+                                                            <rect key="frame" x="13" y="76" width="129.5" height="20.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="American Ale" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cE4-hT-46Q">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="77" height="20.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="86.5" height="20.5"/>
                                                                     <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                                     <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" | " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDf-3l-CQ6">
-                                                                    <rect key="frame" x="77" y="0.0" width="14.5" height="20.5"/>
+                                                                    <rect key="frame" x="86.5" y="0.0" width="14.5" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.8%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWh-BC-Xon">
-                                                                    <rect key="frame" x="91.5" y="0.0" width="31.5" height="20.5"/>
+                                                                    <rect key="frame" x="101" y="0.0" width="28.5" height="20.5"/>
                                                                     <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                                     <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -1938,7 +1926,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miller Coors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukZ-n0-Imz">
-                                                            <rect key="frame" x="13" y="55.5" width="70.5" height="15.5"/>
+                                                            <rect key="frame" x="13" y="55" width="72.5" height="16"/>
                                                             <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="13"/>
                                                             <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -2031,12 +2019,19 @@
                                         <rect key="frame" x="163.5" y="1" width="47" height="22"/>
                                         <state key="normal" image="dragHandle"/>
                                     </button>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Scan barcode or search beer" translatesAutoresizingMaskIntoConstraints="NO" id="rwp-h1-ZpN">
+                                        <rect key="frame" x="0.0" y="31" width="375" height="44"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                                    </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" red="0.92156862750000001" green="0.6705882353" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="vSC-8J-7Ic" firstAttribute="top" secondItem="5JA-w4-yrT" secondAttribute="top" id="Ayg-rx-gx9"/>
+                                    <constraint firstAttribute="trailing" secondItem="rwp-h1-ZpN" secondAttribute="trailing" id="Ewf-ql-WcP"/>
                                     <constraint firstItem="vSC-8J-7Ic" firstAttribute="centerX" secondItem="5JA-w4-yrT" secondAttribute="centerX" id="QSK-hq-cAa"/>
+                                    <constraint firstItem="rwp-h1-ZpN" firstAttribute="leading" secondItem="5JA-w4-yrT" secondAttribute="leading" id="QvM-R0-4pK"/>
                                     <constraint firstAttribute="height" constant="75" id="XzO-Ar-XWh"/>
+                                    <constraint firstAttribute="bottom" secondItem="rwp-h1-ZpN" secondAttribute="bottom" id="sxe-In-aQc"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -2044,25 +2039,78 @@
                         <constraints>
                             <constraint firstItem="5JA-w4-yrT" firstAttribute="top" secondItem="bf1-D8-vCJ" secondAttribute="top" id="Gxd-FB-CTc"/>
                             <constraint firstItem="c6C-O3-fmk" firstAttribute="top" secondItem="DHE-Rf-YIR" secondAttribute="bottom" id="KlV-gB-9fh"/>
-                            <constraint firstItem="DHE-Rf-YIR" firstAttribute="leading" secondItem="TCM-aB-Hp8" secondAttribute="leading" id="V6d-9B-gUQ"/>
+                            <constraint firstItem="DHE-Rf-YIR" firstAttribute="leading" secondItem="bf1-D8-vCJ" secondAttribute="leading" id="V6d-9B-gUQ"/>
                             <constraint firstItem="DHE-Rf-YIR" firstAttribute="top" secondItem="5JA-w4-yrT" secondAttribute="bottom" id="eH5-sJ-7Z2"/>
-                            <constraint firstItem="DHE-Rf-YIR" firstAttribute="trailing" secondItem="TCM-aB-Hp8" secondAttribute="trailing" id="jU4-lq-8wr"/>
-                            <constraint firstItem="5JA-w4-yrT" firstAttribute="leading" secondItem="TCM-aB-Hp8" secondAttribute="leading" id="pMu-Hh-5ff"/>
-                            <constraint firstItem="5JA-w4-yrT" firstAttribute="trailing" secondItem="TCM-aB-Hp8" secondAttribute="trailing" id="vgK-qp-KQp"/>
+                            <constraint firstItem="DHE-Rf-YIR" firstAttribute="trailing" secondItem="bf1-D8-vCJ" secondAttribute="trailing" id="jU4-lq-8wr"/>
+                            <constraint firstItem="5JA-w4-yrT" firstAttribute="leading" secondItem="bf1-D8-vCJ" secondAttribute="leading" id="pMu-Hh-5ff"/>
+                            <constraint firstItem="5JA-w4-yrT" firstAttribute="trailing" secondItem="bf1-D8-vCJ" secondAttribute="trailing" id="vgK-qp-KQp"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="TCM-aB-Hp8"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="R0T-xy-kME"/>
                     <connections>
-                        <outlet property="dragHandle" destination="vSC-8J-7Ic" id="mok-qq-gCt"/>
-                        <outlet property="headerView" destination="5JA-w4-yrT" id="ITI-4i-7m5"/>
+                        <outlet property="searchBar" destination="rwp-h1-ZpN" id="xLo-hJ-rKP"/>
                         <outlet property="tableView" destination="DHE-Rf-YIR" id="kdL-si-VMg"/>
+                        <segue destination="OKR-IF-bM6" kind="show" identifier="detailsViewController" id="8e8-jD-xrp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kBP-dU-t1U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2557.5999999999999" y="-378.26086956521743"/>
+            <point key="canvasLocation" x="2548" y="116"/>
+        </scene>
+        <!--Add-->
+        <scene sceneID="WVa-Qr-8ok">
+            <objects>
+                <viewController id="zWZ-wg-mbc" customClass="MainScanViewController" customModule="MySampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nQY-GB-6I4"/>
+                        <viewControllerLayoutGuide type="bottom" id="gc5-EB-kGa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="o4q-Bq-FDk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yvp-Me-LId">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <segue destination="kbU-Gb-jcC" kind="embed" id="Kim-4D-ppo"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uwm-71-LBa">
+                                <rect key="frame" x="0.0" y="517" width="375" height="607"/>
+                                <connections>
+                                    <segue destination="I1Y-WQ-XH4" kind="embed" id="4H9-39-bc9"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Uwm-71-LBa" firstAttribute="height" secondItem="Yvp-Me-LId" secondAttribute="height" constant="-60" id="6je-KU-zSy"/>
+                            <constraint firstAttribute="trailing" secondItem="Uwm-71-LBa" secondAttribute="trailing" id="HFB-h0-Apb"/>
+                            <constraint firstItem="gc5-EB-kGa" firstAttribute="top" secondItem="Yvp-Me-LId" secondAttribute="bottom" id="L0V-fD-3g9"/>
+                            <constraint firstAttribute="trailing" secondItem="Yvp-Me-LId" secondAttribute="trailing" id="L6M-hW-un0"/>
+                            <constraint firstItem="Yvp-Me-LId" firstAttribute="leading" secondItem="o4q-Bq-FDk" secondAttribute="leading" id="Tpw-3i-c3g"/>
+                            <constraint firstItem="Yvp-Me-LId" firstAttribute="top" secondItem="o4q-Bq-FDk" secondAttribute="top" id="hC0-Yd-cZb"/>
+                            <constraint firstAttribute="bottom" secondItem="Uwm-71-LBa" secondAttribute="top" constant="150" id="oU2-wb-jYL" userLabel="Sliding Panel Top Constraint"/>
+                            <constraint firstItem="Uwm-71-LBa" firstAttribute="leading" secondItem="o4q-Bq-FDk" secondAttribute="leading" id="waY-QK-0Mh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add" id="HdT-f1-PfV">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="keyboard" id="Ozr-3n-Q4k">
+                            <connections>
+                                <segue destination="DOW-6e-CPM" kind="show" id="4yk-8H-u6v"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="panelContainerView" destination="Uwm-71-LBa" id="hfD-G2-v7N"/>
+                        <outlet property="primaryContainerView" destination="Yvp-Me-LId" id="ivU-EC-Jsm"/>
+                        <outlet property="slidingPanelTopConstraint" destination="oU2-wb-jYL" id="alk-cS-X8R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yuw-Ld-mQb" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1460" y="-107"/>
         </scene>
     </scenes>
     <resources>

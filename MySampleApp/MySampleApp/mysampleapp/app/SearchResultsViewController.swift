@@ -1,5 +1,5 @@
 //
-//  ScrollableBottomSheetViewController
+//  SearchResultsViewController
 //  MySampleApp
 //
 //  Created by Joel Whitney on 8/20/17.
@@ -12,17 +12,12 @@ import SwiftyJSON
 import AWSDynamoDB
 import AWSMobileHubHelper
 
-class ScrollableBottomSheetViewController: UIViewController {
-    @IBOutlet var headerView: UIView!
+class SearchResultsViewController: UIViewController, SlidingPanelContentProvider {
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var dragHandle: UIButton!
+    @IBOutlet var searchBar: UISearchBar!
     
-    var searchController: UISearchController!
     var firstIndexPath: IndexPath!
-    let fullView: CGFloat = 70
-    var partialView: CGFloat {
-        return UIScreen.main.bounds.height - 150
-    }
+
     var scanBeerStore = [Beer]()
     var mainBeerStore = [AWSBeer]()
     var currentAWSBeer: AWSBeer!
@@ -30,15 +25,31 @@ class ScrollableBottomSheetViewController: UIViewController {
     var currentBeerIndexPath: IndexPath!
     var pickerQuantity = "1"
     
+//    var workerSelectedHandler: ((WorkforceWorker) -> Void)?
+//    var filterHandler: ((String?) -> Void)?
+//    private var workers: [WorkforceWorker] = [] {
+//        didSet {
+//            applyFilter()
+//        }
+//    }
+//    private var filteredWorkers: [WorkforceWorker] = [] {
+//        didSet {
+//            tableView.reloadData()
+//        }
+//    }
+//
+    var contentScrollView: UIScrollView? {
+        return tableView
+    }
+    var summaryHeight: CGFloat = 68
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        configureSearchController()
-        let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(ScrollableBottomSheetViewController.panGesture))
-        dragHandle.addTarget(self, action: #selector(dragHandleAction), for: .touchUpInside)
-        gesture.delegate = self
-        view.addGestureRecognizer(gesture)
+        searchBar.delegate = self
+        //configureSearchController()
         queryWithPartitionKeyWithCompletionHandler { (response, error) in
             if let erro = error {
                 //self.NoSQLResultLabel.text = String(erro)
@@ -60,7 +71,6 @@ class ScrollableBottomSheetViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        prepareBackgroundView()
         queryWithPartitionKeyWithCompletionHandler { (response, error) in
             if let erro = error {
                 //self.NoSQLResultLabel.text = String(erro)
@@ -82,12 +92,6 @@ class ScrollableBottomSheetViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        UIView.animate(withDuration: 0.6, animations: { [weak self] in
-            let frame = self?.view.frame
-            let yComponent = self?.partialView
-            self?.view.frame = CGRect(x: 0, y: yComponent!, width: frame!.width, height: frame!.height - 70)
-        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -125,90 +129,26 @@ class ScrollableBottomSheetViewController: UIViewController {
         }
         onCompletion()
     }
-    func dragHandleAction() {
-        let y = self.view.frame.minY
-        if y < fullView {
-            partialHeight()
-        } else {
-            fullHeight()
-        }
-    }
+
+//    func configureSearchController() {
+////        headerView.layer.shadowColor = UIColor(white: 0.0, alpha: 0.5).cgColor
+////        headerView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+////        headerView.layer.shadowOpacity = 0.25
+////        headerView.layer.shadowRadius = 1.0
+//        // Initialize and perform a minimum configuration to the search controller.
+//        searchBar.backgroundColor = UIColor(red: 235/255, green: 171/255, blue: 28/255, alpha: 1)
+//        searchBar.searchBarStyle = .minimal
+//        searchBar.placeholder = "Scan barcode or search beers"
+//        searchBar.returnKeyType = UIReturnKeyType.search
+//        searchBar.delegate = self
+//        //searchBar.translatesAutoresizingMaskIntoConstraints = false
+//        searchBar.contentMode = .redraw
+//        self.definesPresentationContext = true
+//        searchBar.sizeToFit()
+//        //tableView.tableHeaderView = searchBar
+//    }
     
-    func configureSearchController() {
-        headerView.layer.shadowColor = UIColor(white: 0.0, alpha: 0.5).cgColor
-        headerView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        headerView.layer.shadowOpacity = 0.25
-        headerView.layer.shadowRadius = 1.0
-        // Initialize and perform a minimum configuration to the search controller.
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.backgroundColor = UIColor(red: 235/255, green: 171/255, blue: 28/255, alpha: 1)
-        searchController.searchBar.searchBarStyle = .minimal
-        searchController.searchBar.placeholder = "Scan barcode or search beers"
-        searchController.searchBar.returnKeyType = UIReturnKeyType.search
-        searchController.searchBar.delegate = self
-        searchController.hidesNavigationBarDuringPresentation = false
-        //searchController.searchBar.translatesAutoresizingMaskIntoConstraints = false
-        searchController.searchBar.contentMode = .redraw
-        self.definesPresentationContext = false
-        //searchController.searchBar.frame = CGRect(x: headerView.frame.origin.x, y: headerView.frame.origin.y + 20 , width: headerView.frame.width - 55, height: 44.0)
-        searchController.searchBar.frame = CGRect(x: headerView.frame.origin.x, y: dragHandle.frame.origin.y + dragHandle.frame.height + 2 , width: headerView.frame.width - 55, height: 44.0)
-        searchController.searchBar.sizeToFit()
-        headerView.addSubview(searchController.searchBar)
-        //tableView.tableHeaderView = searchController.searchBar
-    }
-    func panGesture(_ recognizer: UIPanGestureRecognizer) {
-        
-        let translation = recognizer.translation(in: self.view)
-        let velocity = recognizer.velocity(in: self.view)
-        
-        let y = self.view.frame.minY
-        if (y + translation.y >= fullView) && (y + translation.y <= partialView) {
-            self.view.frame = CGRect(x: 0, y: y + translation.y, width: view.frame.width, height: view.frame.height)
-            recognizer.setTranslation(CGPoint.zero, in: self.view)
-        }
-        
-        if recognizer.state == .ended {
-            var duration =  velocity.y < 0 ? Double((y - fullView) / -velocity.y) : Double((partialView - y) / velocity.y )
-            duration = duration > 1.3 ? 1 : duration
-            UIView.animate(withDuration: duration, delay: 0.0, options: [.allowUserInteraction], animations: {
-                if  velocity.y >= 0 {
-                    self.view.frame = CGRect(x: 0, y: self.partialView, width: self.view.frame.width, height: self.view.frame.height)
-                    self.tableView.scrollToRow(at: self.firstIndexPath!, at: .top, animated: true)
-                } else {
-                    self.view.frame = CGRect(x: 0, y: self.fullView, width: self.view.frame.width, height: self.view.frame.height)
-                }
-                
-            }, completion: { [weak self] _ in
-                if ( velocity.y < 0 ) {
-                    self?.tableView.isScrollEnabled = true
-                }
-            })
-        }
-    }
     
-    func fullHeight() {
-        UIView.animate(withDuration: 0.0, delay: 0.0, options: [], animations: {
-                self.view.frame = CGRect(x: 0, y: self.fullView, width: self.view.frame.width, height: self.view.frame.height)
-        })
-    }
-    func partialHeight() {
-        UIView.animate(withDuration: 0.0, delay: 0.0, options: [], animations: {
-            self.view.frame = CGRect(x: 0, y: self.partialView, width: self.view.frame.width, height: self.view.frame.height)
-        })
-        tableView.scrollToRow(at: firstIndexPath!, at: .top, animated: true)
-    }
-    
-    func prepareBackgroundView(){
-        let blurEffect = UIBlurEffect.init(style: .dark)
-        let visualEffect = UIVisualEffectView.init(effect: blurEffect)
-        let bluredView = UIVisualEffectView.init(effect: blurEffect)
-        bluredView.contentView.addSubview(visualEffect)
-        visualEffect.frame = UIScreen.main.bounds
-        bluredView.frame = UIScreen.main.bounds
-        view.insertSubview(bluredView, at: 0)
-    }
     func checkButtonTapped(sender:AnyObject) {
         let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
         let indexPath = self.tableView.indexPathForRow(at: buttonPosition)
@@ -382,14 +322,14 @@ class ScrollableBottomSheetViewController: UIViewController {
 }
 
 // MARK: - UIPicker delegate
-extension ScrollableBottomSheetViewController: UIPickerViewDelegate {
+extension SearchResultsViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerQuantity = String(row + 1)
     }
 }
 
 // MARK: - UIPicker delegate
-extension ScrollableBottomSheetViewController: UIPickerViewDataSource {
+extension SearchResultsViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -403,7 +343,7 @@ extension ScrollableBottomSheetViewController: UIPickerViewDataSource {
 }
 
 // MARK: - Table view data source
-extension ScrollableBottomSheetViewController: UITableViewDelegate, UITableViewDataSource {
+extension SearchResultsViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -430,11 +370,6 @@ extension ScrollableBottomSheetViewController: UITableViewDelegate, UITableViewD
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 135.0
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentBeer = scanBeerStore[indexPath.row]
-        tableView.deselectRow(at: indexPath, animated: true)
-        self.performSegue(withIdentifier: "detailsViewController", sender: self)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
@@ -480,61 +415,77 @@ extension ScrollableBottomSheetViewController: UITableViewDelegate, UITableViewD
     }
 }
 
-extension ScrollableBottomSheetViewController: UIGestureRecognizerDelegate {
-    
-    // Solution
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        let gesture = (gestureRecognizer as! UIPanGestureRecognizer)
-        let direction = gesture.velocity(in: view).y
-        
-        let y = view.frame.minY
-        if (y == fullView && tableView.contentOffset.y == 0 && direction > 0) || (y == partialView) {
-            tableView.isScrollEnabled = false
-        } else {
-            tableView.isScrollEnabled = true
-        }
-        
-        return false
+extension SearchResultsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentBeer = scanBeerStore[indexPath.row]
+        self.performSegue(withIdentifier: "detailsViewController", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+        //workerSelectedHandler?(filteredWorkers[indexPath.row])
+        searchBar.resignFirstResponder()
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if let slidingPanelViewController = parent as? SlidingPanelViewController {
+            slidingPanelViewController.panelContentDidScroll(self, scrollView: scrollView)
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if let slidingPanelViewController = parent as? SlidingPanelViewController {
+            slidingPanelViewController.panelContentWillBeginDecelerating(self, scrollView: scrollView)
+        }
+    }
 }
 
-extension ScrollableBottomSheetViewController: UISearchBarDelegate {
+extension SearchResultsViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("apply search and filter")
+        if searchBar.text != "" {
+            let searchString = searchBar.text!
+            print("text changed to: \(searchString)")
+            scanBeerStore = [Beer]()
+            BrewerydbAPI.sharedInstance.search_beer_name(beerName: searchString, onCompletion: { (json: JSON) in
+                self.handleJSON(beerJSON: json, maxResults: 10, onCompletion: {
+                    DispatchQueue.main.async(execute: {
+                        print("reload search tableview")
+                        self.tableView.reloadData()
+                    })
+                })
+            })
+        } else {
+            scanBeerStore = [Beer]()
+            self.tableView.reloadData()
+        }
+        //applyFilter()
+        tableView.setContentOffset(CGPoint.zero, animated: true)
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("search")
+        //searchBar.showsCancelButton = false
+        searchBar.resignFirstResponder()
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         print("cancel")
-        partialHeight()
+        searchBar.text = ""
+        //searchBar.showsCancelButton = false
         scanBeerStore = [Beer]()
-        tableView.reloadData()
-    }
-}
-
-extension ScrollableBottomSheetViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        
-        if searchController.isActive {
-            print("text changed")
-            fullHeight()
-            if searchController.searchBar.text != "" {
-                let searchString = searchController.searchBar.text!
-                print("text changed to: \(searchString)")
-                scanBeerStore = [Beer]()
-                BrewerydbAPI.sharedInstance.search_beer_name(beerName: searchString, onCompletion: { (json: JSON) in
-                    self.handleJSON(beerJSON: json, maxResults: 10, onCompletion: {
-                        DispatchQueue.main.async(execute: {
-                            print("reload search tableview")
-                            self.tableView.reloadData()
-                        })
-                    })
-                })
-            } else {
-                scanBeerStore = [Beer]()
-                self.tableView.reloadData()
+        DispatchQueue.main.async(execute: {
+            print("reload search tableview")
+            searchBar.resignFirstResponder()
+            self.tableView.reloadData()
+            if let slidingPanelViewController = self.parent as? SlidingPanelViewController {
+                slidingPanelViewController.panelPosition = .partial
             }
-        }
+        })
+    }
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        print("searchbar begin editing")
+        //searchBar.showsCancelButton = true
+        if let slidingPanelViewController = parent as? SlidingPanelViewController {
+            slidingPanelViewController.panelPosition = .full
+        }
     }
 }
 

@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		6006500BADEE8E1C6318D005 /* Pods_MySampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D6EAF93D137439A82B1E097 /* Pods_MySampleApp.framework */; };
-		E50C72CF1F49FB6D00B204B2 /* ScrollableBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50C72CE1F49FB6D00B204B2 /* ScrollableBottomSheetViewController.swift */; };
+		E50C72CF1F49FB6D00B204B2 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50C72CE1F49FB6D00B204B2 /* SearchResultsViewController.swift */; };
+		E510C3261F4C72A800008B41 /* SlidingPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E510C3251F4C72A800008B41 /* SlidingPanelViewController.swift */; };
+		E510C3281F4C76E200008B41 /* MainScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E510C3271F4C76E200008B41 /* MainScanViewController.swift */; };
+		E510C32A1F4CB59700008B41 /* UIAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E510C3291F4CB59700008B41 /* UIAdditions.swift */; };
 		E56605221F43A2A10079173E /* BeersTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E566051A1F4390BB0079173E /* BeersTable.swift */; };
 		E56605241F43C2020079173E /* AWSBeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56605231F43C2020079173E /* AWSBeer.swift */; };
 		E566052B1F43CB0C0079173E /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E566052A1F43CB010079173E /* AWSDynamoDB.framework */; };
@@ -31,7 +34,7 @@
 		E5A2D5BC1F412391007CF64E /* DetailsContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5A31F41238F007CF64E /* DetailsContoller.swift */; };
 		E5A2D5BD1F412391007CF64E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5A41F41238F007CF64E /* TabBarController.swift */; };
 		E5A2D5BE1F412391007CF64E /* AddBeerDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5A61F41238F007CF64E /* AddBeerDetailsController.swift */; };
-		E5A2D5BF1F412391007CF64E /* ScanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5A71F41238F007CF64E /* ScanController.swift */; };
+		E5A2D5BF1F412391007CF64E /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5A71F41238F007CF64E /* ScanViewController.swift */; };
 		E5A2D5C01F412391007CF64E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5A91F412390007CF64E /* NavigationController.swift */; };
 		E5A2D5C11F412391007CF64E /* Beer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5AA1F412390007CF64E /* Beer.swift */; };
 		E5A2D5C21F412391007CF64E /* ScanBeerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5AB1F412390007CF64E /* ScanBeerTableCell.swift */; };
@@ -174,7 +177,10 @@
 		5D6EAF93D137439A82B1E097 /* Pods_MySampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MySampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF312FDB64004E71BF79E317 /* Pods-MySampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySampleApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MySampleApp/Pods-MySampleApp.release.xcconfig"; sourceTree = "<group>"; };
 		E409A0D203AFA3BD072EC06A /* Pods-MySampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySampleApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MySampleApp/Pods-MySampleApp.debug.xcconfig"; sourceTree = "<group>"; };
-		E50C72CE1F49FB6D00B204B2 /* ScrollableBottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollableBottomSheetViewController.swift; path = MySampleApp/mysampleapp/app/ScrollableBottomSheetViewController.swift; sourceTree = SOURCE_ROOT; };
+		E50C72CE1F49FB6D00B204B2 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultsViewController.swift; path = MySampleApp/mysampleapp/app/SearchResultsViewController.swift; sourceTree = SOURCE_ROOT; };
+		E510C3251F4C72A800008B41 /* SlidingPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingPanelViewController.swift; sourceTree = "<group>"; };
+		E510C3271F4C76E200008B41 /* MainScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainScanViewController.swift; path = MySampleApp/mysampleapp/app/MainScanViewController.swift; sourceTree = SOURCE_ROOT; };
+		E510C3291F4CB59700008B41 /* UIAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAdditions.swift; sourceTree = "<group>"; };
 		E566051A1F4390BB0079173E /* BeersTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeersTable.swift; sourceTree = "<group>"; };
 		E566051B1F4390BB0079173E /* NoSQLDatabase.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoSQLDatabase.storyboard; sourceTree = "<group>"; };
 		E566051C1F4390BB0079173E /* NoSQLModelHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSQLModelHelpers.swift; sourceTree = "<group>"; };
@@ -203,7 +209,7 @@
 		E5A2D5A41F41238F007CF64E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E5A2D5A51F41238F007CF64E /* Blippo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Blippo.ttf; sourceTree = "<group>"; };
 		E5A2D5A61F41238F007CF64E /* AddBeerDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBeerDetailsController.swift; sourceTree = "<group>"; };
-		E5A2D5A71F41238F007CF64E /* ScanController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanController.swift; sourceTree = "<group>"; };
+		E5A2D5A71F41238F007CF64E /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		E5A2D5A81F412390007CF64E /* GOTHIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = GOTHIC.TTF; sourceTree = "<group>"; };
 		E5A2D5A91F412390007CF64E /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		E5A2D5AA1F412390007CF64E /* Beer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beer.swift; sourceTree = "<group>"; };
@@ -292,9 +298,12 @@
 				E5A2D5991F41238D007CF64E /* MainBeerTableCell.swift */,
 				E5A2D59A1F41238D007CF64E /* MainLastCell.swift */,
 				E5A2D5A91F412390007CF64E /* NavigationController.swift */,
+				E510C3291F4CB59700008B41 /* UIAdditions.swift */,
+				E510C3271F4C76E200008B41 /* MainScanViewController.swift */,
+				E5A2D5A71F41238F007CF64E /* ScanViewController.swift */,
+				E510C3251F4C72A800008B41 /* SlidingPanelViewController.swift */,
+				E50C72CE1F49FB6D00B204B2 /* SearchResultsViewController.swift */,
 				E5A2D5AB1F412390007CF64E /* ScanBeerTableCell.swift */,
-				E5A2D5A71F41238F007CF64E /* ScanController.swift */,
-				E50C72CE1F49FB6D00B204B2 /* ScrollableBottomSheetViewController.swift */,
 				E5A2D5AC1F412390007CF64E /* ScanLastCell.swift */,
 				E5A2D5A01F41238E007CF64E /* SearchProgress.swift */,
 				E5A2D5A41F41238F007CF64E /* TabBarController.swift */,
@@ -624,12 +633,14 @@
 				E7A30F0474A8A45200000000 /* GoogleIdentityProfile.swift in Sources */,
 				E7A30F04F869613E00000000 /* UserPoolSignUpConfirmationViewController.swift in Sources */,
 				E5A2D5B41F412391007CF64E /* AddBeerNameController.swift in Sources */,
+				E510C3261F4C72A800008B41 /* SlidingPanelViewController.swift in Sources */,
 				E5A2D5C41F412391007CF64E /* AddBeerStyleController.swift in Sources */,
 				E7A30F049446558F00000000 /* UserPoolMFAViewController.swift in Sources */,
 				E7A30F048C588A0900000000 /* FacebookIdentityProfile.swift in Sources */,
 				E5A2D5BC1F412391007CF64E /* DetailsContoller.swift in Sources */,
+				E510C32A1F4CB59700008B41 /* UIAdditions.swift in Sources */,
 				E7A30F041BE897CC00000000 /* AppDelegate.swift in Sources */,
-				E50C72CF1F49FB6D00B204B2 /* ScrollableBottomSheetViewController.swift in Sources */,
+				E50C72CF1F49FB6D00B204B2 /* SearchResultsViewController.swift in Sources */,
 				E7A30F04A1AF914B00000000 /* FormTableCell.swift in Sources */,
 				E5A2D5C11F412391007CF64E /* Beer.swift in Sources */,
 				E7A30F04CA825EA600000000 /* TableInputCell.swift in Sources */,
@@ -661,7 +672,8 @@
 				E5A2D5B91F412391007CF64E /* SearchProgress.swift in Sources */,
 				E7A30F047FD234D700000000 /* FormTableDelegate.swift in Sources */,
 				E5A2D5951F41235A007CF64E /* Style.swift in Sources */,
-				E5A2D5BF1F412391007CF64E /* ScanController.swift in Sources */,
+				E510C3281F4C76E200008B41 /* MainScanViewController.swift in Sources */,
+				E5A2D5BF1F412391007CF64E /* ScanViewController.swift in Sources */,
 				E5A2D5971F41235A007CF64E /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
