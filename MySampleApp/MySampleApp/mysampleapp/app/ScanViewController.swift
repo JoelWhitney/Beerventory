@@ -1,5 +1,5 @@
 //
-//  ScanController.swift
+//  ScanViewController.swift
 //  Beerventory
 //
 //  Created by Joel Whitney on 4/20/17.
@@ -14,7 +14,7 @@ import RxCocoa
 import AWSDynamoDB
 import AWSMobileHubHelper
 
-class ScanController: UIViewController {
+class ScanViewController: UIViewController {
     // MARK: - variables/constants
     var codeFont: UIFont?
     var captureSession: AVCaptureSession?
@@ -54,16 +54,16 @@ class ScanController: UIViewController {
     let disposeBag = DisposeBag()
     var pickerQuantity = "1"
     var upc_code = ""
-    
+    //var bottomSheetController: ScrollableBottomSheetViewController!
+
+
     // MARK: Outlets
-    @IBOutlet var tableView: UITableView!
+    //@IBOutlet var tableView: UITableView!
     @IBOutlet var activitySpinnerView: UIView!
     @IBOutlet var capturePreviewViewFrame: UIView!
     
     // MARK: Actions
-    @IBAction func refreshButton(_ sender: UIBarButtonItem) {
-        refreshScanControllerState()
-    }
+
     
     // MARK: Initializers
     required init?(coder aDecoder: NSCoder) {
@@ -73,64 +73,13 @@ class ScanController: UIViewController {
     //MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        self.automaticallyAdjustsScrollViewInsets = false
         self.capturePreviewFrame()
         self.captureDetectionFrame()
-        self.navigationItem.leftBarButtonItem?.isEnabled = false
-        self.navigationItem.rightBarButtonItem?.isEnabled = true
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
-                                                                        NSFontAttributeName: UIFont.boldSystemFont(ofSize: 20)]
-        // add long press to tableView
-        //let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(ScanController.longPress(_:)))
-        //longPressGesture.minimumPressDuration = 0.5 // 1 second press
-        //longPressGesture.delegate = self
-        //self.tableView.addGestureRecognizer(longPressGesture)
-        queryWithPartitionKeyWithCompletionHandler { (response, error) in
-            if let erro = error {
-                //self.NoSQLResultLabel.text = String(erro)
-                print("error: \(erro)")
-            } else if response?.items.count == 0 {
-                //self.NoSQLResultLabel.text = String("0")
-                print("No items")
-            } else {
-                //self.NoSQLResultLabel.text = String(response!.items)
-                print("success: \(response!.items)")
-                self.updateItemstoStore(items: response!.items) {
-                    DispatchQueue.main.async(execute: {
-                        print("mainBeerStore updated")
-                    })
-                }
-            }
-        }
+        //initBottomSheetController()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("ScanController will appear -- \(scanResultsBeerStore.allBeers.value.count) existing results")
-        self.navigationController?.topViewController?.title = "Scan"
-        queryWithPartitionKeyWithCompletionHandler { (response, error) in
-            if let erro = error {
-                //self.NoSQLResultLabel.text = String(erro)
-                print("error: \(erro)")
-            } else if response?.items.count == 0 {
-                //self.NoSQLResultLabel.text = String("0")
-                print("No items")
-            } else {
-                //self.NoSQLResultLabel.text = String(response!.items)
-                print("success: \(response!.items)")
-                self.updateItemstoStore(items: response!.items) {
-                    DispatchQueue.main.async(execute: {
-                        print("mainBeerStore updated")
-                    })
-                }
-            }
-        }
-        //self.lastSearchCount = scanResultsBeerStore.allBeers.value.count
-    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tableView.reloadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -142,16 +91,7 @@ class ScanController: UIViewController {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
-        let captureRectWidth = CGFloat(150.0)
-        let captureRectHeight = CGFloat(150.0)
-        
-        var cgCaptureRect = CGRect(x: (screenWidth / 2 - captureRectWidth / 2),
-                                   y: (screenHeight / 2 - captureRectHeight / 2) / 2,
-                                   width: captureRectWidth,
-                                   height: captureRectHeight)
-        
         let captureWindowView = UIView()
-        
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         do {
             // initialize the captureSession object and add input
@@ -201,89 +141,26 @@ class ScanController: UIViewController {
     }
 
     //MARK: Imperative methods
-    func queryWithPartitionKeyDescription() -> String {
-        let partitionKeyValue = AWSIdentityManager.default().identityId!
-        return "Find all items with userId = \(partitionKeyValue)."
-    }
-    func queryWithPartitionKeyWithCompletionHandler(_ completionHandler: @escaping (_ response: AWSDynamoDBPaginatedOutput?, _ error: NSError?) -> Void) {
-        let objectMapper = AWSDynamoDBObjectMapper.default()
-        let queryExpression = AWSDynamoDBQueryExpression()
-        
-        queryExpression.keyConditionExpression = "#userId = :userId"
-        queryExpression.expressionAttributeNames = ["#userId": "userId",]
-        queryExpression.expressionAttributeValues = [":userId": AWSIdentityManager.default().identityId!,]
-        
-        objectMapper.query(AWSBeer.self, expression: queryExpression) { (response: AWSDynamoDBPaginatedOutput?, error: Error?) in
-            DispatchQueue.main.async(execute: {
-                completionHandler(response, error as? NSError)
-            })
-        }
-    }
-    func updateItemstoStore(items: [AWSDynamoDBObjectModel], onCompletion: () -> Void) {
-        for item in items {
-            let awsBeer = item as! AWSBeer
-            mainBeerStore.append(awsBeer)
-            print("\(mainBeerStore.count) items in beer store")
-        }
-        onCompletion()
-    }
-    func handleInitialBeerJSON(beerJSON: JSON, upc_code: String, onCompletion: () -> Void) {
-        print("################################### ADD INITIAL BARCODE JSON ################################")
-        print("####### STEP 1: GET BEER DATA #######") // STEP 1 HERE
-        if let results = beerJSON["data"].array {
-            print("         Beers:")
-            self.clearScanResultsBeers()
-            let tempResults: Variable<[Beer]> = Variable([])
-            for beerResult in results {
-                print("           " + beerResult["name"].string! )
-                //self.lastSearchCount = results.count
-                let beerResultObject = Beer(brewerydb_id: beerResult["id"].string! ,
-                                            upc_code: upc_code ,
-                                            name: beerResult["name"].string ?? "" ,
-                                            beer_description: beerResult["description"].string ?? "",
-                                            abv: beerResult["abv"].string ?? "--" ,
-                                            label: beerResult["labels"]["large"].string ?? "" ,
-                                            gravity: beerResult["style"]["ogMin"].string ?? "--" ,
-                                            availability: beerResult["available"]["name"].string ?? "" ,
-                                            availability_desc: beerResult["available"]["description"].string ?? "" ,
-                                            style_name: beerResult["style"]["shortName"].string ?? "" ,
-                                            style_desc: beerResult["style"]["description"].string ?? "" ,
-                                            style_id: beerResult["style"]["id"].string ?? "" )
-                tempResults.value.append(beerResultObject)
-            }
-            self.scanResultsBeerStore.allBeers = tempResults
-            print("####### STEP 2: BEERSTORE CONTENTS #######") // STEP 3 HERE
-            print(self.scanResultsBeerStore.allBeers.value)
-        } else {
-            print("   No Beers")
-            let alertController = UIAlertController(title: "Error", message: "The barcode is not in the database, consider adding it.", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
-            let add = UIAlertAction(title: "Add", style: UIAlertActionStyle.default) { action in
-                self.performSegue(withIdentifier: "tabBarController", sender: self)
-            }
-            
-            alertController.addAction(add)
-            present(alertController, animated: true, completion: nil)
-            
-        }
-        onCompletion()
-    }
-    func refreshScanControllerState() {
-        captureSession?.startRunning()
-        self.navigationItem.leftBarButtonItem?.isEnabled = false
-        qrCodeFrameView?.frame = CGRect.zero
-    }
-    func refreshTableView() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    func clearScanResultsBeers() {
-        let emptyResults: Variable<[Beer]> = Variable([])
-        scanResultsBeerStore.allBeers = emptyResults
-        print("         (purging beers from BeerStore)")
-        //print(scanResultsBeerStore.allBeers.value)
-    }
+//    func initBottomSheetController() {
+//        let loginStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        bottomSheetController = loginStoryboard.instantiateViewController(withIdentifier: "BottomSheet") as! ScrollableBottomSheetViewController
+//        addBottomSheetView()
+//    }
+//    func addBottomSheetView() {
+//        // 2- Add bottomSheetVC as a child view
+//        self.addChildViewController(bottomSheetController)
+//        self.view.addSubview(bottomSheetController.view)
+//        self.view.bringSubview(toFront: bottomSheetController.view)
+//        bottomSheetController.didMove(toParentViewController: self)
+//
+//        // 3- Adjust bottomSheet frame and initial position.
+//        let height = view.frame.height
+//        let width  = view.frame.width
+//        bottomSheetController.view.layer.cornerRadius = 10
+//        bottomSheetController.view.clipsToBounds = true
+//        bottomSheetController.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
+//    }
+
     func addProgressSubview(){
         let progressHUD = SearchProgress(text: "Searching..")
         self.view.addSubview(progressHUD)
@@ -294,11 +171,6 @@ class ScanController: UIViewController {
                 subview.removeFromSuperview()
             }
         }
-    }
-    func checkButtonTapped(sender:AnyObject) {
-        let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
-        let indexPath = self.tableView.indexPathForRow(at: buttonPosition)
-        currentBeerIndexPath = indexPath!
     }
     func configureTextField(alertTextField: UITextField?) {
         if let textField = alertTextField {
@@ -313,7 +185,7 @@ class ScanController: UIViewController {
     }
     func showPickerInActionSheet(sender: AnyObject) {
         pickerQuantity = "1"
-        checkButtonTapped(sender: sender)
+        //checkButtonTapped(sender: sender)
         print(currentBeerIndexPath.row)
         currentBeer = scanResultsBeerStore.allBeers.value[currentBeerIndexPath.row]
         var actionType: String
@@ -449,14 +321,14 @@ class ScanController: UIViewController {
 }
 
 // MARK: - UIPicker delegate
-extension ScanController: UIPickerViewDelegate {
+extension ScanViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerQuantity = String(row + 1)
     }
 }
 
 // MARK: - UIPicker delegate
-extension ScanController: UIPickerViewDataSource {
+extension ScanViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -470,7 +342,7 @@ extension ScanController: UIPickerViewDataSource {
 }
 
 // MARK: - Table view data source
-extension ScanController: UITableViewDataSource {
+extension ScanViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if self.lastSearchCount == 0 {
             return "Search results"
@@ -480,14 +352,13 @@ extension ScanController: UITableViewDataSource {
             return "Last search results (\(self.lastSearchCount) beers)"
         }
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scanResultsBeerStore.allBeers.value.count + 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // handle all beers
         if indexPath.row < scanResultsBeerStore.allBeers.value.count {
-            self.tableView.estimatedRowHeight = 135
             let cell = tableView.dequeueReusableCell(withIdentifier: "ScanBeerTableCell", for: indexPath) as! ScanBeerTableCell
             let beer = scanResultsBeerStore.allBeers.value[indexPath.row]
             // cell details
@@ -512,7 +383,7 @@ extension ScanController: UITableViewDataSource {
 }
 
 // MARK: - tableView delegate
-extension ScanController: UITableViewDelegate {
+extension ScanViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20.0
     }
@@ -542,7 +413,7 @@ extension ScanController: UITableViewDelegate {
 }
 
 //// MARK: longPress delegate
-//extension ScanController: UIGestureRecognizerDelegate {
+//extension ScanViewController: UIGestureRecognizerDelegate {
 //    func longPress(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {
 //        if longPressGestureRecognizer.state == UIGestureRecognizerState.began {
 //            let touchPoint = longPressGestureRecognizer.location(in: self.tableView)
@@ -575,7 +446,7 @@ extension ScanController: UITableViewDelegate {
 //}
 
 //MARK: AVCapture delegate
-extension ScanController: AVCaptureMetadataOutputObjectsDelegate {
+extension ScanViewController: AVCaptureMetadataOutputObjectsDelegate {
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects results: [Any]!, from connection: AVCaptureConnection!) {
         if results == nil || results.count == 0 { // handle empty results
             qrCodeFrameView?.frame = CGRect.zero
@@ -591,18 +462,18 @@ extension ScanController: AVCaptureMetadataOutputObjectsDelegate {
                     addProgressSubview()
                     print(metadataObj.stringValue)
                     upc_code = metadataObj.stringValue
-                    BrewerydbAPI.sharedInstance.search_barcode(barCode: metadataObj.stringValue, onCompletion: { (json: JSON) in
-                        self.handleInitialBeerJSON(beerJSON: json, upc_code: self.upc_code, onCompletion: {
-                            self.scanResultsBeerStore.updateBreweryDetails(onCompletion: { // STEP 2 HERE
-                                DispatchQueue.main.async(execute: {
-                                    print("reload tableview")
-                                    self.removeProgressSubview()
-                                    self.refreshScanControllerState()
-                                    self.refreshTableView()
-                                })
-                            })
-                        })
-                    })
+//                    BrewerydbAPI.sharedInstance.search_barcode(barCode: metadataObj.stringValue, onCompletion: { (json: JSON) in
+//                        self.handleInitialBeerJSON(beerJSON: json, upc_code: self.upc_code, onCompletion: {
+//                            self.scanResultsBeerStore.updateBreweryDetails(onCompletion: { // STEP 2 HERE
+//                                DispatchQueue.main.async(execute: {
+//                                    print("reload tableview")
+//                                    self.removeProgressSubview()
+//                                    self.refreshScanViewControllerState()
+//                                    //self.refreshTableView()
+//                                })
+//                            })
+//                        })
+//                    })
                 } else {
                     // TODO: - Add no results prompt
                 }
