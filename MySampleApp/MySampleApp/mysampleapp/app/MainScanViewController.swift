@@ -10,12 +10,11 @@ import UIKit
 
 class MainScanViewController: SlidingPanelViewController {
 
+    var searchResultBeer: Beer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.panelPosition = .partial
-        self.navigationItem.leftBarButtonItem?.isEnabled = false
-        self.navigationItem.rightBarButtonItem?.isEnabled = true
         scanViewController?.scanResultFound = { beers in
             self.panelPosition = .full
             print(beers)
@@ -27,17 +26,10 @@ class MainScanViewController: SlidingPanelViewController {
                 })
             }
         }
-//        scanViewController?.beersFound = { worker in
-//            if worker.location != nil {
-//                self.panelPosition = .partial
-//                self.mapViewController?.highlight(worker: worker)
-//            }
-//        }
-//
-//        scanViewController?.filterHandler = { filterText in
-//            self.mapViewController?.applyFilter(filterText)
-//        }
-//
+        searchResultsViewController?.searchResultTapped = { beer in
+            self.searchResultBeer = beer
+            self.performSegue(withIdentifier: "detailsViewController", sender: self)
+        }
   
     }
     
@@ -60,6 +52,13 @@ class MainScanViewController: SlidingPanelViewController {
         return childViewControllers.first(where: { $0 is ScanViewController }) as? ScanViewController
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "detailsViewController") {
+            let yourNextViewController = (segue.destination as! DetailsController)
+            yourNextViewController.beer = searchResultBeer
+        }
+        
+    }
     var searchResultsViewController: SearchResultsViewController? {
         return childViewControllers.first(where: { $0 is SearchResultsViewController }) as? SearchResultsViewController
     }

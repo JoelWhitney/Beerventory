@@ -47,18 +47,7 @@ class ScanViewController: UIViewController {
     let disposeBag = DisposeBag()
     var pickerQuantity = "1"
     var upc_code = ""
-    
-    
     var scanResultFound: (([Beer]) -> Void)?
-    //var filterHandler: ((String?) -> Void)?
-//    private var workers: [WorkforceWorker] = [] {
-//        didSet {
-//            applyFilter()
-//        }
-//    }
-
-    //var bottomSheetController: ScrollableBottomSheetViewController!
-
 
     // MARK: Outlets
     //@IBOutlet var tableView: UITableView!
@@ -88,12 +77,21 @@ class ScanViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
-    //MARK: Additional views
-    private func capturePreviewFrame() {
+    func capturePreviewFrame() {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
+        let captureRectWidth = CGFloat(150.0)
+        let captureRectHeight = CGFloat(150.0)
+        
+        var cgCaptureRect = CGRect(x: (screenWidth / 2 - captureRectWidth / 2),
+                                   y: (screenHeight / 4 - captureRectHeight / 2),
+                                   width: captureRectWidth,
+                                   height: captureRectHeight)
+        
         let captureWindowView = UIView()
+        captureWindowView.frame = cgCaptureRect
+        
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         do {
             // initialize the captureSession object and add input
@@ -110,15 +108,16 @@ class ScanViewController: UIViewController {
             // initialize the video preview layer and add to view as sublayer
             capturePreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
             capturePreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
-            capturePreviewLayer?.frame = capturePreviewViewFrame.frame
+            capturePreviewLayer?.frame = view.layer.bounds
             view.layer.addSublayer(capturePreviewLayer!)
             
             // start capture session and move labels to front
             captureSession?.startRunning()
+
             
             // set capture area
-            //let captureRect = capturePreviewLayer?.metadataOutputRectOfInterest(for: cgCaptureRect)
-            //results.rectOfInterest = captureRect!
+            let captureRect = capturePreviewLayer?.metadataOutputRectOfInterest(for: cgCaptureRect)
+            results.rectOfInterest = captureRect!
             captureWindowView.layer.backgroundColor = UIColor.clear.cgColor
             captureWindowView.layer.borderColor = UIColor.lightGray.cgColor
             captureWindowView.layer.borderWidth = 1
@@ -132,7 +131,7 @@ class ScanViewController: UIViewController {
             return
         }
     }
-    private func captureDetectionFrame() {
+    func captureDetectionFrame() {
         qrCodeFrameView = UIView()
         if let qrCodeFrameView = qrCodeFrameView {
             qrCodeFrameView.layer.borderColor = UIColor.white.cgColor
@@ -143,26 +142,6 @@ class ScanViewController: UIViewController {
     }
 
     //MARK: Imperative methods
-//    func initBottomSheetController() {
-//        let loginStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        bottomSheetController = loginStoryboard.instantiateViewController(withIdentifier: "BottomSheet") as! ScrollableBottomSheetViewController
-//        addBottomSheetView()
-//    }
-//    func addBottomSheetView() {
-//        // 2- Add bottomSheetVC as a child view
-//        self.addChildViewController(bottomSheetController)
-//        self.view.addSubview(bottomSheetController.view)
-//        self.view.bringSubview(toFront: bottomSheetController.view)
-//        bottomSheetController.didMove(toParentViewController: self)
-//
-//        // 3- Adjust bottomSheet frame and initial position.
-//        let height = view.frame.height
-//        let width  = view.frame.width
-//        bottomSheetController.view.layer.cornerRadius = 10
-//        bottomSheetController.view.clipsToBounds = true
-//        bottomSheetController.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
-//    }
-
     func addProgressSubview(){
         let progressHUD = SearchProgress(text: "Searching..")
         self.view.addSubview(progressHUD)

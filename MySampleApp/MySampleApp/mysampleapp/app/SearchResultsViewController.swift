@@ -24,13 +24,11 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
     var currentBeer: Beer!
     var currentBeerIndexPath: IndexPath!
     var pickerQuantity = "1"
-    
-
     var contentScrollView: UIScrollView? {
         return tableView
     }
     var summaryHeight: CGFloat = 68
-
+    var searchResultTapped: ((Beer) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -197,13 +195,6 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
         alert.view.addSubview(buttonOk)
         alert.view.addSubview(buttonCancel)
         self.present(alert, animated: true, completion: nil);
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "detailsViewController") {
-            let yourNextViewController = (segue.destination as! DetailsController)
-            yourNextViewController.beer = currentBeer
-        }
-
     }
     func addBeers(sender: UIButton){
         guard let quantity = Int(pickerQuantity) else {
@@ -411,9 +402,8 @@ extension SearchResultsViewController: UITableViewDataSource {
 extension SearchResultsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currentBeer = scanBeerStore[indexPath.row]
-        self.performSegue(withIdentifier: "detailsViewController", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
-        //workerSelectedHandler?(filteredWorkers[indexPath.row])
+        self.searchResultTapped!(currentBeer)
         searchBar.resignFirstResponder()
     }
     
