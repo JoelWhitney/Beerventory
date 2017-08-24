@@ -587,6 +587,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyx-q4-Ux6">
+                                <rect key="frame" x="331" y="40" width="24" height="24"/>
+                                <color key="tintColor" red="0.91091972589492798" green="0.91262400150299072" blue="0.23827773332595825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="flashOn"/>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lHM-XF-tgJ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
@@ -617,6 +622,8 @@
                         <constraints>
                             <constraint firstItem="lHM-XF-tgJ" firstAttribute="top" secondItem="I3b-3b-NUi" secondAttribute="top" id="2Ah-Ak-m1x"/>
                             <constraint firstItem="Sqm-Ec-tDP" firstAttribute="top" secondItem="lHM-XF-tgJ" secondAttribute="bottom" id="4sT-gw-ZNa"/>
+                            <constraint firstAttribute="trailing" secondItem="pyx-q4-Ux6" secondAttribute="trailing" constant="20" id="V5h-OO-jqB"/>
+                            <constraint firstItem="pyx-q4-Ux6" firstAttribute="top" secondItem="k2p-4C-1bA" secondAttribute="bottom" constant="20" id="cGj-qy-542"/>
                             <constraint firstItem="lHM-XF-tgJ" firstAttribute="leading" secondItem="I3b-3b-NUi" secondAttribute="leading" id="f0Z-D9-DEC"/>
                             <constraint firstAttribute="trailing" secondItem="lHM-XF-tgJ" secondAttribute="trailing" id="iro-AY-6qu"/>
                         </constraints>
@@ -627,12 +634,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activitySpinnerView" destination="lHM-XF-tgJ" id="HzL-sI-ShD"/>
-                        <outlet property="capturePreviewViewFrame" destination="I10-dg-5zD" id="EwF-mt-uFh"/>
+                        <outlet property="flashButton" destination="pyx-q4-Ux6" id="x3C-14-2cd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLH-X2-9eW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2548" y="-540"/>
+            <point key="canvasLocation" x="2548" y="-540.17991004497753"/>
         </scene>
         <!--Summary-->
         <scene sceneID="tzI-tk-TIU">
@@ -2112,6 +2119,23 @@
             </objects>
             <point key="canvasLocation" x="1460" y="-107"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="q8a-XX-6Bi">
+            <objects>
+                <viewController id="1b4-Td-E5U" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UDT-5N-NXM"/>
+                        <viewControllerLayoutGuide type="bottom" id="tXo-sS-UeA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5w9-bP-y3A">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ChE-pS-o18" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="Add" width="50" height="50"/>
@@ -2122,6 +2146,7 @@
         <image name="UserIcon" width="150" height="150"/>
         <image name="detailsIcon" width="25" height="25"/>
         <image name="dragHandle" width="47" height="17"/>
+        <image name="flashOn" width="24" height="24"/>
         <image name="keyboard" width="25" height="25"/>
         <image name="nameIcon" width="25" height="25"/>
         <image name="nextIcon" width="50" height="50"/>

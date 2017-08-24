@@ -8,9 +8,9 @@
 
 import Foundation
 import UIKit
-import SwiftyJSON
 import AWSDynamoDB
 import AWSMobileHubHelper
+import SwiftyJSON
 
 class SearchResultsViewController: UIViewController, SlidingPanelContentProvider {
     @IBOutlet var tableView: UITableView!

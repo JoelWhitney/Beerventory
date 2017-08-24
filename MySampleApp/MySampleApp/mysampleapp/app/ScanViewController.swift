@@ -9,8 +9,6 @@
 import UIKit
 import AVFoundation
 import SwiftyJSON
-import RxSwift
-import RxCocoa
 import AWSDynamoDB
 import AWSMobileHubHelper
 
@@ -44,15 +42,15 @@ class ScanViewController: UIViewController {
                               AVMetadataObjectTypeCode128Code,
                               AVMetadataObjectTypeDataMatrixCode,
                               AVMetadataObjectTypeInterleaved2of5Code]
-    let disposeBag = DisposeBag()
     var pickerQuantity = "1"
     var upc_code = ""
     var scanResultFound: (([Beer]) -> Void)?
-
+    var captureDevice: AVCaptureDevice!
+    @IBOutlet var flashButton: UIButton!
+    
     // MARK: Outlets
     //@IBOutlet var tableView: UITableView!
     @IBOutlet var activitySpinnerView: UIView!
-    @IBOutlet var capturePreviewViewFrame: UIView!
     
     // MARK: Actions
 
@@ -68,6 +66,7 @@ class ScanViewController: UIViewController {
         self.capturePreviewFrame()
         self.captureDetectionFrame()
         //initBottomSheetController()
+        flashButton.addTarget(self, action: #selector(updateTorch), for: UIControlEvents.touchDown)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -75,8 +74,36 @@ class ScanViewController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        toggleTorch(on: false)
     }
-    
+    func updateTorch() {
+        guard let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else { return }
+        if device.isTorchActive {
+            toggleTorch(on: false)
+            flashButton.setImage( #imageLiteral(resourceName: "flashOn"), for: .normal)
+        } else {
+            toggleTorch(on: true)
+            flashButton.setImage( #imageLiteral(resourceName: "flashOff"), for: .normal)
+        }
+    }
+    func toggleTorch(on: Bool) {
+        guard let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else { return }
+        if device.hasTorch {
+            do {
+                try device.lockForConfiguration()
+                if on == true {
+                    device.torchMode = .on
+                } else {
+                    device.torchMode = .off
+                }
+                device.unlockForConfiguration()
+            } catch {
+                print("Torch could not be used")
+            }
+        } else {
+            print("Torch is not available")
+        }
+    }
     func capturePreviewFrame() {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
@@ -92,7 +119,7 @@ class ScanViewController: UIViewController {
         let captureWindowView = UIView()
         captureWindowView.frame = cgCaptureRect
         
-        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         do {
             // initialize the captureSession object and add input
             let input = try AVCaptureDeviceInput(device: captureDevice)
@@ -110,7 +137,7 @@ class ScanViewController: UIViewController {
             capturePreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
             capturePreviewLayer?.frame = view.layer.bounds
             view.layer.addSublayer(capturePreviewLayer!)
-            
+            view.addSubview(flashButton)
             // start capture session and move labels to front
             captureSession?.startRunning()
 
@@ -221,6 +248,32 @@ class ScanViewController: UIViewController {
         captureSession?.startRunning()
         self.navigationItem.leftBarButtonItem?.isEnabled = false
         qrCodeFrameView?.frame = CGRect.zero
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let screenSize = UIScreen.main.bounds.size
+        if let touchPoint = touches.first {
+            let x = touchPoint.location(in: self.view).y / screenSize.height
+            let y = 1.0 - touchPoint.location(in: self.view).x / screenSize.width
+            let focusPoint = CGPoint(x: x, y: y)
+            
+            if let device = captureDevice {
+                do {
+                    try device.lockForConfiguration()
+                    
+                    device.focusPointOfInterest = focusPoint
+                    //device.focusMode = .continuousAutoFocus
+                    device.focusMode = .autoFocus
+                    //device.focusMode = .locked
+                    device.exposurePointOfInterest = focusPoint
+                    device.exposureMode = AVCaptureExposureMode.continuousAutoExposure
+                    device.unlockForConfiguration()
+                }
+                catch {
+                    // just ignore
+                }
+            }
+        }
     }
 }
 
