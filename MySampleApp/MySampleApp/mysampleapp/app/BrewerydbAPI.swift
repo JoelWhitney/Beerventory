@@ -38,9 +38,9 @@ class BrewerydbAPI: NSObject {
         })
     }
     // Beer brewery details after calling above
-    func get_beers_breweries(beers: Variable<[Beer]>, onCompletion: @escaping (Variable<[Beer]>) -> Void) {
-        var updatedBeers: Variable<[Beer]> = Variable([])
-        for beer in beers.value {
+    func get_beers_breweries(beers: [Beer], onCompletion: @escaping ([Beer]) -> Void) {
+        var updatedBeers = [Beer]()
+        for beer in beers {
             let beer_brewery_search = "beer/\(beer.brewerydb_id)?"
             let parameters = [["name": "withBreweries", "value": "Y"],
                               ["name": "key", "value": api_key]]
@@ -53,7 +53,8 @@ class BrewerydbAPI: NSObject {
                     print("    " + beer.brewery_name + " (" + beer.brewerydb_id + ")")
                     beer.brewery_id = brewery_details[0]["id"].string!
                 }
-                updatedBeers.value.append(beer)
+                updatedBeers.append(beer)
+                onCompletion(updatedBeers)
             })
         }
         onCompletion(updatedBeers)

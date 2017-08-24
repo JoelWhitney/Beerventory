@@ -16,7 +16,17 @@ class MainScanViewController: SlidingPanelViewController {
         self.panelPosition = .partial
         self.navigationItem.leftBarButtonItem?.isEnabled = false
         self.navigationItem.rightBarButtonItem?.isEnabled = true
-        
+        scanViewController?.scanResultFound = { beers in
+            self.panelPosition = .full
+            print(beers)
+            self.searchResultsViewController?.updateWithScanResults(beers: beers) {
+                DispatchQueue.main.async(execute: {
+                    print("reload searchResultsController tableview")
+                    self.searchResultsViewController?.tableView.reloadData()
+                    print(self.searchResultsViewController?.scanBeerStore)
+                })
+            }
+        }
 //        scanViewController?.beersFound = { worker in
 //            if worker.location != nil {
 //                self.panelPosition = .partial

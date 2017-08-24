@@ -41,7 +41,6 @@ class DetailsController: UIViewController {
         gradientLayer.locations = [ 0.0, 1.0]
         gradientLayer.frame = gradiantView.bounds
         gradiantView.layer.insertSublayer(gradientLayer, at: 0)
-        
         beerLabel.downloadedFrom(link: beer.label)
     }
     override func viewWillAppear(_ animated: Bool) {

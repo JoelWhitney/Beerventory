@@ -25,19 +25,7 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
     var currentBeerIndexPath: IndexPath!
     var pickerQuantity = "1"
     
-//    var workerSelectedHandler: ((WorkforceWorker) -> Void)?
-//    var filterHandler: ((String?) -> Void)?
-//    private var workers: [WorkforceWorker] = [] {
-//        didSet {
-//            applyFilter()
-//        }
-//    }
-//    private var filteredWorkers: [WorkforceWorker] = [] {
-//        didSet {
-//            tableView.reloadData()
-//        }
-//    }
-//
+
     var contentScrollView: UIScrollView? {
         return tableView
     }
@@ -317,6 +305,11 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
             //            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
             //            self.present(alertController, animated: true, completion: nil)
         }
+        onCompletion()
+    }
+    func updateWithScanResults(beers: [Beer], onCompletion: () -> Void) {
+        self.scanBeerStore = beers
+        print("added scan results to beerStore")
         onCompletion()
     }
 }
