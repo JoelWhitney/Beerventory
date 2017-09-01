@@ -20,7 +20,7 @@ class ScanViewController: UIViewController {
     var qrCodeFrameView: UIView?
     var prevCodeStringvalue: String = ""
     var mainBeerStore = [AWSBeer]()
-    var scanResultBeers = [Beer]()
+    var scanResultsBeers = [Beer]()
     var currentAWSBeer: AWSBeer!
     var currentBeer: Beer!
     var currentBeerIndexPath: IndexPath!
@@ -44,7 +44,7 @@ class ScanViewController: UIViewController {
                               AVMetadataObjectTypeInterleaved2of5Code]
     var pickerQuantity = "1"
     var upc_code = ""
-    var scanResultFound: (([Beer]) -> Void)?
+    var scanResultsFound: (([Beer]) -> Void)?
     var captureDevice: AVCaptureDevice!
     @IBOutlet var flashButton: UIButton!
     
@@ -196,51 +196,28 @@ class ScanViewController: UIViewController {
         self.dismiss(animated: true, completion: nil);
         // We dismiss the alert. Here you can add your additional code to execute when cancel is pressed
     }
-    func handleInitialBeerJSON(beerJSON: JSON, upc_code: String, onCompletion: () -> Void) {
-        print("################################### ADD INITIAL BARCODE JSON ################################")
-        print("####### STEP 1: GET BEER DATA #######") // STEP 1 HERE
-        if let results = beerJSON["data"].array {
-            print("         Beers:")
-            var tempResults = [Beer]()
-            for beerResult in results {
-                print("           " + beerResult["name"].string! )
-                //self.lastSearchCount = results.count
-                var beerResultObject = Beer(brewerydb_id: beerResult["id"].string! ,
-                                            upc_code: upc_code ,
-                                            name: beerResult["name"].string ?? "" ,
-                                            beer_description: beerResult["description"].string ?? "",
-                                            abv: beerResult["abv"].string ?? "--" ,
-                                            label: beerResult["labels"]["large"].string ?? "" ,
-                                            gravity: beerResult["style"]["ogMin"].string ?? "--" ,
-                                            availability: beerResult["available"]["name"].string ?? "" ,
-                                            availability_desc: beerResult["available"]["description"].string ?? "" ,
-                                            style_name: beerResult["style"]["shortName"].string ?? "" ,
-                                            style_desc: beerResult["style"]["description"].string ?? "" ,
-                                            style_id: beerResult["style"]["id"].string ?? "" )
-                tempResults.append(beerResultObject)
+    func searchBeerBarcodes(upc_code: String, onCompletion: @escaping () -> Void) {
+        scanResultsBeers = []
+        BrewerydbAPI.sharedInstance.search_barcode(barCode: upc_code, onCompletion: { (json: JSON) in
+            guard let results = json["data"].array else {
+//                print("   No Beers")
+//                let alertController = UIAlertController(title: "Error", message: "The barcode is not in the database, consider adding it.", preferredStyle: UIAlertControllerStyle.alert)
+//                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+//                let add = UIAlertAction(title: "Add", style: UIAlertActionStyle.default) { action in
+//                    self.performSegue(withIdentifier: "tabBarController", sender: self)
+//                }
+//                alertController.addAction(add)
+//                present(alertController, animated: true, completion: nil)
+                return
             }
-            self.scanResultBeers = tempResults
-            print("####### STEP 2: BEERSTORE CONTENTS #######") // STEP 3 HERE
-            print(self.scanResultBeers)
-        } else {
-            print("   No Beers")
-            let alertController = UIAlertController(title: "Error", message: "The barcode is not in the database, consider adding it.", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
-            let add = UIAlertAction(title: "Add", style: UIAlertActionStyle.default) { action in
-                self.performSegue(withIdentifier: "tabBarController", sender: self)
-            }
-
-            alertController.addAction(add)
-            present(alertController, animated: true, completion: nil)
-            
-        }
-        onCompletion()
+            self.scanResultsBeers = results.map { Beer(beerJSON: $0) }
+            onCompletion()
+        })
     }
     func updateBreweryDetails(onCompletion: @escaping () -> Void) {
-        print("~~~~ STEP 3: GET BREWERY INFO JSON ~~~~")
-        BrewerydbAPI.sharedInstance.get_beers_breweries(beers: self.scanResultBeers, onCompletion: { (updatedBeers: [Beer]) in
+        BrewerydbAPI.sharedInstance.get_beers_breweries(beers: self.scanResultsBeers, onCompletion: { (updatedBeers: [Beer]) in
             print(updatedBeers)
-            self.scanResultBeers = updatedBeers
+            self.scanResultsBeers = updatedBeers
             onCompletion()
         })
     }
@@ -315,17 +292,14 @@ extension ScanViewController: AVCaptureMetadataOutputObjectsDelegate {
                     addProgressSubview()
                     print(metadataObj.stringValue)
                     upc_code = metadataObj.stringValue
-                    BrewerydbAPI.sharedInstance.search_barcode(barCode: metadataObj.stringValue, onCompletion: { (json: JSON) in
-                        self.handleInitialBeerJSON(beerJSON: json, upc_code: self.upc_code, onCompletion: {
-                            self.updateBreweryDetails(onCompletion: { // STEP 2 HERE
-                                DispatchQueue.main.async(execute: {
-                                    print("push results to searchResultsController")
-                                    self.removeProgressSubview()
-                                    self.refreshScanControllerState()
-                                    print(self.scanResultBeers)
-                                    self.scanResultFound?(self.scanResultBeers)
-                                    //self.refreshTableView()
-                                })
+                    searchBeerBarcodes(upc_code: upc_code, onCompletion: {
+                        self.updateBreweryDetails(onCompletion: { // STEP 2 HERE
+                            DispatchQueue.main.async(execute: {
+                                print("push results to searchResultsController")
+                                self.removeProgressSubview()
+                                self.refreshScanControllerState()
+                                print(self.scanResultsBeers)
+                                self.scanResultsFound?(self.scanResultsBeers)
                             })
                         })
                     })
@@ -337,3 +311,4 @@ extension ScanViewController: AVCaptureMetadataOutputObjectsDelegate {
         }
     }
 }
+

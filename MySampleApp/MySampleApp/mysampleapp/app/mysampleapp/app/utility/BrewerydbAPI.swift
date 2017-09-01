@@ -88,20 +88,20 @@ class BrewerydbAPI: NSObject {
     // Beers
     func add_beer(beer: Beer, onCompletion: @escaping (JSON) -> Void) {
         let add_beer = "beers"
-        let parameters = [["name": "name", "value": beer.name],
-                    ["name": "styleId", "value": beer.style_id],
-                    ["name": "description", "value": beer.beer_description],
-                    ["name": "abv", "value": beer.abv],
-                    ["name": "brewery", "value": beer.brewery_id], // comma seperated list?
-                    ["name": "key", "value": api_key]]
+        let parameters = ["name": "name", "value": beer.name,
+                          "name": "styleId", "value": beer.style_id,
+                          "name": "description", "value": beer.beer_description,
+                          "name": "abv", "value": beer.abv,
+                          "name": "brewery", "value": beer.brewery_id,
+                          "name": "key", "value": api_key]  as [String: Any]
         makeHTTPPostRequest(url: baseURL + add_beer, parameters: parameters, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
     }
     func add_beer_upc(beer: Beer, onCompletion: @escaping (JSON) -> Void) {
         let add_beer_upc = "beer/\(beer.brewerydb_id)/upcs"  // beer/N101SS/upcs
-        let parameters = [["name": "upcCode", "value": beer.upc_code],
-                    ["name": "key", "value": api_key]]
+        let parameters = ["name": "upcCode", "value": beer.upc_code,
+                          "name": "key", "value": api_key]  as [String: Any]
         makeHTTPPostRequest(url: baseURL + add_beer_upc, parameters: parameters, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
@@ -110,8 +110,8 @@ class BrewerydbAPI: NSObject {
     // Breweries
     func add_brewery(breweryName: String, onCompletion: @escaping (JSON) -> Void) {
         let add_brewery = "breweries"
-        let parameters = [["name": "name", "value": breweryName],
-                    ["name": "key", "value": api_key]]
+        let parameters = ["name": "name", "value": breweryName,
+                          "name": "key", "value": api_key]  as [String: Any]
         makeHTTPPostRequest(url: baseURL + add_brewery, parameters: parameters, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
@@ -140,16 +140,15 @@ class BrewerydbAPI: NSObject {
     }
     
     // MARK: - MAIN POST REQUEST
-    private func makeHTTPPostRequest(url: String, parameters: [[String: String]], onCompletion: @escaping ServiceResponse) {
-        var urlComponents = URLComponents(string: url)!
-        urlComponents.queryItems = []
-        for parameter in parameters {
-            urlComponents.queryItems?.append(URLQueryItem(name: parameter["name"]!, value: parameter["value"]!))
-        }
-        let requestURL = urlComponents.url
-        print("       API request: " + (requestURL?.absoluteString ?? ""))
-        let request = NSMutableURLRequest(url: requestURL!)
+    private func makeHTTPPostRequest(url: String, parameters: [String: Any], onCompletion: @escaping ServiceResponse) {
+        var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
+            return
+        }
+        request.httpBody = httpBody
+        print("       API request: " + (request.url?.absoluteString)!)
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
             if let jsonData = data {

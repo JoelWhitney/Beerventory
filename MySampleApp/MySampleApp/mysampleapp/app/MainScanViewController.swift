@@ -15,16 +15,10 @@ class MainScanViewController: SlidingPanelViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.panelPosition = .partial
-        scanViewController?.scanResultFound = { beers in
+        scanViewController?.scanResultsFound = { beers in
             self.panelPosition = .full
             print(beers)
-            self.searchResultsViewController?.updateWithScanResults(beers: beers) {
-                DispatchQueue.main.async(execute: {
-                    print("reload searchResultsController tableview")
-                    self.searchResultsViewController?.tableView.reloadData()
-                    print(self.searchResultsViewController?.scanBeerStore)
-                })
-            }
+            self.searchResultsViewController?.updateWithScanResults(beers: beers)
         }
         searchResultsViewController?.searchResultTapped = { beer in
             self.searchResultBeer = beer
