@@ -122,10 +122,11 @@ class BeerventoryViewController: UIViewController  {
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {
-        //fetchBeerventoryBeers()
-        
+        // Do some reloading of data and update the table view's data source
+        // Fetch more objects from a web service, for example...
         if AWSSignInManager.sharedInstance().isLoggedIn {
             //mainBeerStore = [AWSBeer]()
+            beerventoryBeers = []
             queryWithPartitionKeyWithCompletionHandler { (response, error) in
                 if let erro = error {
                     //self.NoSQLResultLabel.text = String(erro)
@@ -137,33 +138,13 @@ class BeerventoryViewController: UIViewController  {
                     //self.NoSQLResultLabel.text = String(response!.items)
                     print("success: \(response!.items.count) items")
                     self.updateItemstoStore(items: response!.items) {
-                        print("done updating")
+//                        DispatchQueue.main.async(execute: {
+//                            self.tableView.reloadData()
+//                        })
                     }
                 }
             }
         }
-        
-//        if AWSSignInManager.sharedInstance().isLoggedIn {
-//            mainBeerStore = [AWSBeer]()
-//            queryWithPartitionKeyWithCompletionHandler { (response, error) in
-//                if let erro = error {
-//                    //self.NoSQLResultLabel.text = String(erro)
-//                    print("error: \(erro)")
-//                } else if response?.items.count == 0 {
-//                    //self.NoSQLResultLabel.text = String("0")
-//                    print("No items")
-//                } else {
-//                    //self.NoSQLResultLabel.text = String(response!.items)
-//                    print("success: \(response!.items.count) items")
-//                    self.updateItemstoStore(items: response!.items) {
-//                        DispatchQueue.main.async(execute: {
-//                            self.tableView.reloadData()
-//                        })
-//                    }
-//                }
-//            }
-//        }
-        
         refreshControl.endRefreshing()
     }
     

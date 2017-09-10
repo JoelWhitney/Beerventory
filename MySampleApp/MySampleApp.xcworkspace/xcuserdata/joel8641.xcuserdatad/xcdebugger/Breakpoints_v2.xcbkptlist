@@ -10,12 +10,124 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySampleApp/App/BeerventoryViewController.swift"
-            timestampString = "526761042.517377"
+            timestampString = "526761828.37306"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
             endingLineNumber = "94"
             landmarkName = "queryWithPartitionKeyWithCompletionHandler(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MySampleApp/App/BeerventoryViewController.swift"
+            timestampString = "526761828.373653"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "queryWithPartitionKeyWithCompletionHandler(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MySampleApp.BeerventoryViewController.queryWithPartitionKeyWithCompletionHandler((Swift.Optional&lt;__ObjC.AWSDynamoDBPaginatedOutput&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "MySampleApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joel8641/Box%20Sync/Esri%20Material/Projects/BeerventoryX/MySampleApp/MySampleApp/App/BeerventoryViewController.swift"
+                  timestampString = "526761828.409865"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "1108">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__ObjC.AWSDynamoDBPaginatedOutput&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in MySampleApp.BeerventoryViewController.queryWithPartitionKeyWithCompletionHandler((Swift.Optional&lt;__ObjC.AWSDynamoDBPaginatedOutput&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "MySampleApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joel8641/Box%20Sync/Esri%20Material/Projects/BeerventoryX/MySampleApp/MySampleApp/App/BeerventoryViewController.swift"
+                  timestampString = "526761828.411206"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MySampleApp/App/BeerventoryViewController.swift"
+            timestampString = "526761828.374086"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "handleRefresh(refreshControl:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MySampleApp.BeerventoryViewController.handleRefresh(refreshControl: __ObjC.UIRefreshControl) -&gt; ()"
+                  moduleName = "MySampleApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joel8641/Box%20Sync/Esri%20Material/Projects/BeerventoryX/MySampleApp/MySampleApp/App/BeerventoryViewController.swift"
+                  timestampString = "526761828.423328"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "130"
+                  endingLineNumber = "130"
+                  offsetFromSymbolStart = "260">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__ObjC.AWSDynamoDBPaginatedOutput&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; () in MySampleApp.BeerventoryViewController.handleRefresh(refreshControl: __ObjC.UIRefreshControl) -&gt; ()"
+                  moduleName = "MySampleApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joel8641/Box%20Sync/Esri%20Material/Projects/BeerventoryX/MySampleApp/MySampleApp/App/BeerventoryViewController.swift"
+                  timestampString = "526761828.424489"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MySampleApp/App/BeerventoryViewController.swift"
+            timestampString = "526761828.374508"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "handleRefresh(refreshControl:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
