@@ -57,10 +57,8 @@ class BeerventoryViewController: UIViewController  {
         imageView.contentMode = .scaleAspectFit
         self.navigationItem.titleView = imageView
         presentSignInViewController()
-        
         // tableview
         tableView.insertSubview(self.refreshControl, at: 1)
-        
         // ui stuff
         let searchbarBackground = UIView()
         searchbarBackground.backgroundColor = UIColor(red: 235/255, green: 171/255, blue: 28/255, alpha: 1)
@@ -71,7 +69,7 @@ class BeerventoryViewController: UIViewController  {
     //MARK: - Methods
     func fetchBeerventoryBeers() {
         if AWSSignInManager.sharedInstance().isLoggedIn {
-            beerventoryBeers = []
+            //mainBeerStore = [AWSBeer]()
             queryWithPartitionKeyWithCompletionHandler { (response, error) in
                 if let erro = error {
                     //self.NoSQLResultLabel.text = String(erro)
@@ -82,19 +80,20 @@ class BeerventoryViewController: UIViewController  {
                 } else {
                     //self.NoSQLResultLabel.text = String(response!.items)
                     print("success: \(response!.items.count) items")
-                    self.beerventoryBeers = response!.items.map( {$0 as! AWSBeer} )
+                    self.updateItemstoStore(items: response!.items)
                 }
-            }
-        }
+            }}
     }
     
     func queryWithPartitionKeyWithCompletionHandler(_ completionHandler: @escaping (_ response: AWSDynamoDBPaginatedOutput?, _ error: NSError?) -> Void) {
         if let userId = AWSIdentityManager.default().identityId {
             let objectMapper = AWSDynamoDBObjectMapper.default()
             let queryExpression = AWSDynamoDBQueryExpression()
+            
             queryExpression.keyConditionExpression = "#userId = :userId"
             queryExpression.expressionAttributeNames = ["#userId": "userId",]
             queryExpression.expressionAttributeValues = [":userId": userId,]
+            
             objectMapper.query(AWSBeer.self, expression: queryExpression) { (response: AWSDynamoDBPaginatedOutput?, error: Error?) in
                 DispatchQueue.main.async(execute: {
                     completionHandler(response, error as? NSError)
@@ -103,8 +102,37 @@ class BeerventoryViewController: UIViewController  {
         }
     }
     
+    func updateItemstoStore(items: [AWSDynamoDBObjectModel]) {
+        for item in items {
+            let awsBeer = item as! AWSBeer
+            beerventoryBeers.append(awsBeer)
+        }
+    }
+    
     func handleRefresh(refreshControl: UIRefreshControl) {
         fetchBeerventoryBeers()
+        
+//        if AWSSignInManager.sharedInstance().isLoggedIn {
+//            mainBeerStore = [AWSBeer]()
+//            queryWithPartitionKeyWithCompletionHandler { (response, error) in
+//                if let erro = error {
+//                    //self.NoSQLResultLabel.text = String(erro)
+//                    print("error: \(erro)")
+//                } else if response?.items.count == 0 {
+//                    //self.NoSQLResultLabel.text = String("0")
+//                    print("No items")
+//                } else {
+//                    //self.NoSQLResultLabel.text = String(response!.items)
+//                    print("success: \(response!.items.count) items")
+//                    self.updateItemstoStore(items: response!.items) {
+//                        DispatchQueue.main.async(execute: {
+//                            self.tableView.reloadData()
+//                        })
+//                    }
+//                }
+//            }
+//        }
+        
         refreshControl.endRefreshing()
     }
     
@@ -299,7 +327,7 @@ class BeerventoryViewController: UIViewController  {
     }
     
     func applyFilter() {
-        guard let searchText = searchBar.text?.lowercased(), !searchText.isEmpty else {
+        guard let searchText = searchBar.text?.lowercased(), !searchText.isEmpty, beerventoryBeers.count > 0 else {
             filteredBeerventoryBeers = beerventoryBeers.sorted(by: { $0.beer.name < $1.beer.name })
             filterHandler?(nil)
             return

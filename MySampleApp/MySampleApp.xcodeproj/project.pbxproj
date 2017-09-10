@@ -16,17 +16,13 @@
 		E56605221F43A2A10079173E /* BeersTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E566051A1F4390BB0079173E /* BeersTable.swift */; };
 		E566052B1F43CB0C0079173E /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E566052A1F43CB010079173E /* AWSDynamoDB.framework */; };
 		E566052C1F43CB0C0079173E /* AWSDynamoDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E566052A1F43CB010079173E /* AWSDynamoDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E5A2D5961F41235A007CF64E /* AddBeerNewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5921F412359007CF64E /* AddBeerNewCell.swift */; };
-		E5A2D5B11F412391007CF64E /* AddBeerDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5981F41238D007CF64E /* AddBeerDetailsCell.swift */; };
+		E598F0831F59B658003F2D3F /* AddBeerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E598F0821F59B658003F2D3F /* AddBeerViewController.swift */; };
 		E5A2D5B41F412391007CF64E /* AddBeerNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D59B1F41238E007CF64E /* AddBeerNameController.swift */; };
-		E5A2D5B51F412391007CF64E /* AddBeerEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D59C1F41238E007CF64E /* AddBeerEmptyCell.swift */; };
-		E5A2D5B61F412391007CF64E /* AddBeerSummaryControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D59D1F41238E007CF64E /* AddBeerSummaryControllers.swift */; };
 		E5A2D5B91F412391007CF64E /* SearchProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5A01F41238E007CF64E /* SearchProgress.swift */; };
 		E5A2D5BA1F412391007CF64E /* BrewerydbAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5A11F41238E007CF64E /* BrewerydbAPI.swift */; };
 		E5A2D5BB1F412391007CF64E /* AddBeerBreweryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5A21F41238E007CF64E /* AddBeerBreweryController.swift */; };
 		E5A2D5BC1F412391007CF64E /* DetailsContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5A31F41238F007CF64E /* DetailsContoller.swift */; };
 		E5A2D5BD1F412391007CF64E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5A41F41238F007CF64E /* TabBarController.swift */; };
-		E5A2D5BE1F412391007CF64E /* AddBeerDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5A61F41238F007CF64E /* AddBeerDetailsController.swift */; };
 		E5A2D5BF1F412391007CF64E /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5A71F41238F007CF64E /* ScanViewController.swift */; };
 		E5A2D5C41F412391007CF64E /* AddBeerStyleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2D5AE1F412391007CF64E /* AddBeerStyleController.swift */; };
 		E5A2D5C71F4127C7007CF64E /* GOTHIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = E5A2D5A81F412390007CF64E /* GOTHIC.TTF */; };
@@ -178,18 +174,14 @@
 		E56605201F4390BB0079173E /* NoSQLTableListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSQLTableListViewController.swift; sourceTree = "<group>"; };
 		E56605211F4390BB0079173E /* NoSQLTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSQLTableViewController.swift; sourceTree = "<group>"; };
 		E566052A1F43CB010079173E /* AWSDynamoDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSDynamoDB.framework; sourceTree = "<group>"; };
-		E5A2D5921F412359007CF64E /* AddBeerNewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBeerNewCell.swift; sourceTree = "<group>"; };
-		E5A2D5981F41238D007CF64E /* AddBeerDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBeerDetailsCell.swift; sourceTree = "<group>"; };
+		E598F0821F59B658003F2D3F /* AddBeerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddBeerViewController.swift; path = mysampleapp/mysampleapp/app/AddBeerViewController.swift; sourceTree = SOURCE_ROOT; };
 		E5A2D59B1F41238E007CF64E /* AddBeerNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBeerNameController.swift; sourceTree = "<group>"; };
-		E5A2D59C1F41238E007CF64E /* AddBeerEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBeerEmptyCell.swift; sourceTree = "<group>"; };
-		E5A2D59D1F41238E007CF64E /* AddBeerSummaryControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBeerSummaryControllers.swift; sourceTree = "<group>"; };
 		E5A2D5A01F41238E007CF64E /* SearchProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProgress.swift; sourceTree = "<group>"; };
 		E5A2D5A11F41238E007CF64E /* BrewerydbAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewerydbAPI.swift; sourceTree = "<group>"; };
 		E5A2D5A21F41238E007CF64E /* AddBeerBreweryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBeerBreweryController.swift; sourceTree = "<group>"; };
 		E5A2D5A31F41238F007CF64E /* DetailsContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsContoller.swift; sourceTree = "<group>"; };
 		E5A2D5A41F41238F007CF64E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E5A2D5A51F41238F007CF64E /* Blippo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Blippo.ttf; sourceTree = "<group>"; };
-		E5A2D5A61F41238F007CF64E /* AddBeerDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBeerDetailsController.swift; sourceTree = "<group>"; };
 		E5A2D5A71F41238F007CF64E /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		E5A2D5A81F412390007CF64E /* GOTHIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = GOTHIC.TTF; sourceTree = "<group>"; };
 		E5A2D5AD1F412391007CF64E /* gothicb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gothicb.ttf; sourceTree = "<group>"; };
@@ -260,6 +252,7 @@
 				E510C3251F4C72A800008B41 /* SlidingPanelViewController.swift */,
 				E5A2D5A71F41238F007CF64E /* ScanViewController.swift */,
 				E50C72CE1F49FB6D00B204B2 /* SearchResultsViewController.swift */,
+				E598F0821F59B658003F2D3F /* AddBeerViewController.swift */,
 				E507C06C1F581768009D32A4 /* AddBeerControllers */,
 				E507C0671F5815D2009D32A4 /* Data models */,
 				E507C06D1F58188C009D32A4 /* Trash */,
@@ -423,14 +416,9 @@
 		E507C06C1F581768009D32A4 /* AddBeerControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E5A2D5921F412359007CF64E /* AddBeerNewCell.swift */,
 				E5A2D5A21F41238E007CF64E /* AddBeerBreweryController.swift */,
-				E5A2D5981F41238D007CF64E /* AddBeerDetailsCell.swift */,
-				E5A2D5A61F41238F007CF64E /* AddBeerDetailsController.swift */,
-				E5A2D59C1F41238E007CF64E /* AddBeerEmptyCell.swift */,
 				E5A2D59B1F41238E007CF64E /* AddBeerNameController.swift */,
 				E5A2D5AE1F412391007CF64E /* AddBeerStyleController.swift */,
-				E5A2D59D1F41238E007CF64E /* AddBeerSummaryControllers.swift */,
 			);
 			path = AddBeerControllers;
 			sourceTree = "<group>";
@@ -635,22 +623,18 @@
 				E5A2D5BC1F412391007CF64E /* DetailsContoller.swift in Sources */,
 				E510C32A1F4CB59700008B41 /* UIAdditions.swift in Sources */,
 				E7A30F041BE897CC00000000 /* AppDelegate.swift in Sources */,
+				E598F0831F59B658003F2D3F /* AddBeerViewController.swift in Sources */,
 				E50C72CF1F49FB6D00B204B2 /* SearchResultsViewController.swift in Sources */,
 				E7A30F04A1AF914B00000000 /* FormTableCell.swift in Sources */,
 				E507C0691F5815FA009D32A4 /* DataModels.swift in Sources */,
 				E7A30F04CA825EA600000000 /* TableInputCell.swift in Sources */,
-				E5A2D5961F41235A007CF64E /* AddBeerNewCell.swift in Sources */,
 				E5A2D5BB1F412391007CF64E /* AddBeerBreweryController.swift in Sources */,
-				E5A2D5BE1F412391007CF64E /* AddBeerDetailsController.swift in Sources */,
-				E5A2D5B51F412391007CF64E /* AddBeerEmptyCell.swift in Sources */,
 				E7A30F04255C106300000000 /* UserPoolForgotPasswordViewController.swift in Sources */,
 				E7A30F048B5A832A00000000 /* SignInViewControllerExtensions.swift in Sources */,
 				E7A30F04890046F000000000 /* UserPoolsUIHelper.swift in Sources */,
 				E7A30F0405AB448B00000000 /* UtilityFunctions.swift in Sources */,
 				E7A30F0459D78CF800000000 /* BeerventoryViewController.swift in Sources */,
 				E7A30F04BA4FB7A400000000 /* UserPoolsIdentityProfile.swift in Sources */,
-				E5A2D5B11F412391007CF64E /* AddBeerDetailsCell.swift in Sources */,
-				E5A2D5B61F412391007CF64E /* AddBeerSummaryControllers.swift in Sources */,
 				E7A30F0430B10A8500000000 /* SettingsViewController.swift in Sources */,
 				E7A30F04477B1BBF00000000 /* AWSMobileClient.swift in Sources */,
 				E5A2D5BA1F412391007CF64E /* BrewerydbAPI.swift in Sources */,

@@ -140,7 +140,25 @@ class Beer {
         self.brewery_name = beerData["brewery_name"] ?? ""
         self.quantity = Int(beerData["quantity"]!)!
     }
-    
+    init() {
+        // my shit
+        self.dateAdded = Date()
+        // brewerydb info
+        self.brewerydb_id = ""
+        self.upc_code = ""
+        self.name = ""
+        self.beer_description = ""
+        self.abv = ""
+        self.label = ""
+        self.gravity = ""
+        self.availability = ""
+        self.availability_desc = ""
+        self.style_name = ""
+        self.style_desc = ""
+        self.style_id = ""
+        self.brewery_id = ""
+        self.brewery_name =  ""
+    }
     
     
     // MARK: - class methods

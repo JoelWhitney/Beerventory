@@ -8,25 +8,11 @@
 //
 //import Foundation
 //import UIKit
-//import RxSwift
 //import SwiftyJSON
 //
 //class AddBeerNameController: UIViewController {
 //    // MARK: - variables/constants
 //    let tabControllerIndex = 0
-//    var newBeer: Beer {
-//        get {
-//            let tabController = self.tabBarController as? TabBarController
-//            return tabController!.newBeer
-//        }
-//        set {
-//            let tabController = self.tabBarController as? TabBarController
-//            print("SETTING!!!")
-//            print(tabController!.newBeer)
-//            tabController!.newBeer = newValue
-//            print(newValue.beer_description)
-//        }
-//    }
 //    var summaryRequirements: Bool {
 //        let required = [newBeer.upc_code, newBeer.name, newBeer.brewery_name, newBeer.style_name]
 //        var bool = true
@@ -39,8 +25,8 @@
 //    }
 //    var searchResultsBeer: Variable<[Beer]> = Variable([])
 //    let searchDispCont = UISearchController(searchResultsController: nil)
-//    
-//    
+//
+//
 //    // MARK: Outlets
 //    @IBOutlet var continueButton: UIButton!
 //    @IBOutlet var tableView: UITableView!
@@ -51,11 +37,11 @@
 //    @IBOutlet var beerStyle: UILabel!
 //    @IBOutlet var breweryNameLabel: UILabel!
 //    @IBOutlet var abvLabel: UILabel!
-//    
+//
 //    // MARK: Actions
-//    
+//
 //    // MARK: Initializers
-//    
+//
 //    // MARK: View Lifecycle
 //    override func viewDidLoad() {
 //        super.viewDidLoad()
@@ -96,7 +82,7 @@
 //        self.tableView.reloadData()
 //    }
 //    // MARK: Additional views
-//    
+//
 //    // MARK: Imperative methods
 //    func handleJSON(beerJSON: JSON, maxResults: Int, onCompletion: () -> Void) {
 //        if let results = beerJSON["data"].array {
@@ -240,7 +226,7 @@
 //        }
 //        configureSummaryButton()
 //        tableView.deselectRow(at: indexPath, animated: true)
-//        
+//
 //    }
 //}
 //

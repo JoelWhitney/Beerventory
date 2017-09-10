@@ -53,11 +53,11 @@
 //    @IBOutlet var beerStyle: UILabel!
 //    @IBOutlet var breweryNameLabel: UILabel!
 //    @IBOutlet var abvLabel: UILabel!
-//    
+//
 //    // MARK: Actions
-//    
+//
 //    // MARK: Initializers
-//    
+//
 //    // MARK: View Lifecycle
 //    override func viewDidLoad() {
 //        super.viewDidLoad()
@@ -98,7 +98,7 @@
 //        self.tableView.reloadData()
 //    }
 //    // MARK: Additional views
-//    
+//
 //    // MARK: Imperative methods
 //    func tabControllerContinue() {
 //        self.tabBarController?.selectedIndex = tabControllerIndex + 1
@@ -204,7 +204,7 @@
 //        } else {
 //            style = self.categories[indexPath.section].styles[indexPath.row]
 //        }
-//        
+//
 //        let cell = self.tableView!.dequeueReusableCell(withIdentifier: "AddBeerDetailsCell", for: indexPath) as! AddBeerDetailsCell
 //        cell.detailsLabel.text = style.style_name
 //        cell.secondaryDetailsLabel.text = style.category_name
@@ -249,7 +249,7 @@
 //        }
 //        configureSummaryButton()
 //        tableView.deselectRow(at: indexPath, animated: true)
-//        
+//
 //    }
 //}
 //
