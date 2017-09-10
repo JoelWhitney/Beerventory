@@ -80,11 +80,17 @@ class BeerventoryViewController: UIViewController  {
                 } else {
                     //self.NoSQLResultLabel.text = String(response!.items)
                     print("success: \(response!.items.count) items")
-                    self.updateItemstoStore(items: response!.items)
+                    self.updateItemstoStore(items: response!.items) {
+                        print("done updating")
+                    }
                 }
-            }}
+            }
+        }
     }
-    
+    func queryWithPartitionKeyDescription() -> String {
+        let partitionKeyValue = AWSIdentityManager.default().identityId!
+        return "Find all items with userId = \(partitionKeyValue)."
+    }
     func queryWithPartitionKeyWithCompletionHandler(_ completionHandler: @escaping (_ response: AWSDynamoDBPaginatedOutput?, _ error: NSError?) -> Void) {
         if let userId = AWSIdentityManager.default().identityId {
             let objectMapper = AWSDynamoDBObjectMapper.default()
@@ -101,16 +107,41 @@ class BeerventoryViewController: UIViewController  {
             }
         }
     }
-    
-    func updateItemstoStore(items: [AWSDynamoDBObjectModel]) {
+    func updateItemstoStore(items: [AWSDynamoDBObjectModel], onCompletion: () -> Void) {
         for item in items {
             let awsBeer = item as! AWSBeer
+//            mainBeerStore.append(awsBeer)
+//            var sortedMainBeerStore = [Beer]()
+//            for item in mainBeerStore {sortedMainBeerStore.append(item.returnBeerObject())}
+//            sortedMainBeerStore.sort() { $0.name < $1.name }
+//            mainBeerStore = [AWSBeer]()
             beerventoryBeers.append(awsBeer)
+            //print("\(mainBeerStore.count) items in beer store")
         }
+        onCompletion()
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {
-        fetchBeerventoryBeers()
+        //fetchBeerventoryBeers()
+        
+        if AWSSignInManager.sharedInstance().isLoggedIn {
+            //mainBeerStore = [AWSBeer]()
+            queryWithPartitionKeyWithCompletionHandler { (response, error) in
+                if let erro = error {
+                    //self.NoSQLResultLabel.text = String(erro)
+                    print("error: \(erro)")
+                } else if response?.items.count == 0 {
+                    //self.NoSQLResultLabel.text = String("0")
+                    print("No items")
+                } else {
+                    //self.NoSQLResultLabel.text = String(response!.items)
+                    print("success: \(response!.items.count) items")
+                    self.updateItemstoStore(items: response!.items) {
+                        print("done updating")
+                    }
+                }
+            }
+        }
         
 //        if AWSSignInManager.sharedInstance().isLoggedIn {
 //            mainBeerStore = [AWSBeer]()
