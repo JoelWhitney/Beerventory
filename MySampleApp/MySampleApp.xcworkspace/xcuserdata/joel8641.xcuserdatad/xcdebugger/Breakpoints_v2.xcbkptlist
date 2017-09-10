@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySampleApp/App/BeerventoryViewController.swift"
-            timestampString = "526761828.37306"
+            timestampString = "526762701.127165"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "queryWithPartitionKeyWithCompletionHandler(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySampleApp/App/BeerventoryViewController.swift"
-            timestampString = "526761828.373653"
+            timestampString = "526762701.127763"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "queryWithPartitionKeyWithCompletionHandler(_:)"
             landmarkType = "7">
             <Locations>
@@ -42,11 +42,11 @@
                   moduleName = "MySampleApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/joel8641/Box%20Sync/Esri%20Material/Projects/BeerventoryX/MySampleApp/MySampleApp/App/BeerventoryViewController.swift"
-                  timestampString = "526761828.409865"
+                  timestampString = "526762701.209"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
                   offsetFromSymbolStart = "1108">
                </Location>
                <Location
@@ -57,11 +57,11 @@
                   moduleName = "MySampleApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/joel8641/Box%20Sync/Esri%20Material/Projects/BeerventoryX/MySampleApp/MySampleApp/App/BeerventoryViewController.swift"
-                  timestampString = "526761828.411206"
+                  timestampString = "526762701.210753"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "104"
-                  endingLineNumber = "104"
+                  startingLineNumber = "124"
+                  endingLineNumber = "124"
                   offsetFromSymbolStart = "32">
                </Location>
             </Locations>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySampleApp/App/BeerventoryViewController.swift"
-            timestampString = "526761828.374086"
+            timestampString = "526762701.128199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "handleRefresh(refreshControl:)"
             landmarkType = "7">
             <Locations>
@@ -90,11 +90,11 @@
                   moduleName = "MySampleApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/joel8641/Box%20Sync/Esri%20Material/Projects/BeerventoryX/MySampleApp/MySampleApp/App/BeerventoryViewController.swift"
-                  timestampString = "526761828.423328"
+                  timestampString = "526762701.217787"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "130"
-                  endingLineNumber = "130"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
                   offsetFromSymbolStart = "260">
                </Location>
                <Location
@@ -105,11 +105,11 @@
                   moduleName = "MySampleApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/joel8641/Box%20Sync/Esri%20Material/Projects/BeerventoryX/MySampleApp/MySampleApp/App/BeerventoryViewController.swift"
-                  timestampString = "526761828.424489"
+                  timestampString = "526762701.219006"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "131"
-                  endingLineNumber = "131"
+                  startingLineNumber = "151"
+                  endingLineNumber = "151"
                   offsetFromSymbolStart = "28">
                </Location>
             </Locations>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySampleApp/App/BeerventoryViewController.swift"
-            timestampString = "526761828.374508"
+            timestampString = "526762701.128625"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "handleRefresh(refreshControl:)"
             landmarkType = "7">
          </BreakpointContent>

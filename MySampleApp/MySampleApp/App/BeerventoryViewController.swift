@@ -57,6 +57,26 @@ class BeerventoryViewController: UIViewController  {
         imageView.contentMode = .scaleAspectFit
         self.navigationItem.titleView = imageView
         presentSignInViewController()
+        if AWSSignInManager.sharedInstance().isLoggedIn {
+            beerventoryBeers = [AWSBeer]()
+            queryWithPartitionKeyWithCompletionHandler { (response, error) in
+                if let erro = error {
+                    //self.NoSQLResultLabel.text = String(erro)
+                    print("error: \(erro)")
+                } else if response?.items.count == 0 {
+                    //self.NoSQLResultLabel.text = String("0")
+                    print("No items")
+                } else {
+                    //self.NoSQLResultLabel.text = String(response!.items)
+                    print("success: \(response!.items.count) items")
+                    self.updateItemstoStore(items: response!.items) {
+                        DispatchQueue.main.async(execute: {
+                            self.tableView.reloadData()
+                        })
+                    }
+                }
+            }
+        }
         // tableview
         tableView.insertSubview(self.refreshControl, at: 1)
         // ui stuff
