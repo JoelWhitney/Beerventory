@@ -28,6 +28,7 @@
 		E5A2D5C71F4127C7007CF64E /* GOTHIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = E5A2D5A81F412390007CF64E /* GOTHIC.TTF */; };
 		E5A2D5C81F4127CA007CF64E /* gothicb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5A2D5AD1F412391007CF64E /* gothicb.ttf */; };
 		E5A2D5C91F4127CC007CF64E /* Blippo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5A2D5A51F41238F007CF64E /* Blippo.ttf */; };
+		E5BF0ED11F660CF30086B9DC /* DynamodbAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF0ED01F660CF30086B9DC /* DynamodbAPI.swift */; };
 		E7A30F040276E9F300000000 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E29F643BAF700000000 /* Main.storyboard */; };
 		E7A30F0405AB448B00000000 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E2996F4300600000000 /* UtilityFunctions.swift */; };
 		E7A30F0406BDF7C200000000 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E2943126B7800000000 /* Foundation.framework */; };
@@ -186,6 +187,7 @@
 		E5A2D5A81F412390007CF64E /* GOTHIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = GOTHIC.TTF; sourceTree = "<group>"; };
 		E5A2D5AD1F412391007CF64E /* gothicb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gothicb.ttf; sourceTree = "<group>"; };
 		E5A2D5AE1F412391007CF64E /* AddBeerStyleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBeerStyleController.swift; sourceTree = "<group>"; };
+		E5BF0ED01F660CF30086B9DC /* DynamodbAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DynamodbAPI.swift; path = MySampleApp/mysampleapp/app/mysampleapp/app/utility/DynamodbAPI.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -369,6 +371,7 @@
 				E510C3291F4CB59700008B41 /* UIAdditions.swift */,
 				E5A2D5A01F41238E007CF64E /* SearchProgress.swift */,
 				E5A2D5A11F41238E007CF64E /* BrewerydbAPI.swift */,
+				E5BF0ED01F660CF30086B9DC /* DynamodbAPI.swift */,
 				1DD70E2996F4300600000000 /* UtilityFunctions.swift */,
 			);
 			name = Utility;
@@ -626,6 +629,7 @@
 				E598F0831F59B658003F2D3F /* AddBeerViewController.swift in Sources */,
 				E50C72CF1F49FB6D00B204B2 /* SearchResultsViewController.swift in Sources */,
 				E7A30F04A1AF914B00000000 /* FormTableCell.swift in Sources */,
+				E5BF0ED11F660CF30086B9DC /* DynamodbAPI.swift in Sources */,
 				E507C0691F5815FA009D32A4 /* DataModels.swift in Sources */,
 				E7A30F04CA825EA600000000 /* TableInputCell.swift in Sources */,
 				E5A2D5BB1F412391007CF64E /* AddBeerBreweryController.swift in Sources */,

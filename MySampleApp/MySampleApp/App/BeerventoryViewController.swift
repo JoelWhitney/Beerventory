@@ -19,12 +19,12 @@ import SwiftyJSON
 class BeerventoryViewController: UIViewController  {
     // MARK: - variables/constants
     var filterHandler: ((String?) -> Void)?
-    var beerventoryBeers: [AWSBeer] = [] {
+    var beerventoryBeers = [AWSBeer]() {
         didSet {
             applyFilter()
         }
     }
-    var filteredBeerventoryBeers: [AWSBeer] = [] {
+    var filteredBeerventoryBeers = [AWSBeer]() {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -49,6 +49,10 @@ class BeerventoryViewController: UIViewController  {
     // MARK: Actions
     
     //MARK: View Lifecycle
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
@@ -57,26 +61,7 @@ class BeerventoryViewController: UIViewController  {
         imageView.contentMode = .scaleAspectFit
         self.navigationItem.titleView = imageView
         presentSignInViewController()
-        if AWSSignInManager.sharedInstance().isLoggedIn {
-            beerventoryBeers = [AWSBeer]()
-            queryWithPartitionKeyWithCompletionHandler { (response, error) in
-                if let erro = error {
-                    //self.NoSQLResultLabel.text = String(erro)
-                    print("error: \(erro)")
-                } else if response?.items.count == 0 {
-                    //self.NoSQLResultLabel.text = String("0")
-                    print("No items")
-                } else {
-                    //self.NoSQLResultLabel.text = String(response!.items)
-                    print("success: \(response!.items.count) items")
-                    self.updateItemstoStore(items: response!.items) {
-                        DispatchQueue.main.async(execute: {
-                            self.tableView.reloadData()
-                        })
-                    }
-                }
-            }
-        }
+        fetchBeerventoryBeers()
         // tableview
         tableView.insertSubview(self.refreshControl, at: 1)
         // ui stuff
@@ -89,82 +74,22 @@ class BeerventoryViewController: UIViewController  {
     //MARK: - Methods
     func fetchBeerventoryBeers() {
         if AWSSignInManager.sharedInstance().isLoggedIn {
-            //mainBeerStore = [AWSBeer]()
-            queryWithPartitionKeyWithCompletionHandler { (response, error) in
+            DynamodbAPI.sharedInstance.queryWithPartitionKeyWithCompletionHandler { (response, error) in
                 if let erro = error {
-                    //self.NoSQLResultLabel.text = String(erro)
                     print("error: \(erro)")
                 } else if response?.items.count == 0 {
-                    //self.NoSQLResultLabel.text = String("0")
                     print("No items")
                 } else {
-                    //self.NoSQLResultLabel.text = String(response!.items)
                     print("success: \(response!.items.count) items")
-                    self.updateItemstoStore(items: response!.items) {
-                        print("done updating")
-                    }
+                    self.beerventoryBeers = response!.items.map { $0 as! AWSBeer }
+                    .sorted(by: { $0.beer().name < $1.beer().name })
                 }
             }
         }
-    }
-    func queryWithPartitionKeyDescription() -> String {
-        let partitionKeyValue = AWSIdentityManager.default().identityId!
-        return "Find all items with userId = \(partitionKeyValue)."
-    }
-    func queryWithPartitionKeyWithCompletionHandler(_ completionHandler: @escaping (_ response: AWSDynamoDBPaginatedOutput?, _ error: NSError?) -> Void) {
-        if let userId = AWSIdentityManager.default().identityId {
-            let objectMapper = AWSDynamoDBObjectMapper.default()
-            let queryExpression = AWSDynamoDBQueryExpression()
-            
-            queryExpression.keyConditionExpression = "#userId = :userId"
-            queryExpression.expressionAttributeNames = ["#userId": "userId",]
-            queryExpression.expressionAttributeValues = [":userId": userId,]
-            
-            objectMapper.query(AWSBeer.self, expression: queryExpression) { (response: AWSDynamoDBPaginatedOutput?, error: Error?) in
-                DispatchQueue.main.async(execute: {
-                    completionHandler(response, error as? NSError)
-                })
-            }
-        }
-    }
-    func updateItemstoStore(items: [AWSDynamoDBObjectModel], onCompletion: () -> Void) {
-        for item in items {
-            let awsBeer = item as! AWSBeer
-//            mainBeerStore.append(awsBeer)
-//            var sortedMainBeerStore = [Beer]()
-//            for item in mainBeerStore {sortedMainBeerStore.append(item.returnBeerObject())}
-//            sortedMainBeerStore.sort() { $0.name < $1.name }
-//            mainBeerStore = [AWSBeer]()
-            beerventoryBeers.append(awsBeer)
-            //print("\(mainBeerStore.count) items in beer store")
-        }
-        onCompletion()
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {
-        // Do some reloading of data and update the table view's data source
-        // Fetch more objects from a web service, for example...
-        if AWSSignInManager.sharedInstance().isLoggedIn {
-            //mainBeerStore = [AWSBeer]()
-            beerventoryBeers = []
-            queryWithPartitionKeyWithCompletionHandler { (response, error) in
-                if let erro = error {
-                    //self.NoSQLResultLabel.text = String(erro)
-                    print("error: \(erro)")
-                } else if response?.items.count == 0 {
-                    //self.NoSQLResultLabel.text = String("0")
-                    print("No items")
-                } else {
-                    //self.NoSQLResultLabel.text = String(response!.items)
-                    print("success: \(response!.items.count) items")
-                    self.updateItemstoStore(items: response!.items) {
-//                        DispatchQueue.main.async(execute: {
-//                            self.tableView.reloadData()
-//                        })
-                    }
-                }
-            }
-        }
+        fetchBeerventoryBeers()
         refreshControl.endRefreshing()
     }
     
@@ -183,26 +108,12 @@ class BeerventoryViewController: UIViewController  {
         let indexPath = self.tableView.indexPathForRow(at: buttonPosition)
         selectedIndexPath = indexPath!
     }
-//    func updateBeerQuantity(indexPath: IndexPath){
-//        tableViewBeers.value[indexPath.row] = currentBeer
-//        self.mainBeerStore.updateBeerQuantity(updatedBeer: self.currentBeer)
-//        self.mainBeerStore.saveChanges()
-//        self.searchDisplayController!.searchResultsTableView.reloadData()
-//        tableView.reloadData()
-//    }
-//    func removeBeerFromStore(indexPath: IndexPath) {
-//        tableViewBeers.value[indexPath.row] = currentBeer
-//        self.mainBeerStore.removeBeer(beer: self.currentBeer)
-//        self.mainBeerStore.saveChanges()
-//        self.searchDisplayController!.searchResultsTableView.reloadData()
-//        tableView.reloadData()
-//    }
-    
+
     func showPickerInActionSheet(sender: AnyObject) {
         pickerQuantity = "1"
         checkButtonTapped(sender: sender)
         selectedAWSBeer = beerventoryBeers[selectedIndexPath.row]
-        currentBeer = selectedAWSBeer.beer
+        currentBeer = selectedAWSBeer.beer()
         var actionType: String
         var actionTitle: String
         if sender.tag == 1 {
@@ -257,19 +168,12 @@ class BeerventoryViewController: UIViewController  {
             return
         }
         self.currentBeer.quantity += quantity
-        // update the current aws beer
-        self.selectedAWSBeer._beerData = currentBeer.beerData
-        let objectMapper = AWSDynamoDBObjectMapper.default()
-        objectMapper.save(selectedAWSBeer, completionHandler: {(error: Error?) -> Void in
-            if let error = error {
-                print("Amazon DynamoDB Save Error: \(error)")
-                return
-            }
-            print("Item saved.")
-        })
-        self.dismiss(animated: true, completion: {
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
+        self.selectedAWSBeer._beer = currentBeer.beerData
+        DynamodbAPI.sharedInstance.updateBeer(awsBeer: selectedAWSBeer, completioHandler: {
+            self.dismiss(animated: true, completion: {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             })
         })
     }
@@ -282,57 +186,31 @@ class BeerventoryViewController: UIViewController  {
         var removedBeer = false
         self.currentBeer.quantity -= quantity
         // Remove if <1 and fetch updated AWS beers
-        let objectMapper = AWSDynamoDBObjectMapper.default()
         if self.currentBeer.quantity < 1 {
-            removedBeer = true
-            objectMapper.remove(self.selectedAWSBeer, completionHandler:  {(error: Error?) -> Void in
-                if let error = error {
-                    print("Amazon DynamoDB Save Error: \(error)")
-                    return
-                }
-                self.fetchBeerventoryBeers()
+            DynamodbAPI.sharedInstance.removeBeer(awsBeer: selectedAWSBeer, completioHandler: {
+                self.dismiss(animated: true, completion: {
+                    self.fetchBeerventoryBeers()
+                })
             })
+            let alertController2 = UIAlertController(title: "\(self.currentBeer.name) removed", message: "You drank all of your \(self.currentBeer.name). Go get some more!", preferredStyle: UIAlertControllerStyle.alert)
+            alertController2.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+            self.present(alertController2, animated: true, completion: nil)
         // Update if just different and save AWS beer
         } else {
-            self.selectedAWSBeer._beerData = currentBeer.beerData
-            objectMapper.save(selectedAWSBeer, completionHandler: {(error: Error?) -> Void in
-                if let error = error {
-                    print("Amazon DynamoDB Save Error: \(error)")
-                    return
-                }
-                print("Item saved.")
+            self.selectedAWSBeer._beer = currentBeer.beerData
+            DynamodbAPI.sharedInstance.updateBeer(awsBeer: selectedAWSBeer, completioHandler: {
+                self.dismiss(animated: true, completion: {
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                })
             })
         }
-        self.dismiss(animated: true, completion: {
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
-            })
-            if removedBeer {
-                let alertController2 = UIAlertController(title: "\(self.currentBeer.name) removed", message: "You drank all of your \(self.currentBeer.name). Go get some more!", preferredStyle: UIAlertControllerStyle.alert)
-                alertController2.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                self.present(alertController2, animated: true, completion: nil)
-            }
-        })
     }
     
     func cancelSelection(sender: UIButton){
         print("Cancel");
         self.dismiss(animated: true, completion: nil);
-    }
-    
-    func insertData(beer: Beer) {
-        let objectMapper = AWSDynamoDBObjectMapper.default()
-        let itemToCreate: AWSBeer = AWSBeer()
-        itemToCreate._userId = AWSIdentityManager.default().identityId!
-        itemToCreate._beerEntryId = beer.brewerydb_id
-        itemToCreate._beerData = beer.beerData
-        objectMapper.save(itemToCreate, completionHandler: {(error: Error?) -> Void in
-            if let error = error {
-                print("Amazon DynamoDB Save Error: \(error)")
-                return
-            }
-            print("Item saved.")
-        })
     }
     
     func onSignIn (_ success: Bool) {
@@ -360,12 +238,12 @@ class BeerventoryViewController: UIViewController  {
     
     func applyFilter() {
         guard let searchText = searchBar.text?.lowercased(), !searchText.isEmpty, beerventoryBeers.count > 0 else {
-            filteredBeerventoryBeers = beerventoryBeers.sorted(by: { $0.beer.name < $1.beer.name })
+            filteredBeerventoryBeers = beerventoryBeers.sorted(by: { $0.beer().name < $1.beer().name })
             filterHandler?(nil)
             return
         }
-        filteredBeerventoryBeers = beerventoryBeers.filter { $0.beer.name.lowercased().contains(searchText)}
-            .sorted(by: { $0.beer.name < $1.beer.name })
+        filteredBeerventoryBeers = beerventoryBeers.filter { $0.beer().name.lowercased().contains(searchText)}
+            .sorted(by: { $0.beer().name < $1.beer().name })
         filterHandler?(searchText)
     }
 }
@@ -401,7 +279,7 @@ extension BeerventoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let beerventoryTableCell = self.tableView!.dequeueReusableCell(withIdentifier: "BeerventoryTableCell", for: indexPath) as! BeerventoryTableCell
         let awsBeer = filteredBeerventoryBeers[indexPath.row]
-        let beer = awsBeer.beer
+        let beer = awsBeer.beer()
         // cell details
         beerventoryTableCell.beerNameLabel.text = beer.name
         beerventoryTableCell.beerStyle.text = beer.style_name
@@ -421,7 +299,7 @@ extension BeerventoryViewController: UITableViewDataSource {
 extension BeerventoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedAWSBeer = filteredBeerventoryBeers[indexPath.row]
-        currentBeer = selectedAWSBeer.beer
+        currentBeer = selectedAWSBeer.beer()
         tableView.deselectRow(at: indexPath, animated: true)
         self.performSegue(withIdentifier: "DetailsViewController", sender: self)
     }
@@ -449,7 +327,7 @@ extension BeerventoryViewController: UITableViewDelegate {
 extension BeerventoryViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         applyFilter()
-        tableView.setContentOffset(CGPoint.zero, animated: true)
+        //tableView.setContentOffset(CGPoint.zero, animated: true)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

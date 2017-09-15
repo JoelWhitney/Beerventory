@@ -65,7 +65,7 @@ class ScanViewController: UIViewController {
         super.viewDidLoad()
         self.capturePreviewFrame()
         self.captureDetectionFrame()
-        //initBottomSheetController()
+        self.refreshScanControllerState()
         flashButton.addTarget(self, action: #selector(updateTorch), for: UIControlEvents.touchDown)
     }
 
@@ -75,6 +75,7 @@ class ScanViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         toggleTorch(on: false)
+        self.refreshScanControllerState()
     }
     func updateTorch() {
         guard let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else { return }
@@ -174,22 +175,13 @@ class ScanViewController: UIViewController {
         self.view.addSubview(progressHUD)
     }
     func removeProgressSubview(){
-        for subview in self.view.subviews {
-            if subview is SearchProgress {
-                subview.removeFromSuperview()
+        DispatchQueue.main.async {
+            for subview in self.view.subviews {
+                if subview is SearchProgress {
+                    subview.removeFromSuperview()
+                }
             }
         }
-    }
-    func configureTextField(alertTextField: UITextField?) {
-        if let textField = alertTextField {
-            textField.placeholder = "Enter quantity"
-            textField.keyboardType = UIKeyboardType.numberPad
-            textField.addTarget(self, action: #selector(self.textChanged(_:)), for: .editingChanged)
-            self.alertTextField = textField // save reference to UITextField
-        }
-    }
-    func textChanged(_ sender:UITextField) {
-        self.actionToEnable?.isEnabled  = (sender.text! != "")
     }
     func cancelSelection(sender: UIButton){
         print("Cancel");
@@ -200,14 +192,17 @@ class ScanViewController: UIViewController {
         scanResultsBeers = []
         BrewerydbAPI.sharedInstance.search_barcode(barCode: upc_code, onCompletion: { (json: JSON) in
             guard let results = json["data"].array else {
-//                print("   No Beers")
-//                let alertController = UIAlertController(title: "Error", message: "The barcode is not in the database, consider adding it.", preferredStyle: UIAlertControllerStyle.alert)
-//                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
-//                let add = UIAlertAction(title: "Add", style: UIAlertActionStyle.default) { action in
-//                    self.performSegue(withIdentifier: "tabBarController", sender: self)
-//                }
-//                alertController.addAction(add)
-//                present(alertController, animated: true, completion: nil)
+                self.removeProgressSubview()
+                print("   No Beers")
+                let alertController = UIAlertController(title: "Error", message: "The barcode is not in the database, consider adding it.", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default) { action in
+                    self.refreshScanControllerState()
+                })
+                let add = UIAlertAction(title: "Add", style: UIAlertActionStyle.default) { action in
+                    self.performSegue(withIdentifier: "AddBeerFromUPC", sender: self)
+                }
+                alertController.addAction(add)
+                self.present(alertController, animated: true, completion: nil)
                 return
             }
             self.scanResultsBeers = results.map { Beer(beerJSON: $0) }
@@ -250,6 +245,13 @@ class ScanViewController: UIViewController {
                     // just ignore
                 }
             }
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationNavigationController = segue.destination as? UINavigationController {
+            let targetController = destinationNavigationController.topViewController as? AddBeerViewController
+            print("set barcode")
+            targetController!.beer.upc_code = self.upc_code
         }
     }
 }

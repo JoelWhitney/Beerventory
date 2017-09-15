@@ -19,11 +19,13 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
     var filterHandler: ((String?) -> Void)?
     var searchResultsBeers: [Beer] = [] {
         didSet {
-            applySearch()
+            //applySearch()
+            print("saerch results changed")
         }
     }
     var filteredSearchResultsBeers: [Beer] = [] {
         didSet {
+            print("filtered")
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -50,32 +52,17 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
     }
     
     // MARK: - Methods
-    func queryWithPartitionKeyWithCompletionHandler(_ completionHandler: @escaping (_ response: AWSDynamoDBPaginatedOutput?, _ error: NSError?) -> Void) {
-        let objectMapper = AWSDynamoDBObjectMapper.default()
-        let queryExpression = AWSDynamoDBQueryExpression()
-        queryExpression.keyConditionExpression = "#userId = :userId"
-        queryExpression.expressionAttributeNames = ["#userId": "userId",]
-        queryExpression.expressionAttributeValues = [":userId": AWSIdentityManager.default().identityId!,]
-        objectMapper.query(AWSBeer.self, expression: queryExpression) { (response: AWSDynamoDBPaginatedOutput?, error: Error?) in
-            DispatchQueue.main.async(execute: {
-                completionHandler(response, error as? NSError)
-            })
-        }
-    }
     func fetchBeerventoryBeers() {
         if AWSSignInManager.sharedInstance().isLoggedIn {
-            beerventoryBeers = []
-            queryWithPartitionKeyWithCompletionHandler { (response, error) in
+            DynamodbAPI.sharedInstance.queryWithPartitionKeyWithCompletionHandler { (response, error) in
                 if let erro = error {
-                    //self.NoSQLResultLabel.text = String(erro)
                     print("error: \(erro)")
                 } else if response?.items.count == 0 {
-                    //self.NoSQLResultLabel.text = String("0")
                     print("No items")
                 } else {
-                    //self.NoSQLResultLabel.text = String(response!.items)
                     print("success: \(response!.items.count) items")
-                    self.beerventoryBeers = response!.items.map( {$0 as! AWSBeer} )
+                    self.beerventoryBeers = response!.items.map { $0 as! AWSBeer }
+                        .sorted(by: { $0.beer().name < $1.beer().name })
                 }
             }
         }
@@ -86,7 +73,9 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
             guard let results = json["data"].array else {
                 return
             }
+            print(results)
             self.searchResultsBeers = results.map { Beer(beerJSON: $0) }
+            print(self.searchResultsBeers)
             onCompletion()
         })
     }
@@ -167,9 +156,9 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
             return
         }
         // Update beer quanity if exists
-        let existingBeer = existingAWSBeer.beer
+        let existingBeer = existingAWSBeer.beer()
         existingBeer.quantity += quantity
-        existingAWSBeer._beerData = existingBeer.beerData
+        existingAWSBeer._beer = existingBeer.beerData
         let objectMapper = AWSDynamoDBObjectMapper.default()
         objectMapper.save(existingAWSBeer, completionHandler: {(error: Error?) -> Void in
             if let error = error {
@@ -189,11 +178,11 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
         let itemToCreate: AWSBeer = AWSBeer()
         itemToCreate._userId = AWSIdentityManager.default().identityId!
         itemToCreate._beerEntryId = beer.brewerydb_id
-        itemToCreate._beerData = beer.beerData
+        itemToCreate._beer = beer.beerData
         //itemToCreate._beer = ["thing": ""]
         print(itemToCreate._userId as String!)
         print(itemToCreate._beerEntryId as String!)
-        print(itemToCreate._beerData as [String: String]!)
+        print(itemToCreate._beer as [String: String]!)
         objectMapper.save(itemToCreate, completionHandler: {(error: Error?) -> Void in
             if let error = error {
                 print("Amazon DynamoDB Save Error: \(error)")
@@ -207,11 +196,11 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
         let itemToCreate: AWSBeer = AWSBeer()
         itemToCreate._userId = AWSIdentityManager.default().identityId!
         itemToCreate._beerEntryId = beer.brewerydb_id
-        itemToCreate._beerData = beer.beerData
+        itemToCreate._beer = beer.beerData
         //itemToCreate._beer = ["thing": ""]
         print(itemToCreate._userId as String!)
         print(itemToCreate._beerEntryId as String!)
-        print(itemToCreate._beerData as [String: String]!)
+        print(itemToCreate._beer as [String: String]!)
         objectMapper.save(itemToCreate, completionHandler: {(error: Error?) -> Void in
             if let error = error {
                 print("Amazon DynamoDB Save Error: \(error)")
@@ -225,13 +214,14 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
     }
     
     func applySearch() {
+        
         guard let searchText = searchBar.text?.lowercased(), !searchText.isEmpty else {
-            filteredSearchResultsBeers = searchResultsBeers.sorted(by: { $0.name < $1.name })
+            filteredSearchResultsBeers = searchResultsBeers
             filterHandler?(nil)
             return
         }
         self.searchBeerNames(searchString: searchText, onCompletion: {
-            self.filteredSearchResultsBeers = self.searchResultsBeers.sorted(by: { $0.name < $1.name })
+            self.filteredSearchResultsBeers = self.searchResultsBeers
             self.filterHandler?(nil)
         })
     }
@@ -355,6 +345,7 @@ extension SearchResultsViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        print("did begin editing")
         if let slidingPanelViewController = parent as? SlidingPanelViewController {
             slidingPanelViewController.panelPosition = .full
         }

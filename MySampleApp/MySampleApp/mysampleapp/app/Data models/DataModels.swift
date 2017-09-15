@@ -17,21 +17,20 @@ class AWSBeer: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     
     var _userId: String?
     var _beerEntryId: String?
-    var _beerData: [String: String]?
-    var beer: Beer {
-        let beerData = self._beerData
-        return Beer(beerData: beerData as! [String: String])
-    }
+    var _beer: [String: String]?
     
     class func dynamoDBTableName() -> String {
+        
         return "beerventory-mobilehub-684623376-Beers"
     }
     
     class func hashKeyAttribute() -> String {
+        
         return "_userId"
     }
     
     class func rangeKeyAttribute() -> String {
+        
         return "_beerEntryId"
     }
     
@@ -41,6 +40,11 @@ class AWSBeer: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
             "_beerEntryId" : "beerEntryId",
             "_beer" : "beer",
         ]
+    }
+    
+    func beer() -> Beer {
+        let beerData = self._beer
+        return Beer(beerData: beerData as! [String: String])
     }
 }
 
@@ -71,7 +75,7 @@ class Beer {
         let itemToCreate: AWSBeer = AWSBeer()
         itemToCreate._userId = AWSIdentityManager.default().identityId!
         itemToCreate._beerEntryId = self.brewerydb_id
-        itemToCreate._beerData = self.beerData
+        itemToCreate._beer = self.beerData
         return itemToCreate
     }
     var beerData: [String: String] {
@@ -119,11 +123,12 @@ class Beer {
     }
     
     init(beerData: [String: String]) {
-        let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        //let formatter = DateFormatter()
+        //formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        //formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         // brewerydb info
-        self.dateAdded = formatter.date(from: beerData["dateAdded"]!)
+        //self.dateAdded = formatter.date(from: beerData["dateAdded"]!)
+        self.dateAdded = Date()
         self.brewerydb_id = beerData["brewerydb_id"] ?? ""
         self.upc_code = beerData["upc_code"] ?? ""
         self.name = beerData["name"] ?? ""
@@ -182,6 +187,12 @@ class Brewery {
     let brewery_name: String
     let region: String
     
+    init(breweryJSON: JSON) {
+        self.brewery_id = breweryJSON["id"].string ?? ""
+        self.brewery_name = breweryJSON["name"].string ?? ""
+        self.region = breweryJSON["locations"][0]["region"].string ?? ""
+    }
+    
     init(brewery_id: String, brewery_name: String, region: String) {
         self.brewery_id = brewery_id
         self.brewery_name = brewery_name
@@ -198,6 +209,13 @@ class Style {
     let category_id: String
     let category_name: String
     
+    init(styleJSON: JSON) {
+        self.style_id = styleJSON["id"].string ?? ""
+        self.style_name = styleJSON["name"].string ?? ""
+        self.category_id = styleJSON["category"]["id"].string ?? ""
+        self.category_name = styleJSON["category"]["name"].string ?? ""
+    }
+    
     init(style_id: String, style_name: String, category_id: String, category_name: String) {
         self.style_id = style_id
         self.style_name = style_name
@@ -212,6 +230,11 @@ class Category {
     let category_id: String
     let category_name: String
     var styles = [Style]()
+    
+    init(categoryJSON: JSON) {
+        self.category_id = categoryJSON["id"].string ?? ""
+        self.category_name = categoryJSON["name"].string ?? ""
+    }
     
     init(category_id: String, category_name: String) {
         self.category_id = category_id
