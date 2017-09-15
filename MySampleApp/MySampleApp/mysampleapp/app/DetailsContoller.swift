@@ -32,35 +32,14 @@ class DetailsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fillKnownDetails()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
-                                                                        NSFontAttributeName: UIFont.boldSystemFont(ofSize: 20)]
-        let colorTop =  UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.0).cgColor
-        let colorBottom = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.9).cgColor
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [ colorTop, colorBottom]
-        gradientLayer.locations = [ 0.0, 1.0]
-        gradientLayer.frame = gradiantView.bounds
-        gradiantView.layer.insertSublayer(gradientLayer, at: 0)
-        
-        beerLabel.downloadedFrom(link: beer.label)
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        createTopBanner()
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         beerDescription.setContentOffset(CGPoint.zero, animated: false)
     }
-    // MARK: Additional views
     
     // MARK: Imperative methods
-
     func fillKnownDetails() {
         // get dict info and fill in
         if beer.name == "" {
@@ -88,5 +67,15 @@ class DetailsController: UIViewController {
         } else {
             beerDescription.text = beer.beer_description
         }
+    }
+    func createTopBanner(){
+        let colorTop =  UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.0).cgColor
+        let colorBottom = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.9).cgColor
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [ colorTop, colorBottom]
+        gradientLayer.locations = [ 0.0, 1.0]
+        gradientLayer.frame = gradiantView.bounds
+        gradiantView.layer.insertSublayer(gradientLayer, at: 0)
+        beerLabel.downloadedFrom(link: beer.label)
     }
 }
