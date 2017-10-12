@@ -228,12 +228,17 @@ class Style {
 // MARK: - Category
 class Category {
     let category_id: String
-    let category_name: String
+    var category_name: String
     var styles = [Style]()
     
     init(categoryJSON: JSON) {
+        let category_name = categoryJSON["name"].string ?? ""
+        if category_name == "\"\"" {
+            self.category_name = "Other"
+        } else {
+            self.category_name = category_name
+        }
         self.category_id = categoryJSON["id"].string ?? ""
-        self.category_name = categoryJSON["name"].string ?? ""
     }
     
     init(category_id: String, category_name: String) {
@@ -241,6 +246,11 @@ class Category {
         self.category_name = category_name
     }
     
+    init(category_id: String, category_name: String, styles: [Style]) {
+        self.category_id = category_id
+        self.category_name = category_name
+        self.styles = styles
+    }
 }
 
 

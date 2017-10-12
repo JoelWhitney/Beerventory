@@ -16,7 +16,7 @@ class AddBeerViewController: UITableViewController {
     var beerventoryBeers: [AWSBeer] = []
     var beer = Beer() {
         didSet {
-            populateEventDetails()
+            populateBeerDetails()
             DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
             })
@@ -52,7 +52,7 @@ class AddBeerViewController: UITableViewController {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         fetchBeerventoryBeers()
-        populateEventDetails()
+        populateBeerDetails()
         self.descriptionTextView.delegate = self
     }
     
@@ -218,7 +218,7 @@ class AddBeerViewController: UITableViewController {
         }
     }
     
-    func populateEventDetails() {
+    func populateBeerDetails() {
         if beer.name != "" {
             beerNameLabel.text = "\(beer.name) >"
         } else {
@@ -271,6 +271,9 @@ class AddBeerViewController: UITableViewController {
             viewController.currentBeer = beer
         }
         if let viewController = segue.destination as? AddBeerStyleController {
+            viewController.currentBeer = beer
+        }
+        if let viewController = segue.destination as? AddBeerScanUrlController {
             viewController.currentBeer = beer
         }
     }

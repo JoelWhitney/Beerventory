@@ -73,8 +73,8 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
             guard let results = json["data"].array else {
                 return
             }
-            print(results)
-            self.searchResultsBeers = results.map { Beer(beerJSON: $0) }
+            var firstResults = results.prefix(10)
+            self.searchResultsBeers = firstResults.map { Beer(beerJSON: $0) }
             print(self.searchResultsBeers)
             onCompletion()
         })
@@ -214,7 +214,6 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
     }
     
     func applySearch() {
-        
         guard let searchText = searchBar.text?.lowercased(), !searchText.isEmpty else {
             filteredSearchResultsBeers = searchResultsBeers
             filterHandler?(nil)

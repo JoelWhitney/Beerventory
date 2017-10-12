@@ -433,7 +433,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nQU-xM-6IT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="484" y="-752"/>
+            <point key="canvasLocation" x="870" y="-752"/>
         </scene>
         <!--Settings-->
         <scene sceneID="zGi-QM-Dma">
@@ -895,20 +895,21 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beer name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCu-lN-bhB">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Beer name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCu-lN-bhB">
                                                     <rect key="frame" x="20" y="11" width="94" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Beer &gt;" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fed-A5-r4k">
-                                                    <rect key="frame" x="258" y="13" width="102" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Choose Beer &gt;" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fed-A5-r4k">
+                                                    <rect key="frame" x="122" y="13" width="238" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="fed-A5-r4k" firstAttribute="leading" secondItem="rCu-lN-bhB" secondAttribute="trailing" constant="8" id="1Kp-3A-B1L"/>
                                                 <constraint firstItem="rCu-lN-bhB" firstAttribute="centerY" secondItem="JNw-qv-jSS" secondAttribute="centerY" id="LCI-lk-rqK"/>
                                                 <constraint firstItem="rCu-lN-bhB" firstAttribute="leading" secondItem="JNw-qv-jSS" secondAttribute="leading" constant="20" id="iua-xU-JWr"/>
                                                 <constraint firstAttribute="trailing" secondItem="fed-A5-r4k" secondAttribute="trailing" constant="15" id="oTs-Ew-DUR"/>
@@ -982,7 +983,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ddJ-0G-43n" kind="show" id="m5S-Zl-b8i"/>
+                                            <segue destination="ddJ-0G-43n" kind="show" identifier="AddBeerStyleViewController" id="m5S-Zl-b8i"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fjr-vC-wCo">
@@ -1063,6 +1064,9 @@
                                                 <constraint firstItem="MAf-vC-r1n" firstAttribute="leading" secondItem="3w5-jo-yfP" secondAttribute="leading" constant="20" id="Usz-WX-Lil"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="QXx-X0-aSb" kind="show" id="yac-qV-lVE"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="IK8-zd-4MO">
                                         <rect key="frame" x="0.0" y="370" width="375" height="100"/>
@@ -1111,7 +1115,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add to Database" id="l95-h6-Da4">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="TX6-Ve-1So"/>
+                        <barButtonItem key="backBarButtonItem" title="Add" id="TX6-Ve-1So"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5UI-t8-ZYF">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -1176,7 +1180,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E0b-7b-xOO">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="9y0-i6-Niv">
+                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="9y0-i6-Niv">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -1316,7 +1320,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RTw-Ed-1Cz">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="MSx-DE-Gei">
+                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="MSx-DE-Gei">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -1457,7 +1461,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oiO-Tb-mGG">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="HjU-Qc-EEL">
+                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="HjU-Qc-EEL">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -1581,6 +1585,72 @@
             </objects>
             <point key="canvasLocation" x="3641" y="1176"/>
         </scene>
+        <!--Scan Barcode-->
+        <scene sceneID="ZvM-Ew-QdV">
+            <objects>
+                <viewController title="Scan Barcode" id="QXx-X0-aSb" customClass="AddBeerScanUrlController" customModule="MySampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1yc-vt-luw"/>
+                        <viewControllerLayoutGuide type="bottom" id="JMX-hV-S3w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="L4H-ai-AEG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGX-7c-CXp">
+                                <rect key="frame" x="331" y="84" width="24" height="24"/>
+                                <color key="tintColor" red="0.91091972590000003" green="0.9126240015" blue="0.23827773329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="flashOn"/>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oep-Da-NqQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" restorationIdentifier="CapturePreviewViewFrame" translatesAutoresizingMaskIntoConstraints="NO" id="Xx9-Re-P4z">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="r6E-nq-ZId">
+                                                <rect key="frame" x="177" y="323.5" width="20" height="20"/>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="r6E-nq-ZId" firstAttribute="centerY" secondItem="Xx9-Re-P4z" secondAttribute="centerY" id="627-g7-xzO"/>
+                                            <constraint firstItem="r6E-nq-ZId" firstAttribute="centerX" secondItem="Xx9-Re-P4z" secondAttribute="centerX" id="pD9-2y-xrO"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Xx9-Re-P4z" firstAttribute="leading" secondItem="oep-Da-NqQ" secondAttribute="leading" id="NmU-NU-Quw"/>
+                                    <constraint firstItem="Xx9-Re-P4z" firstAttribute="top" secondItem="oep-Da-NqQ" secondAttribute="top" id="fBL-w4-If8"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xx9-Re-P4z" secondAttribute="bottom" id="jin-w2-2Ls"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xx9-Re-P4z" secondAttribute="trailing" id="sjx-hD-OOO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="oep-Da-NqQ" secondAttribute="trailing" id="ePc-yR-QRw"/>
+                            <constraint firstItem="rGX-7c-CXp" firstAttribute="top" secondItem="1yc-vt-luw" secondAttribute="bottom" constant="20" id="exe-vY-JiY"/>
+                            <constraint firstItem="oep-Da-NqQ" firstAttribute="leading" secondItem="L4H-ai-AEG" secondAttribute="leading" id="gXH-zv-fs3"/>
+                            <constraint firstItem="JMX-hV-S3w" firstAttribute="top" secondItem="oep-Da-NqQ" secondAttribute="bottom" id="mKk-Jm-ddM"/>
+                            <constraint firstAttribute="trailing" secondItem="rGX-7c-CXp" secondAttribute="trailing" constant="20" id="nMS-Bq-ntI"/>
+                            <constraint firstItem="oep-Da-NqQ" firstAttribute="top" secondItem="L4H-ai-AEG" secondAttribute="top" id="tAb-Ho-aNp"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Scan" image="Scan" selectedImage="Scan" id="Y6a-K8-Rkn"/>
+                    <navigationItem key="navigationItem" title="Scan Barcode" id="TAC-Q5-tOX"/>
+                    <connections>
+                        <outlet property="activitySpinnerView" destination="oep-Da-NqQ" id="hME-dh-kPh"/>
+                        <outlet property="flashButton" destination="rGX-7c-CXp" id="u0p-Vw-wdj"/>
+                        <segue destination="sKj-YQ-l2R" kind="unwind" identifier="unwindToAddBeer" unwindAction="unwindToAddBeerWithSegue:" id="VnT-sU-hcU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lWa-ly-NWL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="sKj-YQ-l2R" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2572" y="1411"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Add" width="50" height="50"/>
@@ -1594,7 +1664,7 @@
         <image name="keyboard" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gYM-p4-uCJ"/>
+        <segue reference="HvW-J2-aJR"/>
         <segue reference="h6S-5q-c28"/>
     </inferredMetricsTieBreakers>
 </document>

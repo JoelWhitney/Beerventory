@@ -68,7 +68,8 @@ class AddBeerNameController: UIViewController {
                 return
             }
             print(results)
-            self.searchResultsBeers = results.map { Beer(beerJSON: $0) }
+            var firstResults = results.prefix(10)
+            self.searchResultsBeers = firstResults.map { Beer(beerJSON: $0) }
             print(self.searchResultsBeers)
             onCompletion()
         })
