@@ -70,7 +70,7 @@ class SlidingPanelViewController: UIViewController {
     }
 
     var slidingPanelPartialHeight: CGFloat {
-        let defaultHeight = view.frame.height / 2
+        let defaultHeight = (view.frame.height - topLayoutGuide.length) / 2
 
         if let provider = childViewControllers.last as? SlidingPanelContentProvider {
             //return provider.partialHeight ?? defaultHeight

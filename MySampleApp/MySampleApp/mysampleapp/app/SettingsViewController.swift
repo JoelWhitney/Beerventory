@@ -45,6 +45,7 @@ class SettingsViewController: UITableViewController {
         buildLabel.text = build
         signOutButton.addTarget(self, action: #selector(SettingsViewController.handleLogout), for: .touchUpInside)
         removeAllBeersButton.addTarget(self, action: #selector(SettingsViewController.removeAllBeers), for: .touchUpInside)
+        tableView.tableFooterView = UIView()
     }
     func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {
         var imageView: UIImageView = UIImageView(image: image)

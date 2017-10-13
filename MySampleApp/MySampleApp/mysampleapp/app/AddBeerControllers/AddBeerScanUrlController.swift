@@ -98,11 +98,11 @@ class AddBeerScanUrlController: UIViewController {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
-        let captureRectWidth = CGFloat(150.0)
-        let captureRectHeight = CGFloat(150.0)
+        let captureRectWidth = CGFloat(200.0)
+        let captureRectHeight = CGFloat(200.0)
         
         var cgCaptureRect = CGRect(x: (screenWidth / 2 - captureRectWidth / 2),
-                                   y: (screenHeight / 4 - captureRectHeight / 2),
+                                   y: (screenHeight / 3 - captureRectHeight / 2),
                                    width: captureRectWidth,
                                    height: captureRectHeight)
         

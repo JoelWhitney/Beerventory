@@ -78,8 +78,10 @@ class AddBeerViewController: UITableViewController {
         let message = "Enter quantity of beers to add\n\n\n\n\n\n\n\n\n\n"
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
         alert.isModalInPopover = true
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
         //Create a frame (placeholder/wrapper) for the picker and then create the picker
-        let pickerFrame: CGRect = CGRect(x: 17, y: 52, width: 270, height: 160); // CGRectMake(left), top, width, height) - left and top are like margins
+        var pickerFrame: CGRect = CGRect(x: 10, y: 52, width: screenWidth - 40, height: 160)
         let picker: UIPickerView = UIPickerView(frame: pickerFrame);
         //set the pickers datasource and delegate
         picker.delegate = self
@@ -87,7 +89,7 @@ class AddBeerViewController: UITableViewController {
         //Add the picker to the alert controller
         alert.view.addSubview(picker)
         //add buttons to the view
-        let buttonCancelFrame: CGRect = CGRect(x: 0, y: 200, width: 100, height: 30) //size & position of the button as placed on the toolView
+        let buttonCancelFrame: CGRect = CGRect(x: 10, y: 200, width: 100, height: 30) //size & position of the button as placed on the toolView
         //Create the cancel button & set its title
         let buttonCancel: UIButton = UIButton(frame: buttonCancelFrame)
         buttonCancel.setTitle("Cancel", for: UIControlState.normal)
@@ -95,7 +97,7 @@ class AddBeerViewController: UITableViewController {
         //Add the target - target, function to call, the event witch will trigger the function call
         buttonCancel.addTarget(self, action: #selector(cancelSelection), for: UIControlEvents.touchDown)
         //add buttons to the view
-        let buttonOkFrame: CGRect = CGRect(x: 170, y:  200, width: 100, height: 30); //size & position of the button as placed on the toolView
+        var buttonOkFrame: CGRect = CGRect(x: screenWidth - 120, y:  200, width: 100, height: 30)
         //Create the Select button & set the title
         let buttonOk: UIButton = UIButton(frame: buttonOkFrame)
         buttonOk.addTarget(self, action: #selector(addBeers), for: UIControlEvents.touchDown);

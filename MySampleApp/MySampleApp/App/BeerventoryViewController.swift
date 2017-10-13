@@ -68,7 +68,7 @@ class BeerventoryViewController: UIViewController  {
         let searchbarBackground = UIView()
         searchbarBackground.backgroundColor = UIColor(red: 235/255, green: 171/255, blue: 28/255, alpha: 1)
         tableView.backgroundView = searchbarBackground
-        
+        applyFilter()
     }
     
     //MARK: - Methods
@@ -128,16 +128,18 @@ class BeerventoryViewController: UIViewController  {
         var message = "Enter quantity of beers to \(actionType)\n\n\n\n\n\n\n\n\n\n"
         var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
         alert.isModalInPopover = true
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
         //Create a frame (placeholder/wrapper) for the picker and then create the picker
-        var pickerFrame: CGRect = CGRect(x: 17, y: 52, width: 270, height: 160); // CGRectMake(left), top, width, height) - left and top are like margins
-        var picker: UIPickerView = UIPickerView(frame: pickerFrame);
+        var pickerFrame: CGRect = CGRect(x: 10, y: 52, width: screenWidth - 40, height: 160) 
+        var picker: UIPickerView = UIPickerView(frame: pickerFrame)
         //set the pickers datasource and delegate
         picker.delegate = self
         picker.dataSource = self
         //Add the picker to the alert controller
         alert.view.addSubview(picker)
         //add buttons to the view
-        var buttonCancelFrame: CGRect = CGRect(x: 0, y: 200, width: 100, height: 30) //size & position of the button as placed on the toolView
+        var buttonCancelFrame: CGRect = CGRect(x: 10, y: 200, width: 100, height: 30) //size & position of the button as placed on the toolView
         //Create the cancel button & set its title
         var buttonCancel: UIButton = UIButton(frame: buttonCancelFrame)
         buttonCancel.setTitle("Cancel", for: UIControlState.normal)
@@ -145,7 +147,7 @@ class BeerventoryViewController: UIViewController  {
         //Add the target - target, function to call, the event witch will trigger the function call
         buttonCancel.addTarget(self, action: #selector(cancelSelection), for: UIControlEvents.touchDown)
         //add buttons to the view
-        var buttonOkFrame: CGRect = CGRect(x: 170, y:  200, width: 100, height: 30); //size & position of the button as placed on the toolView
+        var buttonOkFrame: CGRect = CGRect(x: screenWidth - 120, y:  200, width: 100, height: 30) 
         //Create the Select button & set the title
         var buttonOk: UIButton = UIButton(frame: buttonOkFrame)
         if sender.tag == 1 {
