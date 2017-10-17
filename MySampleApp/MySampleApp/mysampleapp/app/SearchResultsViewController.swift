@@ -111,7 +111,7 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
         //Create a frame (placeholder/wrapper) for the picker and then create the picker
-        var pickerFrame: CGRect = CGRect(x: 10, y: 52, width: screenWidth - 40, height: 160) 
+        var pickerFrame: CGRect = CGRect(x: 10, y: 52, width: screenWidth - 40, height: 160)
         var picker: UIPickerView = UIPickerView(frame: pickerFrame);
         //set the pickers datasource and delegate
         picker.delegate = self
@@ -127,7 +127,7 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
         //Add the target - target, function to call, the event witch will trigger the function call
         buttonCancel.addTarget(self, action: #selector(cancelSelection), for: UIControlEvents.touchDown)
         //add buttons to the view
-        var buttonOkFrame: CGRect = CGRect(x: screenWidth - 120, y:  200, width: 100, height: 30) 
+        var buttonOkFrame: CGRect = CGRect(x: screenWidth - 120, y:  200, width: 100, height: 30)
         //Create the Select button & set the title
         var buttonOk: UIButton = UIButton(frame: buttonOkFrame)
         if sender.tag == 1 {
@@ -139,7 +139,7 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
         }
         alert.view.addSubview(buttonOk)
         alert.view.addSubview(buttonCancel)
-        self.present(alert, animated: true, completion: nil);
+        self.present(alert, animated: true, completion: nil)
     }
     func addBeers(sender: UIButton){
         guard let quantity = Int(pickerQuantity) else {
@@ -217,6 +217,7 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
     
     func applySearch() {
         guard let searchText = searchBar.text?.lowercased(), !searchText.isEmpty else {
+            searchResultsBeers = []
             filteredSearchResultsBeers = searchResultsBeers
             filterHandler?(nil)
             return

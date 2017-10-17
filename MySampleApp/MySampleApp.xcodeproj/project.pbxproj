@@ -259,8 +259,9 @@
 				E598F0821F59B658003F2D3F /* AddBeerViewController.swift */,
 				E507C06C1F581768009D32A4 /* AddBeerControllers */,
 				E507C0671F5815D2009D32A4 /* Data models */,
-				E507C06D1F58188C009D32A4 /* Trash */,
+				E51F0C531F96364A0092008D /* UI */,
 				B401C979BF42A0B700000000 /* Utility */,
+				E507C06D1F58188C009D32A4 /* Trash */,
 				B401C979B6BAF9C700000000 /* SupportingFiles */,
 			);
 			name = App;
@@ -435,6 +436,13 @@
 				E5A2D5A41F41238F007CF64E /* TabBarController.swift */,
 			);
 			path = Trash;
+			sourceTree = "<group>";
+		};
+		E51F0C531F96364A0092008D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		E56605191F4390BB0079173E /* nosql */ = {

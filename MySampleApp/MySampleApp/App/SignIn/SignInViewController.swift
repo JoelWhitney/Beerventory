@@ -118,12 +118,6 @@ class SignInViewController : UIViewController {
             cancelButton.tintColor = UIColor.white
             self.navigationController?.navigationBar.topItem?.leftBarButtonItem = cancelButton;
         }
-//        self.navigationController?.navigationBar.titleTextAttributes = [
-//            NSForegroundColorAttributeName: UIColor.white,
-//        ]
-//        self.navigationController?.navigationBar.isTranslucent = false
-//        self.navigationController?.navigationBar.barTintColor = UIColor.darkGray
-//        self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     
     func barButtonClosePressed() {

@@ -64,6 +64,7 @@ class AddBeerBreweryController: UIViewController {
         searchResultsBreweries = []
         BrewerydbAPI.sharedInstance.search_brewery_name(breweryName: searchString, onCompletion: { (json: JSON) in
             guard let results = json["data"].array else {
+                self.searchResultsBreweries = []
                 return
             }
             print(results)

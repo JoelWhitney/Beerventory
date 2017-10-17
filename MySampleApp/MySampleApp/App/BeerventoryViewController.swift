@@ -103,7 +103,7 @@ class BeerventoryViewController: UIViewController  {
         }
     }
     
-    func checkButtonTapped(sender:AnyObject) {
+    func checkButtonTapped(sender: AnyObject) {
         let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
         let indexPath = self.tableView.indexPathForRow(at: buttonPosition)
         selectedIndexPath = indexPath!
