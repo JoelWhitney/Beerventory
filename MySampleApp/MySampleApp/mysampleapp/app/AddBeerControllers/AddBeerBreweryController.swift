@@ -45,6 +45,7 @@ class AddBeerBreweryController: UIViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
     }
 
     // MARK: Additional views
@@ -52,6 +53,7 @@ class AddBeerBreweryController: UIViewController {
     // MARK: Imperative methods
     func applySearch() {
         guard let searchText = searchBar.text?.lowercased(), !searchText.isEmpty else {
+            searchResultsBreweries = []
             searchHandler?(nil)
             return
         }
@@ -65,6 +67,8 @@ class AddBeerBreweryController: UIViewController {
         BrewerydbAPI.sharedInstance.search_brewery_name(breweryName: searchString, onCompletion: { (json: JSON) in
             guard let results = json["data"].array else {
                 self.searchResultsBreweries = []
+                print(self.searchResultsBreweries)
+                onCompletion()
                 return
             }
             print(results)
@@ -93,17 +97,12 @@ class AddBeerBreweryController: UIViewController {
 // MARK: - tableView data source
 extension AddBeerBreweryController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard searchResultsBreweries.count != 0 else {
-            return 1
+        guard searchResultsBreweries.count != 0 || searchBar.text != "" else {
+            return 0
         }
         return searchResultsBreweries.count + 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard searchResultsBreweries.count != 0 else {
-            let cell = self.tableView!.dequeueReusableCell(withIdentifier: "AddBeerEmptyCell", for: indexPath) as! AddBeerEmptyCell
-            cell.lastCellLabel.text = "Search Brewery or Enter new name"
-            return cell
-        }
         if indexPath.row == 0 {
             let cell = self.tableView!.dequeueReusableCell(withIdentifier: "AddBeerNewCell", for: indexPath) as! AddBeerNewCell
             cell.detailsLabel.text = "Add new brewery name "

@@ -36,9 +36,9 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="130" sectionHeaderHeight="1" sectionFooterHeight="4" translatesAutoresizingMaskIntoConstraints="NO" id="e1K-Il-rOI">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.77647058820000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.6705882353" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="sectionIndexBackgroundColor" red="0.94117647059999998" green="0.77647058820000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.92156862750000001" green="0.6705882353" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" text="" placeholder="Filter" translucent="NO" id="abP-Qa-i3Z">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -51,7 +51,7 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MainBeerTableCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BeerventoryTableCell" rowHeight="135" id="YMV-lT-KC7" userLabel="MainBeerTableCell" customClass="BeerventoryTableCell" customModule="MySampleApp" customModuleProvider="target">
+                                    <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MainBeerTableCell" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BeerventoryTableCell" rowHeight="135" id="YMV-lT-KC7" userLabel="MainBeerTableCell" customClass="BeerventoryTableCell" customModule="MySampleApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="45" width="375" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YMV-lT-KC7" id="t0U-fB-qjV">
@@ -185,7 +185,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="QOI-gX-yTW" secondAttribute="trailing" constant="13" id="wRb-Sh-je2"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.94117647059999998" green="0.77647058820000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.2352514372" green="0.68505703689999997" blue="0.97735564720000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <accessibility key="accessibilityConfiguration" identifier="MainBeerTableCell"/>
                                         <connections>
                                             <outlet property="abvLabel" destination="AZA-u8-5hi" id="51G-7g-3Kp"/>
@@ -220,7 +220,7 @@
                             <constraint firstItem="e1K-Il-rOI" firstAttribute="top" secondItem="3ge-rg-uOW" secondAttribute="top" id="mJm-1f-tZe"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="uey-ht-FQ4">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="uey-ht-FQ4">
                         <barButtonItem key="backBarButtonItem" title="Inventory" id="oZW-gG-IiV"/>
                         <barButtonItem key="leftBarButtonItem" image="Settings" id="jur-gl-GwO">
                             <connections>
@@ -254,6 +254,14 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="g3K-Fn-23O">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.92156862750000001" green="0.6705882353" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -659,7 +667,7 @@
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.77647058820000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.94117647059999998" green="0.77647058820000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SearchResultTableCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchResultTableCell" rowHeight="135" id="1IF-2H-Qry" customClass="SearchResultTableCell" customModule="MySampleApp" customModuleProvider="target">
+                                    <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SearchResultTableCell" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchResultTableCell" rowHeight="135" id="1IF-2H-Qry" customClass="SearchResultTableCell" customModule="MySampleApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1" width="375" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1IF-2H-Qry" id="pEm-8j-K7G">
@@ -859,7 +867,7 @@
                             <constraint firstItem="Uwm-71-LBa" firstAttribute="leading" secondItem="o4q-Bq-FDk" secondAttribute="leading" id="waY-QK-0Mh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add to Inventory" id="HdT-f1-PfV">
+                    <navigationItem key="navigationItem" title="Add to Inventory" largeTitleDisplayMode="always" id="HdT-f1-PfV">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ozr-3n-Q4k">
                             <connections>
                                 <segue destination="9ne-g9-Myb" kind="presentation" id="gYM-p4-uCJ"/>
@@ -1180,7 +1188,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E0b-7b-xOO">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="9y0-i6-Niv">
+                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Search or enter new Beer name" id="9y0-i6-Niv">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -1320,7 +1328,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RTw-Ed-1Cz">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="MSx-DE-Gei">
+                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Search or enter new Brewery name" id="MSx-DE-Gei">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -1461,7 +1469,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oiO-Tb-mGG">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="HjU-Qc-EEL">
+                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Filter Styles" id="HjU-Qc-EEL">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -1573,7 +1581,7 @@
                             <constraint firstItem="oiO-Tb-mGG" firstAttribute="top" secondItem="hzx-6I-fIY" secondAttribute="bottom" id="zAD-6o-U73"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Style" id="rPJ-nG-n5D"/>
+                    <navigationItem key="navigationItem" title="Style" largeTitleDisplayMode="always" id="rPJ-nG-n5D"/>
                     <connections>
                         <outlet property="searchBar" destination="HjU-Qc-EEL" id="Lht-wA-zhx"/>
                         <outlet property="tableView" destination="oiO-Tb-mGG" id="eTw-7p-vpR"/>
@@ -1664,7 +1672,7 @@
         <image name="keyboard" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gYM-p4-uCJ"/>
+        <segue reference="HvW-J2-aJR"/>
         <segue reference="dhT-bo-A5k"/>
     </inferredMetricsTieBreakers>
 </document>

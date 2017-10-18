@@ -70,6 +70,14 @@ class BeerventoryViewController: UIViewController  {
         tableView.backgroundView = searchbarBackground
         applyFilter()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchBeerventoryBeers()
+        applyFilter()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
     
     //MARK: - Methods
     func fetchBeerventoryBeers() {
@@ -229,7 +237,6 @@ class BeerventoryViewController: UIViewController  {
             beerventoryBeers = [AWSBeer]()
             let loginStoryboard = UIStoryboard(name: "SignIn", bundle: nil)
             let loginController: SignInViewController = loginStoryboard.instantiateViewController(withIdentifier: "SignIn") as! SignInViewController
-            loginController.canCancel = false
             loginController.didCompleteSignIn = onSignIn
             let navController = UINavigationController(rootViewController: loginController)
             navigationController?.present(navController, animated: true, completion: nil)

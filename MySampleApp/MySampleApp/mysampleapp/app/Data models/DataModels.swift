@@ -210,7 +210,7 @@ class Style {
     let category_name: String
     
     init(styleJSON: JSON) {
-        self.style_id = styleJSON["id"].string ?? ""
+        self.style_id = String(describing: styleJSON["id"]) ?? ""
         self.style_name = styleJSON["name"].string ?? ""
         self.category_id = styleJSON["category"]["id"].string ?? ""
         self.category_name = styleJSON["category"]["name"].string ?? ""

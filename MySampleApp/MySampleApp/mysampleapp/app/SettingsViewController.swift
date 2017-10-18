@@ -70,53 +70,12 @@ class SettingsViewController: UITableViewController {
         ac.addAction(cancelAction)
         let deleteAction = UIAlertAction(title: "Remove", style: .destructive, handler: {
             (action) -> Void in
-            self.queryWithPartitionKeyWithCompletionHandler { (response, error) in
-                if let erro = error {
-                    //self.NoSQLResultLabel.text = String(erro)
-                    print("error: \(erro)")
-                } else if response?.items.count == 0 {
-                    //self.NoSQLResultLabel.text = String("0")
-                    print("No items")
-                } else {
-                    //self.NoSQLResultLabel.text = String(response!.items)
-                    print("success: \(response!.items)")
-                    self.removeItemsFromDatabase(items: response!.items) {
-                    print("done deleting")
-                    }
-                }
+            DynamodbAPI.sharedInstance.removeAllBeers() {
+                print("done deleting")
             }
-            
         })
         ac.addAction(deleteAction)
         present(ac, animated: true, completion: nil)
-    }
-    func removeItemsFromDatabase(items: [AWSDynamoDBObjectModel], onCompletion: () -> Void) {
-        let objectMapper = AWSDynamoDBObjectMapper.default()
-        for item in items {
-            let awsBeer = item as! AWSBeer
-            objectMapper.remove(awsBeer, completionHandler: {(error: Error?) -> Void in
-                if let error = error {
-                    print("Amazon DynamoDB Save Error: \(error)")
-                    return
-                }
-                print("Item deleted.")
-            })
-        }
-        onCompletion()
-    }
-    func queryWithPartitionKeyWithCompletionHandler(_ completionHandler: @escaping (_ response: AWSDynamoDBPaginatedOutput?, _ error: NSError?) -> Void) {
-        let objectMapper = AWSDynamoDBObjectMapper.default()
-        let queryExpression = AWSDynamoDBQueryExpression()
-        
-        queryExpression.keyConditionExpression = "#userId = :userId"
-        queryExpression.expressionAttributeNames = ["#userId": "userId",]
-        queryExpression.expressionAttributeValues = [":userId": AWSIdentityManager.default().identityId!,]
-        
-        objectMapper.query(AWSBeer.self, expression: queryExpression) { (response: AWSDynamoDBPaginatedOutput?, error: Error?) in
-            DispatchQueue.main.async(execute: {
-                completionHandler(response, error as? NSError)
-            })
-        }
     }
     func configureProfile() {
         let identityManager = AWSIdentityManager.default()
@@ -151,7 +110,6 @@ class SettingsViewController: UITableViewController {
         if !AWSSignInManager.sharedInstance().isLoggedIn {
             let loginStoryboard = UIStoryboard(name: "SignIn", bundle: nil)
             let loginController: SignInViewController = loginStoryboard.instantiateViewController(withIdentifier: "SignIn") as! SignInViewController
-            loginController.canCancel = false
             loginController.didCompleteSignIn = onSignIn
             let navController = UINavigationController(rootViewController: loginController)
             navigationController?.present(navController, animated: true, completion: nil)

@@ -61,9 +61,13 @@ class BrewerydbAPI: NSObject {
     // Breweries
     func search_brewery_name(breweryName: String, onCompletion: @escaping (JSON) -> Void){
         let brewery_name_search = "breweries?"
-        let parameters = [["name": "name", "value": breweryName + "*"],
+        var newBreweryName = breweryName
+        if newBreweryName.count >= 4 {
+            newBreweryName += "*"
+        } // adding wild card if 4+ char to get anything close to it
+        var parameters = [["name": "name", "value": newBreweryName],
                           ["name": "withLocations", "value": "Y"],
-                          ["name": "key", "value": api_key]] // adding wild card to get anything close to it
+                          ["name": "key", "value": api_key]]
         makeHTTPGetRequest(url: baseURL + brewery_name_search, parameters: parameters, onCompletion: { json, err in
             onCompletion(json as JSON)
         })

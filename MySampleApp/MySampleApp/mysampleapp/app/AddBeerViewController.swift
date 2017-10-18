@@ -43,7 +43,15 @@ class AddBeerViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func addBeertoInventory () {
-        showPickerInActionSheet()
+        // verify required info is filled out
+        if requirementsMet() {
+            showPickerInActionSheet()
+        } else {
+            // show alert
+//            alertTitle = "Warning"
+//            alertMessage = "Requqirements not met "
+//            let alert = UIAlertController(title)
+        }
     }
     @IBAction func unwindToAddSchedule(segue: UIStoryboardSegue) {}
     
@@ -57,6 +65,9 @@ class AddBeerViewController: UITableViewController {
     }
     
     // MARK: - Methods
+    func requirementsMet() -> Bool {
+        return beer.name != "" && beer.brewery_name != "" && beer.style_name != ""
+    }
     func fetchBeerventoryBeers() {
         if AWSSignInManager.sharedInstance().isLoggedIn {
             DynamodbAPI.sharedInstance.queryWithPartitionKeyWithCompletionHandler { (response, error) in
@@ -75,8 +86,9 @@ class AddBeerViewController: UITableViewController {
     
     func showPickerInActionSheet() {
         pickerQuantity = "1"
-        let message = "Enter quantity of beers to add\n\n\n\n\n\n\n\n\n\n"
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let alertTitle = "Add Beers"
+        let alertMessage = "Enter quantity of beers to add\n\n\n\n\n\n\n\n\n\n"
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.actionSheet)
         alert.isModalInPopover = true
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width

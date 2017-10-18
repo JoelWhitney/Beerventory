@@ -84,24 +84,3 @@ extension SignInViewController: AWSCognitoIdentityPasswordAuthentication {
         }
     }
 }
-
-// Extension to adopt the `AWSCognitoUserPoolsSignInHandler` protocol
-extension SignInViewController: AWSCognitoUserPoolsSignInHandler {
-    func handleUserPoolSignInFlowStart() {
-        // check if both username and password fields are provided
-        
-        guard let username = self.tableDelegate?.getValue(self.tableView, for: self.userNameRow!), !username.isEmpty,
-            let password = self.tableDelegate?.getValue(self.tableView, for: self.passwordRow!), !password.isEmpty else {
-                DispatchQueue.main.async(execute: {
-                    let alert = UIAlertController(title: "Missing UserName / Password",
-                                                  message:"Please enter a valid user name / password.",
-                                                  preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion:nil)
-                })
-                return
-        }
-        // set the task completion result as an object of AWSCognitoIdentityPasswordAuthenticationDetails with username and password that the app user provides
-        self.passwordAuthenticationCompletion?.set(result: AWSCognitoIdentityPasswordAuthenticationDetails(username: username, password: password))
-    }
-}

@@ -41,6 +41,7 @@ class AddBeerStyleController: UIViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
         buildStyleList()
     }
     // MARK: Additional views
@@ -101,6 +102,7 @@ class AddBeerStyleController: UIViewController {
         if let addBeerViewController = segue.destination as? AddBeerViewController {
             let replacementBeer = currentBeer
             let selectedStyle = filteredCategories[selectedIndexPath.section].styles[selectedIndexPath.row]
+            print("Selected style was: \(selectedStyle.style_id) \(selectedStyle.style_name)")
             replacementBeer?.style_name = selectedStyle.style_name
             replacementBeer?.style_id = selectedStyle.style_id
             addBeerViewController.beer = replacementBeer!

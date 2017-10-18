@@ -25,7 +25,7 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
     }
     var filteredSearchResultsBeers: [Beer] = [] {
         didSet {
-            print("filtered")
+            print("filtered or scan result")
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -213,6 +213,7 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
     }
     func updateWithScanResults(beers: [Beer]) {
         self.searchResultsBeers = beers
+        self.filteredSearchResultsBeers = beers
     }
     
     func applySearch() {

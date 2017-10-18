@@ -76,4 +76,24 @@ class DynamodbAPI: NSObject {
         })
         completioHandler()
     }
+    
+    func removeAllBeers(onCompletion: @escaping () -> Void) {
+        let objectMapper = AWSDynamoDBObjectMapper.default()
+        queryWithPartitionKeyWithCompletionHandler { (response, error) in
+            if let erro = error {
+                print("error: \(erro)")
+            } else if response?.items.count == 0 {
+                print("No items")
+            } else {
+                print("success: \(response!.items.count) items")
+                for item in response!.items {
+                    let awsBeer = item as! AWSBeer
+                    DynamodbAPI.sharedInstance.removeBeer(awsBeer: awsBeer, completioHandler: {
+                        print("item deleted")
+                    })
+                }
+                onCompletion()
+            }
+        }
+    }
 }

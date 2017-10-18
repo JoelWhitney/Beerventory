@@ -46,6 +46,7 @@ class AddBeerNameController: UIViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
     }
 
     // MARK: Additional views
@@ -53,6 +54,7 @@ class AddBeerNameController: UIViewController {
     // MARK: Imperative methods
     func applySearch() {
         guard let searchText = searchBar.text?.lowercased(), !searchText.isEmpty else {
+            searchResultsBeers = []
             searchHandler?(nil)
             return
         }
@@ -93,17 +95,12 @@ class AddBeerNameController: UIViewController {
 // MARK: - tableView data source
 extension AddBeerNameController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard searchResultsBeers.count != 0 else {
-            return 1
+        guard searchResultsBeers.count != 0 || searchBar.text != "" else {
+            return 0
         }
         return searchResultsBeers.count + 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard searchResultsBeers.count != 0 else {
-            let cell = self.tableView!.dequeueReusableCell(withIdentifier: "AddBeerEmptyCell", for: indexPath) as! AddBeerEmptyCell
-            cell.lastCellLabel.text = "Search Beer or Enter new name"
-            return cell
-        }
         if indexPath.row == 0 {
             let cell = self.tableView!.dequeueReusableCell(withIdentifier: "AddBeerNewCell", for: indexPath) as! AddBeerNewCell
             cell.detailsLabel.text = "Add new beer name "
