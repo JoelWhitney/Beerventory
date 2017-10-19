@@ -62,7 +62,7 @@ class BrewerydbAPI: NSObject {
     func search_brewery_name(breweryName: String, onCompletion: @escaping (JSON) -> Void){
         let brewery_name_search = "breweries?"
         var newBreweryName = breweryName
-        if newBreweryName.count >= 4 {
+        if newBreweryName.characters.count >= 4 {
             newBreweryName += "*"
         } // adding wild card if 4+ char to get anything close to it
         var parameters = [["name": "name", "value": newBreweryName],
