@@ -36,6 +36,7 @@ class AddBeerViewController: UITableViewController {
     @IBOutlet var upcCodeLabel: UILabel!
     @IBOutlet var cancelButton: UIBarButtonItem!
     @IBOutlet var addButton: UIButton!
+    @IBOutlet var beerAbvInput: UITextField!
     
     // MARK: - Actions
     @IBAction func unwindToAddBeer(segue: UIStoryboardSegue) {}
@@ -61,12 +62,14 @@ class AddBeerViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         fetchBeerventoryBeers()
         populateBeerDetails()
+        beerAbvInput.addTarget(self, action: #selector(onAbvTextChange), for: UIControlEvents.editingChanged)
+
         self.descriptionTextView.delegate = self
     }
     
     // MARK: - Methods
     func requirementsMet() -> Bool {
-        return beer.name != "" && beer.brewery_name != "" && beer.style_name != ""
+        return beer.name != "" && beer.brewery_name != "" && beer.style_name != "" && beer.abv != ""
     }
     func fetchBeerventoryBeers() {
         if AWSSignInManager.sharedInstance().isLoggedIn {
@@ -82,6 +85,11 @@ class AddBeerViewController: UITableViewController {
                 }
             }
         }
+    }
+    
+    func onAbvTextChange() {
+        print(beerAbvInput.text ?? "")
+        beer.abv = beerAbvInput.text ?? ""
     }
     
     func showPickerInActionSheet() {
@@ -292,6 +300,10 @@ class AddBeerViewController: UITableViewController {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         if cell == self.descriptionTextViewCell {
@@ -305,7 +317,7 @@ class AddBeerViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 3 {
+        if indexPath.row == 4 {
             showDescriptionTextViewCell() {
                 DispatchQueue.main.async(execute: {
                     tableView.reloadData()

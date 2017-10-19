@@ -22,7 +22,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userID: UILabel!
-    @IBOutlet var signOutButton: UIButton!
+    //@IBOutlet var signOutButton: UIButton!
     @IBOutlet var versionLabel: UILabel!
     @IBOutlet var buildLabel: UILabel!
 
@@ -43,7 +43,7 @@ class SettingsViewController: UITableViewController {
         self.configureProfile()
         versionLabel.text = version
         buildLabel.text = build
-        signOutButton.addTarget(self, action: #selector(SettingsViewController.handleLogout), for: .touchUpInside)
+        //signOutButton.addTarget(self, action: #selector(SettingsViewController.handleLogout), for: .touchUpInside)
         removeAllBeersButton.addTarget(self, action: #selector(SettingsViewController.removeAllBeers), for: .touchUpInside)
         tableView.tableFooterView = UIView()
     }
@@ -115,16 +115,21 @@ class SettingsViewController: UITableViewController {
             navigationController?.present(navController, animated: true, completion: nil)
         }
     }
-    func handleLogout() {
-        if (AWSSignInManager.sharedInstance().isLoggedIn) {
-            AWSSignInManager.sharedInstance().logout(completionHandler: {(result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) in
-                self.navigationController!.popToRootViewController(animated: false)
-                self.presentSignInViewController()
-            })
-        } else {
-            assert(false)
-        }
-    }
+//    func handleLogout() {
+//        if (AWSSignInManager.sharedInstance().isLoggedIn) {
+//            AWSSignInManager.sharedInstance().logout(completionHandler: {(result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) in
+//                if let erro = error {
+//                    print("error: \(erro)")
+//                } else {
+//                    print("result: \(result)")
+//                    self.navigationController!.popToRootViewController(animated: false)
+//                    self.presentSignInViewController()
+//                }
+//            })
+//        } else {
+//            assert(false)
+//        }
+//    }
 }
 
 extension UIImage {

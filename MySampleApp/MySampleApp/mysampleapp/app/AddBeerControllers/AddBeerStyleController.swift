@@ -148,6 +148,10 @@ extension AddBeerStyleController: UITableViewDelegate {
 
 // MARK: - Search bar delegate
 extension AddBeerStyleController: UISearchBarDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.endEditing(true)
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.applyFilter), object: nil)
         self.perform(#selector(self.applyFilter), with: nil, afterDelay: 0.5)

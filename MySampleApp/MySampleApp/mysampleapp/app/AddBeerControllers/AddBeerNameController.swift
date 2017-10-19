@@ -128,6 +128,10 @@ extension AddBeerNameController: UITableViewDelegate {
 
 // MARK: - Search bar delegate
 extension AddBeerNameController: UISearchBarDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.endEditing(true)
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.applySearch), object: nil)
         self.perform(#selector(self.applySearch), with: nil, afterDelay: 0.5)

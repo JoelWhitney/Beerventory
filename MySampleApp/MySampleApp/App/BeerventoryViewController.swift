@@ -87,6 +87,7 @@ class BeerventoryViewController: UIViewController  {
                     print("error: \(erro)")
                 } else if response?.items.count == 0 {
                     print("No items")
+                    self.beerventoryBeers = []
                 } else {
                     print("success: \(response!.items.count) items")
                     self.beerventoryBeers = response!.items.map { $0 as! AWSBeer }
@@ -334,6 +335,9 @@ extension BeerventoryViewController: UITableViewDelegate {
 
 // MARK: - Search bar delegate
 extension BeerventoryViewController: UISearchBarDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.endEditing(true)
+    }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         applyFilter()
         //tableView.setContentOffset(CGPoint.zero, animated: true)

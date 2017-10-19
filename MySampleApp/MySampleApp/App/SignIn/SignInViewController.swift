@@ -66,7 +66,7 @@ class SignInViewController : UIViewController {
     
     func setUpNavigationController() {
         // set up title bar
-        self.navigationController?.navigationBar.topItem?.title = "Sign In"
+        self.navigationController?.navigationBar.isHidden = true
     }
     
 
