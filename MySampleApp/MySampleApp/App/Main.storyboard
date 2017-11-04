@@ -337,7 +337,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLH-X2-9eW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1700" y="-752"/>
+            <point key="canvasLocation" x="1700" y="-906"/>
         </scene>
         <!--Beer Details-->
         <scene sceneID="CbW-aZ-fFS">
@@ -399,7 +399,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7r-oc-l9I">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7r-oc-l9I">
                                 <rect key="frame" x="10" y="200" width="355" height="467"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -766,7 +766,7 @@
                                         <rect key="frame" x="163.5" y="1" width="47" height="22"/>
                                         <state key="normal" image="dragHandle"/>
                                     </button>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Scan barcode or search beer" translatesAutoresizingMaskIntoConstraints="NO" id="rwp-h1-ZpN">
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" text="" placeholder="Search beers" translatesAutoresizingMaskIntoConstraints="NO" id="rwp-h1-ZpN">
                                         <rect key="frame" x="0.0" y="19" width="375" height="56"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert" enablesReturnKeyAutomatically="YES"/>
                                         <connections>
@@ -799,11 +799,44 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="R0T-xy-kME"/>
                     <connections>
+                        <outlet property="noResultsView" destination="2s1-aJ-irR" id="bYu-lP-Ki6"/>
                         <outlet property="searchBar" destination="rwp-h1-ZpN" id="xLo-hJ-rKP"/>
                         <outlet property="tableView" destination="DHE-Rf-YIR" id="kdL-si-VMg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kBP-dU-t1U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="2s1-aJ-irR">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qru-ku-hFN">
+                            <rect key="frame" x="99" y="54" width="0.0" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find your beer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ne-uj-dca">
+                            <rect key="frame" x="61.5" y="50" width="117.5" height="21"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search beers or scan barcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oxg-c5-dAx">
+                            <rect key="frame" x="17.5" y="76" width="205.5" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.78534835579999995" green="0.57565945389999995" blue="0.19092237949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.94117647059999998" green="0.77647058820000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="6Ne-uj-dca" firstAttribute="centerX" secondItem="2s1-aJ-irR" secondAttribute="centerX" id="3ey-Ow-Jz0"/>
+                        <constraint firstItem="Oxg-c5-dAx" firstAttribute="top" secondItem="6Ne-uj-dca" secondAttribute="bottom" constant="5" id="Emg-bM-RBj"/>
+                        <constraint firstItem="Oxg-c5-dAx" firstAttribute="centerX" secondItem="2s1-aJ-irR" secondAttribute="centerX" id="dBC-T6-5DQ"/>
+                        <constraint firstItem="6Ne-uj-dca" firstAttribute="top" secondItem="2s1-aJ-irR" secondAttribute="top" constant="50" id="w6L-Yk-dnz"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="1700" y="-109"/>
         </scene>
@@ -1040,7 +1073,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="wVm-TM-g23">
                                                     <rect key="frame" x="8" y="8" width="359" height="134"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
@@ -1130,8 +1163,8 @@
                             <outlet property="delegate" destination="y5r-x1-fIx" id="lGc-aT-UIa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add to Database" id="l95-h6-Da4">
-                        <barButtonItem key="backBarButtonItem" title="Add" id="TX6-Ve-1So"/>
+                    <navigationItem key="navigationItem" title="Create in Database" id="l95-h6-Da4">
+                        <barButtonItem key="backBarButtonItem" title="Create" id="TX6-Ve-1So"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5UI-t8-ZYF">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -1312,15 +1345,42 @@
                     </view>
                     <navigationItem key="navigationItem" title="Beer Name" id="qxk-p8-BuJ"/>
                     <connections>
+                        <outlet property="noResultsView" destination="kkB-er-e2C" id="OcZ-OT-z96"/>
                         <outlet property="searchBar" destination="9y0-i6-Niv" id="g9l-TR-Rwd"/>
                         <outlet property="tableView" destination="E0b-7b-xOO" id="rjO-Mp-uqv"/>
                         <segue destination="RDT-id-o18" kind="unwind" identifier="unwindToAddBeer" unwindAction="unwindToAddBeerWithSegue:" id="MCK-9g-nj5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bgF-DF-jQ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="kkB-er-e2C">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beer name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ZP-AT-ZOl">
+                            <rect key="frame" x="76.5" y="29" width="87.5" height="21"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your beer name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hb7-Y8-bRc">
+                            <rect key="frame" x="46.5" y="55" width="147.5" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="hb7-Y8-bRc" firstAttribute="top" secondItem="3ZP-AT-ZOl" secondAttribute="bottom" constant="5" id="BNN-Nl-Oxg"/>
+                        <constraint firstItem="hb7-Y8-bRc" firstAttribute="top" secondItem="3ZP-AT-ZOl" secondAttribute="bottom" constant="5" id="cef-Ym-41O"/>
+                        <constraint firstItem="hb7-Y8-bRc" firstAttribute="centerX" secondItem="kkB-er-e2C" secondAttribute="centerX" id="dKZ-vl-td5"/>
+                        <constraint firstItem="3ZP-AT-ZOl" firstAttribute="centerX" secondItem="kkB-er-e2C" secondAttribute="centerX" id="ePe-i1-1cA"/>
+                        <constraint firstItem="hb7-Y8-bRc" firstAttribute="centerY" secondItem="kkB-er-e2C" secondAttribute="centerY" id="qSt-g0-N6u"/>
+                    </constraints>
+                </view>
                 <exit id="RDT-id-o18" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3640.8000000000002" y="-195.6521739130435"/>
+            <point key="canvasLocation" x="3089" y="-181"/>
         </scene>
         <!--Brewery-->
         <scene sceneID="09C-jU-sGG">
@@ -1453,12 +1513,39 @@
                     </view>
                     <navigationItem key="navigationItem" title="Brewery Name" id="B9G-j1-8Sf"/>
                     <connections>
+                        <outlet property="noResultsView" destination="ym0-uT-Pmr" id="omf-6Y-k7W"/>
                         <outlet property="searchBar" destination="MSx-DE-Gei" id="d7v-a2-J1f"/>
                         <outlet property="tableView" destination="RTw-Ed-1Cz" id="drq-Z6-wHa"/>
                         <segue destination="Tzx-tV-vEE" kind="unwind" identifier="unwindToAddBeer" unwindAction="unwindToAddBeerWithSegue:" id="0ng-hK-Sel"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="32h-uz-5vA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="ym0-uT-Pmr">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brewery name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFy-Ss-QYq">
+                            <rect key="frame" x="61.5" y="29" width="118" height="21"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your brewery name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnd-kU-1AS">
+                            <rect key="frame" x="34.5" y="55" width="171.5" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="MFy-Ss-QYq" firstAttribute="centerX" secondItem="ym0-uT-Pmr" secondAttribute="centerX" id="Wo5-8e-yi2"/>
+                        <constraint firstItem="bnd-kU-1AS" firstAttribute="centerY" secondItem="ym0-uT-Pmr" secondAttribute="centerY" id="WsE-Cd-6so"/>
+                        <constraint firstItem="bnd-kU-1AS" firstAttribute="top" secondItem="MFy-Ss-QYq" secondAttribute="bottom" constant="5" id="bYB-6g-B1f"/>
+                        <constraint firstItem="bnd-kU-1AS" firstAttribute="centerX" secondItem="ym0-uT-Pmr" secondAttribute="centerX" id="hBK-nO-IJN"/>
+                        <constraint firstItem="bnd-kU-1AS" firstAttribute="top" secondItem="MFy-Ss-QYq" secondAttribute="bottom" constant="5" id="yiv-FS-6SI"/>
+                    </constraints>
+                </view>
                 <exit id="Tzx-tV-vEE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3640.8000000000002" y="507.79610194902551"/>
@@ -1592,15 +1679,42 @@
                     </view>
                     <navigationItem key="navigationItem" title="Style" largeTitleDisplayMode="always" id="rPJ-nG-n5D"/>
                     <connections>
+                        <outlet property="noResultsView" destination="dAx-Ce-y16" id="qzs-ng-y8F"/>
                         <outlet property="searchBar" destination="HjU-Qc-EEL" id="Lht-wA-zhx"/>
                         <outlet property="tableView" destination="oiO-Tb-mGG" id="eTw-7p-vpR"/>
                         <segue destination="4wb-pY-J3S" kind="unwind" identifier="unwindToAddBeer" unwindAction="unwindToAddBeerWithSegue:" id="W7y-43-OHp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tWD-Uh-YJR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="dAx-Ce-y16">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Style" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAb-Ks-VSF">
+                            <rect key="frame" x="99.5" y="29" width="42" height="21"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your style name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMq-1A-5zz">
+                            <rect key="frame" x="46" y="55" width="149" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="mMq-1A-5zz" firstAttribute="centerY" secondItem="dAx-Ce-y16" secondAttribute="centerY" id="2Ri-Mn-9pr"/>
+                        <constraint firstItem="mMq-1A-5zz" firstAttribute="top" secondItem="AAb-Ks-VSF" secondAttribute="bottom" constant="5" id="Jha-Uw-Iye"/>
+                        <constraint firstItem="AAb-Ks-VSF" firstAttribute="centerX" secondItem="dAx-Ce-y16" secondAttribute="centerX" id="PGu-Ir-OXb"/>
+                        <constraint firstItem="mMq-1A-5zz" firstAttribute="top" secondItem="AAb-Ks-VSF" secondAttribute="bottom" constant="5" id="chZ-pn-AYi"/>
+                        <constraint firstItem="mMq-1A-5zz" firstAttribute="centerX" secondItem="dAx-Ce-y16" secondAttribute="centerX" id="waS-hZ-DXJ"/>
+                    </constraints>
+                </view>
                 <exit id="4wb-pY-J3S" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3641" y="1176"/>
+            <point key="canvasLocation" x="3588" y="1449"/>
         </scene>
         <!--Scan Barcode-->
         <scene sceneID="ZvM-Ew-QdV">

@@ -13,16 +13,6 @@ import SwiftyJSON
 class AddBeerBreweryController: UIViewController {
     // MARK: - variables/constants
     var currentBeer: Beer!
-    //    var summaryRequirements: Bool {
-    //        let required = [newBeer.upc_code, newBeer.name, newBeer.brewery_name, newBeer.style_name]
-    //        var bool = true
-    //        for param in required {
-    //            if param == "" {
-    //                bool = false
-    //            }
-    //        }
-    //        return bool
-    //    }
     var selectedIndexPath: IndexPath!
     var searchHandler: ((String?) -> Void)?
     var searchResultsBreweries: [Brewery] = [] {
@@ -37,7 +27,8 @@ class AddBeerBreweryController: UIViewController {
     // MARK: Outlets
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
-
+    @IBOutlet var noResultsView: UIView!
+    
     // MARK: Actions
 
     // MARK: Initializers
@@ -45,6 +36,7 @@ class AddBeerBreweryController: UIViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        //tableView.backgroundView = noResultsView
         tableView.tableFooterView = UIView()
     }
 

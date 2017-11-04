@@ -37,7 +37,7 @@ class AddBeerNameController: UIViewController {
     // MARK: Outlets
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
-
+    @IBOutlet var noResultsView: UIView!
     
     // MARK: Actions
 
@@ -46,6 +46,7 @@ class AddBeerNameController: UIViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        //tableView.backgroundView = noResultsView
         tableView.tableFooterView = UIView()
     }
 

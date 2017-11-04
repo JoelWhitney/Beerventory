@@ -43,12 +43,13 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
     // MARK: Outlets
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet var noResultsView: UIView!
     
     //MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchBeerventoryBeers() // do I really need this here?
-        
+        tableView.backgroundView = noResultsView
     }
     
     // MARK: - Methods
@@ -93,7 +94,8 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
     func showPickerInActionSheet(sender: AnyObject) {
         pickerQuantity = "1"
         checkButtonTapped(sender: sender)
-        currentBeer = searchResultsBeers[selectedIndexPath.row]
+        print(selectedIndexPath.row)
+        currentBeer = filteredSearchResultsBeers[selectedIndexPath.row]
         var actionType: String
         var actionTitle: String
         if sender.tag == 1 {

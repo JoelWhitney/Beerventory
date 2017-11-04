@@ -32,8 +32,8 @@ class AddBeerStyleController: UIViewController {
     // MARK: Outlets
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
-
-
+    @IBOutlet var noResultsView: UIView!
+    
     // MARK: Actions
 
     // MARK: Initializers
@@ -41,6 +41,7 @@ class AddBeerStyleController: UIViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        //tableView.backgroundView = noResultsView
         tableView.tableFooterView = UIView()
         buildStyleList()
     }
