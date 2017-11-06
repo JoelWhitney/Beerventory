@@ -16,7 +16,7 @@ class AddBeerViewController: UITableViewController {
     var beerventoryBeers: [AWSBeer] = []
     var beer = Beer() {
         didSet {
-            populateEventDetails()
+            populateBeerDetails()
             DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
             })
@@ -36,6 +36,7 @@ class AddBeerViewController: UITableViewController {
     @IBOutlet var upcCodeLabel: UILabel!
     @IBOutlet var cancelButton: UIBarButtonItem!
     @IBOutlet var addButton: UIButton!
+    @IBOutlet var beerAbvInput: UITextField!
     
     // MARK: - Actions
     @IBAction func unwindToAddBeer(segue: UIStoryboardSegue) {}
@@ -43,7 +44,15 @@ class AddBeerViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func addBeertoInventory () {
-        showPickerInActionSheet()
+        // verify required info is filled out
+        if requirementsMet() {
+            showPickerInActionSheet()
+        } else {
+            // show alert
+//            alertTitle = "Warning"
+//            alertMessage = "Requqirements not met "
+//            let alert = UIAlertController(title)
+        }
     }
     @IBAction func unwindToAddSchedule(segue: UIStoryboardSegue) {}
     
@@ -52,11 +61,16 @@ class AddBeerViewController: UITableViewController {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         fetchBeerventoryBeers()
-        populateEventDetails()
+        populateBeerDetails()
+        beerAbvInput.addTarget(self, action: #selector(onAbvTextChange), for: UIControlEvents.editingChanged)
+
         self.descriptionTextView.delegate = self
     }
     
     // MARK: - Methods
+    func requirementsMet() -> Bool {
+        return beer.name != "" && beer.brewery_name != "" && beer.style_name != "" && beer.abv != ""
+    }
     func fetchBeerventoryBeers() {
         if AWSSignInManager.sharedInstance().isLoggedIn {
             DynamodbAPI.sharedInstance.queryWithPartitionKeyWithCompletionHandler { (response, error) in
@@ -73,13 +87,21 @@ class AddBeerViewController: UITableViewController {
         }
     }
     
+    func onAbvTextChange() {
+        print(beerAbvInput.text ?? "")
+        beer.abv = beerAbvInput.text ?? ""
+    }
+    
     func showPickerInActionSheet() {
         pickerQuantity = "1"
-        let message = "Enter quantity of beers to add\n\n\n\n\n\n\n\n\n\n"
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let alertTitle = "Add Beers"
+        let alertMessage = "Enter quantity of beers to add\n\n\n\n\n\n\n\n\n\n"
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.actionSheet)
         alert.isModalInPopover = true
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
         //Create a frame (placeholder/wrapper) for the picker and then create the picker
-        let pickerFrame: CGRect = CGRect(x: 17, y: 52, width: 270, height: 160); // CGRectMake(left), top, width, height) - left and top are like margins
+        var pickerFrame: CGRect = CGRect(x: 10, y: 52, width: screenWidth - 40, height: 160)
         let picker: UIPickerView = UIPickerView(frame: pickerFrame);
         //set the pickers datasource and delegate
         picker.delegate = self
@@ -87,7 +109,7 @@ class AddBeerViewController: UITableViewController {
         //Add the picker to the alert controller
         alert.view.addSubview(picker)
         //add buttons to the view
-        let buttonCancelFrame: CGRect = CGRect(x: 0, y: 200, width: 100, height: 30) //size & position of the button as placed on the toolView
+        let buttonCancelFrame: CGRect = CGRect(x: 10, y: 200, width: 100, height: 30) //size & position of the button as placed on the toolView
         //Create the cancel button & set its title
         let buttonCancel: UIButton = UIButton(frame: buttonCancelFrame)
         buttonCancel.setTitle("Cancel", for: UIControlState.normal)
@@ -95,7 +117,7 @@ class AddBeerViewController: UITableViewController {
         //Add the target - target, function to call, the event witch will trigger the function call
         buttonCancel.addTarget(self, action: #selector(cancelSelection), for: UIControlEvents.touchDown)
         //add buttons to the view
-        let buttonOkFrame: CGRect = CGRect(x: 170, y:  200, width: 100, height: 30); //size & position of the button as placed on the toolView
+        var buttonOkFrame: CGRect = CGRect(x: screenWidth - 120, y:  200, width: 100, height: 30)
         //Create the Select button & set the title
         let buttonOk: UIButton = UIButton(frame: buttonOkFrame)
         buttonOk.addTarget(self, action: #selector(addBeers), for: UIControlEvents.touchDown);
@@ -218,7 +240,7 @@ class AddBeerViewController: UITableViewController {
         }
     }
     
-    func populateEventDetails() {
+    func populateBeerDetails() {
         if beer.name != "" {
             beerNameLabel.text = "\(beer.name) >"
         } else {
@@ -273,6 +295,13 @@ class AddBeerViewController: UITableViewController {
         if let viewController = segue.destination as? AddBeerStyleController {
             viewController.currentBeer = beer
         }
+        if let viewController = segue.destination as? AddBeerScanUrlController {
+            viewController.currentBeer = beer
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -288,7 +317,7 @@ class AddBeerViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 3 {
+        if indexPath.row == 4 {
             showDescriptionTextViewCell() {
                 DispatchQueue.main.async(execute: {
                     tableView.reloadData()

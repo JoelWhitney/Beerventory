@@ -1,31 +1,22 @@
 //
-//  ScanViewController.swift
+//  AddBeerScanUrlController.swift
 //  Beerventory
 //
-//  Created by Joel Whitney on 4/20/17.
-//  Copyright © 2017 Joel Whitney. All rights reserved.
+//  Created by Joel Whitney on 10/12/17.
 //
 
-import UIKit
-import AVFoundation
-import SwiftyJSON
-import AWSDynamoDB
-import AWSMobileHubHelper
 
-class ScanViewController: UIViewController {
+import Foundation
+import UIKit
+import SwiftyJSON
+import AVFoundation
+
+class AddBeerScanUrlController: UIViewController {
     // MARK: - variables/constants
-    var codeFont: UIFont?
+    var currentBeer: Beer!
     var captureSession: AVCaptureSession?
     var capturePreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
-    var prevCodeStringvalue: String = ""
-    var mainBeerStore = [AWSBeer]()
-    var scanResultsBeers = [Beer]()
-    var currentAWSBeer: AWSBeer!
-    var currentBeer: Beer!
-    var currentBeerIndexPath: IndexPath!
-    var alertTextField = UITextField()
-    weak var actionToEnable : UIAlertAction?
     let supportedCodeTypes = [AVMetadataObjectTypeUPCECode,
                               AVMetadataObjectTypeCode39Code,
                               AVMetadataObjectTypeCode39Mod43Code,
@@ -42,9 +33,7 @@ class ScanViewController: UIViewController {
                               AVMetadataObjectTypeCode128Code,
                               AVMetadataObjectTypeDataMatrixCode,
                               AVMetadataObjectTypeInterleaved2of5Code]
-    var pickerQuantity = "1"
-    var upc_code = ""
-    var scanResultsFound: (([Beer]) -> Void)?
+    var scanResultsBeer: Beer!
     var captureDevice: AVCaptureDevice!
     @IBOutlet var flashButton: UIButton!
     
@@ -53,7 +42,7 @@ class ScanViewController: UIViewController {
     @IBOutlet var activitySpinnerView: UIView!
     
     // MARK: Actions
-
+    
     
     // MARK: Initializers
     required init?(coder aDecoder: NSCoder) {
@@ -68,7 +57,7 @@ class ScanViewController: UIViewController {
         self.refreshScanControllerState()
         flashButton.addTarget(self, action: #selector(updateTorch), for: UIControlEvents.touchDown)
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
@@ -113,7 +102,7 @@ class ScanViewController: UIViewController {
         let captureRectHeight = CGFloat(200.0)
         
         var cgCaptureRect = CGRect(x: (screenWidth / 2 - captureRectWidth / 2),
-                                   y: (screenHeight / 4 - captureRectHeight / 2),
+                                   y: (screenHeight / 3 - captureRectHeight / 2),
                                    width: captureRectWidth,
                                    height: captureRectHeight)
         
@@ -141,7 +130,7 @@ class ScanViewController: UIViewController {
             view.addSubview(flashButton)
             // start capture session and move labels to front
             captureSession?.startRunning()
-
+            
             
             // set capture area
             let captureRect = capturePreviewLayer?.metadataOutputRectOfInterest(for: cgCaptureRect)
@@ -168,7 +157,7 @@ class ScanViewController: UIViewController {
             view.bringSubview(toFront: qrCodeFrameView)
         }
     }
-
+    
     //MARK: Imperative methods
     func addProgressSubview(){
         let progressHUD = SearchProgress(text: "Searching..")
@@ -189,31 +178,21 @@ class ScanViewController: UIViewController {
         // We dismiss the alert. Here you can add your additional code to execute when cancel is pressed
     }
     func searchBeerBarcodes(upc_code: String, onCompletion: @escaping () -> Void) {
-        scanResultsBeers = []
         BrewerydbAPI.sharedInstance.search_barcode(barCode: upc_code, onCompletion: { (json: JSON) in
             guard let results = json["data"].array else {
                 self.removeProgressSubview()
-                print("   No Beers")
-                let alertController = UIAlertController(title: "Error", message: "The barcode is not in the database, consider adding it.", preferredStyle: UIAlertControllerStyle.alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default) { action in
-                    self.refreshScanControllerState()
-                })
-                let add = UIAlertAction(title: "Add", style: UIAlertActionStyle.default) { action in
-                    self.performSegue(withIdentifier: "AddBeerFromUPC", sender: self)
-                }
-                alertController.addAction(add)
-                self.present(alertController, animated: true, completion: nil)
+                print("   Good, no beers found with ")
+                onCompletion()
                 return
             }
-            self.scanResultsBeers = results.map { Beer(beerJSON: $0) }
-            onCompletion()
-        })
-    }
-    func updateBreweryDetails(onCompletion: @escaping () -> Void) {
-        BrewerydbAPI.sharedInstance.get_beers_breweries(beers: self.scanResultsBeers, onCompletion: { (updatedBeers: [Beer]) in
-            print(updatedBeers)
-            self.scanResultsBeers = updatedBeers
-            onCompletion()
+            let alertController = UIAlertController(title: "Warning", message: "The barcode is already in the database.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default) { action in
+                self.removeProgressSubview()
+                print("   Found barcode in database")
+                onCompletion()
+            })
+            self.present(alertController, animated: true, completion: nil)
+            
         })
     }
     func refreshScanControllerState() {
@@ -221,7 +200,7 @@ class ScanViewController: UIViewController {
         self.navigationItem.leftBarButtonItem?.isEnabled = false
         qrCodeFrameView?.frame = CGRect.zero
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let screenSize = UIScreen.main.bounds.size
         if let touchPoint = touches.first {
@@ -248,37 +227,18 @@ class ScanViewController: UIViewController {
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationNavigationController = segue.destination as? UINavigationController {
-            let targetController = destinationNavigationController.topViewController as? AddBeerViewController
-            print("set barcode")
-            targetController!.beer.upc_code = self.upc_code
+        if let addBeerViewController = segue.destination as? AddBeerViewController {
+            if currentBeer.upc_code != "" {
+                let replacementBeer = currentBeer
+                addBeerViewController.beer = replacementBeer!
+            }
         }
     }
 }
 
-// MARK: - UIPicker delegate
-extension ScanViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        pickerQuantity = String(row + 1)
-    }
-}
-
-// MARK: - UIPicker delegate
-extension ScanViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 30
-    }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        print(row)
-        return String(row + 1)
-    }
-}
 
 //MARK: AVCapture delegate
-extension ScanViewController: AVCaptureMetadataOutputObjectsDelegate {
+extension AddBeerScanUrlController: AVCaptureMetadataOutputObjectsDelegate {
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects results: [Any]!, from connection: AVCaptureConnection!) {
         if results == nil || results.count == 0 { // handle empty results
             qrCodeFrameView?.frame = CGRect.zero
@@ -293,17 +253,9 @@ extension ScanViewController: AVCaptureMetadataOutputObjectsDelegate {
                     captureSession?.stopRunning()
                     addProgressSubview()
                     print(metadataObj.stringValue)
-                    upc_code = metadataObj.stringValue
-                    searchBeerBarcodes(upc_code: upc_code, onCompletion: {
-                        self.updateBreweryDetails(onCompletion: { // STEP 2 HERE
-                            DispatchQueue.main.async(execute: {
-                                print("push results to searchResultsController")
-                                self.removeProgressSubview()
-                                self.refreshScanControllerState()
-                                print(self.scanResultsBeers)
-                                self.scanResultsFound?(self.scanResultsBeers)
-                            })
-                        })
+                    currentBeer.upc_code = metadataObj.stringValue
+                    searchBeerBarcodes(upc_code: currentBeer.upc_code, onCompletion: {
+                        self.performSegue(withIdentifier: "unwindToAddBeer", sender: self)
                     })
                 } else {
                     // TODO: - Add no results prompt

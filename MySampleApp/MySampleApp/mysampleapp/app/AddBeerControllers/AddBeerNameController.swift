@@ -37,7 +37,7 @@ class AddBeerNameController: UIViewController {
     // MARK: Outlets
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
-
+    @IBOutlet var noResultsView: UIView!
     
     // MARK: Actions
 
@@ -46,6 +46,8 @@ class AddBeerNameController: UIViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        //tableView.backgroundView = noResultsView
+        tableView.tableFooterView = UIView()
     }
 
     // MARK: Additional views
@@ -53,6 +55,7 @@ class AddBeerNameController: UIViewController {
     // MARK: Imperative methods
     func applySearch() {
         guard let searchText = searchBar.text?.lowercased(), !searchText.isEmpty else {
+            searchResultsBeers = []
             searchHandler?(nil)
             return
         }
@@ -65,10 +68,12 @@ class AddBeerNameController: UIViewController {
         searchResultsBeers = []
         BrewerydbAPI.sharedInstance.search_beer_name(beerName: searchString, onCompletion: { (json: JSON) in
             guard let results = json["data"].array else {
+                self.searchResultsBeers = []
                 return
             }
             print(results)
-            self.searchResultsBeers = results.map { Beer(beerJSON: $0) }
+            var firstResults = results.prefix(10)
+            self.searchResultsBeers = firstResults.map { Beer(beerJSON: $0) }
             print(self.searchResultsBeers)
             onCompletion()
         })
@@ -91,17 +96,12 @@ class AddBeerNameController: UIViewController {
 // MARK: - tableView data source
 extension AddBeerNameController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard searchResultsBeers.count != 0 else {
-            return 1
+        guard searchResultsBeers.count != 0 || searchBar.text != "" else {
+            return 0
         }
         return searchResultsBeers.count + 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard searchResultsBeers.count != 0 else {
-            let cell = self.tableView!.dequeueReusableCell(withIdentifier: "AddBeerEmptyCell", for: indexPath) as! AddBeerEmptyCell
-            cell.lastCellLabel.text = "Search Beer or Enter new name"
-            return cell
-        }
         if indexPath.row == 0 {
             let cell = self.tableView!.dequeueReusableCell(withIdentifier: "AddBeerNewCell", for: indexPath) as! AddBeerNewCell
             cell.detailsLabel.text = "Add new beer name "
@@ -129,6 +129,10 @@ extension AddBeerNameController: UITableViewDelegate {
 
 // MARK: - Search bar delegate
 extension AddBeerNameController: UISearchBarDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.endEditing(true)
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.applySearch), object: nil)
         self.perform(#selector(self.applySearch), with: nil, afterDelay: 0.5)

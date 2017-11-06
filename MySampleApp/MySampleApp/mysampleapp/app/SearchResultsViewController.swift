@@ -25,7 +25,7 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
     }
     var filteredSearchResultsBeers: [Beer] = [] {
         didSet {
-            print("filtered")
+            print("filtered or scan result")
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -43,12 +43,13 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
     // MARK: Outlets
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet var noResultsView: UIView!
     
     //MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchBeerventoryBeers() // do I really need this here?
-        
+        tableView.backgroundView = noResultsView
     }
     
     // MARK: - Methods
@@ -73,8 +74,8 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
             guard let results = json["data"].array else {
                 return
             }
-            print(results)
-            self.searchResultsBeers = results.map { Beer(beerJSON: $0) }
+            var firstResults = results.prefix(10)
+            self.searchResultsBeers = firstResults.map { Beer(beerJSON: $0) }
             print(self.searchResultsBeers)
             onCompletion()
         })
@@ -93,7 +94,8 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
     func showPickerInActionSheet(sender: AnyObject) {
         pickerQuantity = "1"
         checkButtonTapped(sender: sender)
-        currentBeer = searchResultsBeers[selectedIndexPath.row]
+        print(selectedIndexPath.row)
+        currentBeer = filteredSearchResultsBeers[selectedIndexPath.row]
         var actionType: String
         var actionTitle: String
         if sender.tag == 1 {
@@ -108,8 +110,10 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
         var message = "Enter quantity of beers to \(actionType)\n\n\n\n\n\n\n\n\n\n"
         var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
         alert.isModalInPopover = true
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
         //Create a frame (placeholder/wrapper) for the picker and then create the picker
-        var pickerFrame: CGRect = CGRect(x: 17, y: 52, width: 270, height: 160); // CGRectMake(left), top, width, height) - left and top are like margins
+        var pickerFrame: CGRect = CGRect(x: 10, y: 52, width: screenWidth - 40, height: 160)
         var picker: UIPickerView = UIPickerView(frame: pickerFrame);
         //set the pickers datasource and delegate
         picker.delegate = self
@@ -117,7 +121,7 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
         //Add the picker to the alert controller
         alert.view.addSubview(picker)
         //add buttons to the view
-        var buttonCancelFrame: CGRect = CGRect(x: 0, y: 200, width: 100, height: 30) //size & position of the button as placed on the toolView
+        var buttonCancelFrame: CGRect = CGRect(x: 10, y: 200, width: 100, height: 30) //size & position of the button as placed on the toolView
         //Create the cancel button & set its title
         var buttonCancel: UIButton = UIButton(frame: buttonCancelFrame)
         buttonCancel.setTitle("Cancel", for: UIControlState.normal)
@@ -125,7 +129,7 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
         //Add the target - target, function to call, the event witch will trigger the function call
         buttonCancel.addTarget(self, action: #selector(cancelSelection), for: UIControlEvents.touchDown)
         //add buttons to the view
-        var buttonOkFrame: CGRect = CGRect(x: 170, y:  200, width: 100, height: 30); //size & position of the button as placed on the toolView
+        var buttonOkFrame: CGRect = CGRect(x: screenWidth - 120, y:  200, width: 100, height: 30)
         //Create the Select button & set the title
         var buttonOk: UIButton = UIButton(frame: buttonOkFrame)
         if sender.tag == 1 {
@@ -137,7 +141,7 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
         }
         alert.view.addSubview(buttonOk)
         alert.view.addSubview(buttonCancel)
-        self.present(alert, animated: true, completion: nil);
+        self.present(alert, animated: true, completion: nil)
     }
     func addBeers(sender: UIButton){
         guard let quantity = Int(pickerQuantity) else {
@@ -211,11 +215,12 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
     }
     func updateWithScanResults(beers: [Beer]) {
         self.searchResultsBeers = beers
+        self.filteredSearchResultsBeers = beers
     }
     
     func applySearch() {
-        
         guard let searchText = searchBar.text?.lowercased(), !searchText.isEmpty else {
+            searchResultsBeers = []
             filteredSearchResultsBeers = searchResultsBeers
             filterHandler?(nil)
             return
@@ -329,7 +334,8 @@ extension SearchResultsViewController: UITableViewDelegate {
 
 extension SearchResultsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        applySearch()
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.applySearch), object: nil)
+        self.perform(#selector(self.applySearch), with: nil, afterDelay: 0.25)
         tableView.setContentOffset(CGPoint.zero, animated: true)
     }
     

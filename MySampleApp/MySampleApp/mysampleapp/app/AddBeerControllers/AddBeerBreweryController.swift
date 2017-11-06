@@ -13,16 +13,6 @@ import SwiftyJSON
 class AddBeerBreweryController: UIViewController {
     // MARK: - variables/constants
     var currentBeer: Beer!
-    //    var summaryRequirements: Bool {
-    //        let required = [newBeer.upc_code, newBeer.name, newBeer.brewery_name, newBeer.style_name]
-    //        var bool = true
-    //        for param in required {
-    //            if param == "" {
-    //                bool = false
-    //            }
-    //        }
-    //        return bool
-    //    }
     var selectedIndexPath: IndexPath!
     var searchHandler: ((String?) -> Void)?
     var searchResultsBreweries: [Brewery] = [] {
@@ -37,7 +27,8 @@ class AddBeerBreweryController: UIViewController {
     // MARK: Outlets
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
-
+    @IBOutlet var noResultsView: UIView!
+    
     // MARK: Actions
 
     // MARK: Initializers
@@ -45,6 +36,8 @@ class AddBeerBreweryController: UIViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        //tableView.backgroundView = noResultsView
+        tableView.tableFooterView = UIView()
     }
 
     // MARK: Additional views
@@ -52,6 +45,7 @@ class AddBeerBreweryController: UIViewController {
     // MARK: Imperative methods
     func applySearch() {
         guard let searchText = searchBar.text?.lowercased(), !searchText.isEmpty else {
+            searchResultsBreweries = []
             searchHandler?(nil)
             return
         }
@@ -64,10 +58,14 @@ class AddBeerBreweryController: UIViewController {
         searchResultsBreweries = []
         BrewerydbAPI.sharedInstance.search_brewery_name(breweryName: searchString, onCompletion: { (json: JSON) in
             guard let results = json["data"].array else {
+                self.searchResultsBreweries = []
+                print(self.searchResultsBreweries)
+                onCompletion()
                 return
             }
             print(results)
-            self.searchResultsBreweries = results.map { Brewery(breweryJSON: $0) }
+            var firstResults = results.prefix(10)
+            self.searchResultsBreweries = firstResults.map { Brewery(breweryJSON: $0) }
             print(self.searchResultsBreweries)
             onCompletion()
         })
@@ -91,17 +89,12 @@ class AddBeerBreweryController: UIViewController {
 // MARK: - tableView data source
 extension AddBeerBreweryController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard searchResultsBreweries.count != 0 else {
-            return 1
+        guard searchResultsBreweries.count != 0 || searchBar.text != "" else {
+            return 0
         }
         return searchResultsBreweries.count + 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard searchResultsBreweries.count != 0 else {
-            let cell = self.tableView!.dequeueReusableCell(withIdentifier: "AddBeerEmptyCell", for: indexPath) as! AddBeerEmptyCell
-            cell.lastCellLabel.text = "Search Brewery or Enter new name"
-            return cell
-        }
         if indexPath.row == 0 {
             let cell = self.tableView!.dequeueReusableCell(withIdentifier: "AddBeerNewCell", for: indexPath) as! AddBeerNewCell
             cell.detailsLabel.text = "Add new brewery name "
@@ -128,6 +121,10 @@ extension AddBeerBreweryController: UITableViewDelegate {
 
 // MARK: - Search bar delegate
 extension AddBeerBreweryController: UISearchBarDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.endEditing(true)
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.applySearch), object: nil)
         self.perform(#selector(self.applySearch), with: nil, afterDelay: 0.5)

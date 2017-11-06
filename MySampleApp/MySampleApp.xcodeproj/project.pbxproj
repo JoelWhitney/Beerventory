@@ -29,6 +29,7 @@
 		E5A2D5C81F4127CA007CF64E /* gothicb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5A2D5AD1F412391007CF64E /* gothicb.ttf */; };
 		E5A2D5C91F4127CC007CF64E /* Blippo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5A2D5A51F41238F007CF64E /* Blippo.ttf */; };
 		E5BF0ED11F660CF30086B9DC /* DynamodbAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF0ED01F660CF30086B9DC /* DynamodbAPI.swift */; };
+		E5CE35601F8FA3B000193581 /* AddBeerScanUrlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CE355F1F8FA3B000193581 /* AddBeerScanUrlController.swift */; };
 		E7A30F040276E9F300000000 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E29F643BAF700000000 /* Main.storyboard */; };
 		E7A30F0405AB448B00000000 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E2996F4300600000000 /* UtilityFunctions.swift */; };
 		E7A30F0406BDF7C200000000 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E2943126B7800000000 /* Foundation.framework */; };
@@ -188,6 +189,7 @@
 		E5A2D5AD1F412391007CF64E /* gothicb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gothicb.ttf; sourceTree = "<group>"; };
 		E5A2D5AE1F412391007CF64E /* AddBeerStyleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBeerStyleController.swift; sourceTree = "<group>"; };
 		E5BF0ED01F660CF30086B9DC /* DynamodbAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DynamodbAPI.swift; path = MySampleApp/mysampleapp/app/mysampleapp/app/utility/DynamodbAPI.swift; sourceTree = SOURCE_ROOT; };
+		E5CE355F1F8FA3B000193581 /* AddBeerScanUrlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddBeerScanUrlController.swift; path = MySampleApp/mysampleapp/app/AddBeerControllers/AddBeerScanUrlController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,8 +259,9 @@
 				E598F0821F59B658003F2D3F /* AddBeerViewController.swift */,
 				E507C06C1F581768009D32A4 /* AddBeerControllers */,
 				E507C0671F5815D2009D32A4 /* Data models */,
-				E507C06D1F58188C009D32A4 /* Trash */,
+				E51F0C531F96364A0092008D /* UI */,
 				B401C979BF42A0B700000000 /* Utility */,
+				E507C06D1F58188C009D32A4 /* Trash */,
 				B401C979B6BAF9C700000000 /* SupportingFiles */,
 			);
 			name = App;
@@ -422,6 +425,7 @@
 				E5A2D5A21F41238E007CF64E /* AddBeerBreweryController.swift */,
 				E5A2D59B1F41238E007CF64E /* AddBeerNameController.swift */,
 				E5A2D5AE1F412391007CF64E /* AddBeerStyleController.swift */,
+				E5CE355F1F8FA3B000193581 /* AddBeerScanUrlController.swift */,
 			);
 			path = AddBeerControllers;
 			sourceTree = "<group>";
@@ -432,6 +436,13 @@
 				E5A2D5A41F41238F007CF64E /* TabBarController.swift */,
 			);
 			path = Trash;
+			sourceTree = "<group>";
+		};
+		E51F0C531F96364A0092008D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		E56605191F4390BB0079173E /* nosql */ = {
@@ -636,6 +647,7 @@
 				E7A30F04255C106300000000 /* UserPoolForgotPasswordViewController.swift in Sources */,
 				E7A30F048B5A832A00000000 /* SignInViewControllerExtensions.swift in Sources */,
 				E7A30F04890046F000000000 /* UserPoolsUIHelper.swift in Sources */,
+				E5CE35601F8FA3B000193581 /* AddBeerScanUrlController.swift in Sources */,
 				E7A30F0405AB448B00000000 /* UtilityFunctions.swift in Sources */,
 				E7A30F0459D78CF800000000 /* BeerventoryViewController.swift in Sources */,
 				E7A30F04BA4FB7A400000000 /* UserPoolsIdentityProfile.swift in Sources */,
@@ -720,7 +732,7 @@
 					"$(PROJECT_DIR)/MySampleApp/AmazonAws",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/MySampleApp/App/SupportingFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JoelWhitney.Beerventory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -804,7 +816,7 @@
 					"$(PROJECT_DIR)/MySampleApp/AmazonAws",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/MySampleApp/App/SupportingFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JoelWhitney.Beerventory;
 				PRODUCT_NAME = "$(TARGET_NAME)";

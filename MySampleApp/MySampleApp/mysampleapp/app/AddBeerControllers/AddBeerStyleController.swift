@@ -20,7 +20,7 @@ class AddBeerStyleController: UIViewController {
             applyFilter()
         }
     }
-    var filteredStyles = [Style]() {
+    var filteredCategories = [Category]() {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -28,22 +28,12 @@ class AddBeerStyleController: UIViewController {
         }
     }
     var selectedIndexPath: IndexPath!
-//    var summaryRequirements: Bool {
-//        let required = [newBeer.upc_code, newBeer.name, newBeer.brewery_name, newBeer.style_name]
-//        var bool = true
-//        for param in required {
-//            if param == "" {
-//                bool = false
-//            }
-//        }
-//        return bool
-//    }
 
     // MARK: Outlets
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
-
-
+    @IBOutlet var noResultsView: UIView!
+    
     // MARK: Actions
 
     // MARK: Initializers
@@ -51,6 +41,8 @@ class AddBeerStyleController: UIViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        //tableView.backgroundView = noResultsView
+        tableView.tableFooterView = UIView()
         buildStyleList()
     }
     // MARK: Additional views
@@ -89,19 +81,29 @@ class AddBeerStyleController: UIViewController {
     
     func applyFilter() {
         guard let searchText = searchBar.text?.lowercased(), !searchText.isEmpty, styles.count > 0 else {
-            filteredStyles = styles.sorted(by: { $0.style_name < $1.style_name })
-            filterHandler?(nil)
+            filteredCategories = categories.sorted(by: { $0.category_name < $1.category_name }).map { category in
+                Category(category_id: category.category_id,
+                         category_name: category.category_name,
+                         styles: styles.filter { $0.category_id == category.category_id }
+                            .sorted(by: { $0.style_name < $1.style_name }))
+            }
+            filterHandler?("")
             return
         }
-        filteredStyles = styles.filter { $0.style_name.lowercased().contains(searchText)}
-            .sorted(by: { $0.style_name < $1.style_name })
+        filteredCategories = categories.sorted(by: { $0.category_name < $1.category_name }).map { category in
+            Category(category_id: category.category_id,
+                     category_name: category.category_name,
+                     styles: styles.filter { $0.style_name.lowercased().contains(searchText) && $0.category_id == category.category_id }
+                        .sorted(by: { $0.style_name < $1.style_name }))
+        }
         filterHandler?(searchText)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let addBeerViewController = segue.destination as? AddBeerViewController {
             let replacementBeer = currentBeer
-            let selectedStyle = filteredStyles[selectedIndexPath.row]
+            let selectedStyle = filteredCategories[selectedIndexPath.section].styles[selectedIndexPath.row]
+            print("Selected style was: \(selectedStyle.style_id) \(selectedStyle.style_name)")
             replacementBeer?.style_name = selectedStyle.style_name
             replacementBeer?.style_id = selectedStyle.style_id
             addBeerViewController.beer = replacementBeer!
@@ -111,11 +113,23 @@ class AddBeerStyleController: UIViewController {
 
 // MARK: - tableView data source
 extension AddBeerStyleController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if filteredCategories[section].styles.count > 0 {
+            return 20.0
+        }
+        return 0.0
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return filteredCategories[section].category_name
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return filteredCategories.count
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredStyles.count
+        return filteredCategories[section].styles.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currentStyle = filteredStyles[indexPath.row]
+        let currentStyle = filteredCategories[indexPath.section].styles[indexPath.row]
         let cell = self.tableView!.dequeueReusableCell(withIdentifier: "AddBeerDetailsCell", for: indexPath) as! AddBeerDetailsCell
         cell.detailsLabel.text = currentStyle.style_name
         cell.secondaryDetailsLabel.text = currentStyle.category_name
@@ -135,6 +149,10 @@ extension AddBeerStyleController: UITableViewDelegate {
 
 // MARK: - Search bar delegate
 extension AddBeerStyleController: UISearchBarDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.endEditing(true)
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.applyFilter), object: nil)
         self.perform(#selector(self.applyFilter), with: nil, afterDelay: 0.5)
