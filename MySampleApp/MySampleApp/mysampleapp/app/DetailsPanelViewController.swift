@@ -1,17 +1,17 @@
 //
-//  DetailsContoller.swift
-//  Beerventory
+//  DetailsPanelViewController.swift
+//  MySampleApp
 //
-//  Created by Joel Whitney on 7/22/17.
-//  Copyright © 2017 Joel Whitney. All rights reserved.
+//  Created by Joel Whitney on 11/24/17.
 //
 
 import Foundation
 import UIKit
+import AWSDynamoDB
+import AWSMobileHubHelper
 
 
-
-class DetailsController: UIViewController {
+class DetailsPanelViewController: UIViewController {
     // MARK: - variables/constants
     var beer: Beer!
     let gradientLayer = CAGradientLayer()
@@ -24,12 +24,8 @@ class DetailsController: UIViewController {
     @IBOutlet var beerDescription: UITextView!
     @IBOutlet var beerLabel: UIImageView!
     @IBOutlet var gradiantView: UIView!
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     // MARK: Actions
-    @IBAction func cancelAddSchedule () {
-        dismiss(animated: true, completion: nil)
-    }
     
     // MARK: Initializers
     
@@ -39,6 +35,7 @@ class DetailsController: UIViewController {
         fillKnownDetails()
         createTopBanner()
     }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         beerDescription.setContentOffset(CGPoint.zero, animated: false)
@@ -46,6 +43,10 @@ class DetailsController: UIViewController {
         CATransaction.setDisableActions(true)
         addTransparentBanner()
         CATransaction.commit()
+    }
+    
+    @IBAction func close(_ sender: Any) {
+        performSegue(withIdentifier: "unwindToSearchResultsViewController", sender: nil)
     }
     
     // MARK: Imperative methods
@@ -89,4 +90,7 @@ class DetailsController: UIViewController {
         gradientLayer.frame = gradiantView.bounds
         gradiantView.layer.insertSublayer(gradientLayer, at: 0)
     }
+    
 }
+
+

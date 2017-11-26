@@ -14,16 +14,17 @@ class MainScanViewController: SlidingPanelViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Main LOADED")
         self.panelPosition = .partial
         scanViewController?.scanResultsFound = { beers in
             self.panelPosition = .full
             print(beers)
             self.searchResultsViewController?.updateWithScanResults(beers: beers)
         }
-        searchResultsViewController?.searchResultTapped = { beer in
-            self.searchResultBeer = beer
-            self.performSegue(withIdentifier: "detailsViewController", sender: self)
-        }
+//        searchResultsViewController?.searchResultTapped = { beer in
+//            self.searchResultBeer = beer
+//            self.performSegue(withIdentifier: "detailsViewController", sender: self)
+//        }
   
     }
     

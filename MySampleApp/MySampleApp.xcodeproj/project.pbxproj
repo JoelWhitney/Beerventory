@@ -13,6 +13,8 @@
 		E510C3261F4C72A800008B41 /* SlidingPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E510C3251F4C72A800008B41 /* SlidingPanelViewController.swift */; };
 		E510C3281F4C76E200008B41 /* MainScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E510C3271F4C76E200008B41 /* MainScanViewController.swift */; };
 		E510C32A1F4CB59700008B41 /* UIAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E510C3291F4CB59700008B41 /* UIAdditions.swift */; };
+		E5275ADE1FC85E0300607EA5 /* SlidingPanelSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5275ADD1FC85E0300607EA5 /* SlidingPanelSegue.swift */; };
+		E5275AE01FC864DB00607EA5 /* DetailsPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5275ADF1FC864DB00607EA5 /* DetailsPanelViewController.swift */; };
 		E56605221F43A2A10079173E /* BeersTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E566051A1F4390BB0079173E /* BeersTable.swift */; };
 		E566052B1F43CB0C0079173E /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E566052A1F43CB010079173E /* AWSDynamoDB.framework */; };
 		E566052C1F43CB0C0079173E /* AWSDynamoDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E566052A1F43CB010079173E /* AWSDynamoDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -168,6 +170,8 @@
 		E510C3251F4C72A800008B41 /* SlidingPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingPanelViewController.swift; sourceTree = "<group>"; };
 		E510C3271F4C76E200008B41 /* MainScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainScanViewController.swift; path = MySampleApp/mysampleapp/app/MainScanViewController.swift; sourceTree = SOURCE_ROOT; };
 		E510C3291F4CB59700008B41 /* UIAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAdditions.swift; sourceTree = "<group>"; };
+		E5275ADD1FC85E0300607EA5 /* SlidingPanelSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SlidingPanelSegue.swift; path = MySampleApp/mysampleapp/app/SlidingPanelSegue.swift; sourceTree = SOURCE_ROOT; };
+		E5275ADF1FC864DB00607EA5 /* DetailsPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPanelViewController.swift; sourceTree = "<group>"; };
 		E566051A1F4390BB0079173E /* BeersTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeersTable.swift; sourceTree = "<group>"; };
 		E566051B1F4390BB0079173E /* NoSQLDatabase.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoSQLDatabase.storyboard; sourceTree = "<group>"; };
 		E566051C1F4390BB0079173E /* NoSQLModelHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSQLModelHelpers.swift; sourceTree = "<group>"; };
@@ -253,9 +257,11 @@
 				1DD70E2974CDB08500000000 /* SettingsViewController.swift */,
 				E5A2D5A31F41238F007CF64E /* DetailsContoller.swift */,
 				E510C3271F4C76E200008B41 /* MainScanViewController.swift */,
+				E5275ADD1FC85E0300607EA5 /* SlidingPanelSegue.swift */,
 				E510C3251F4C72A800008B41 /* SlidingPanelViewController.swift */,
 				E5A2D5A71F41238F007CF64E /* ScanViewController.swift */,
 				E50C72CE1F49FB6D00B204B2 /* SearchResultsViewController.swift */,
+				E5275ADF1FC864DB00607EA5 /* DetailsPanelViewController.swift */,
 				E598F0821F59B658003F2D3F /* AddBeerViewController.swift */,
 				E507C06C1F581768009D32A4 /* AddBeerControllers */,
 				E507C0671F5815D2009D32A4 /* Data models */,
@@ -656,8 +662,10 @@
 				E5A2D5BA1F412391007CF64E /* BrewerydbAPI.swift in Sources */,
 				E5A2D5BD1F412391007CF64E /* TabBarController.swift in Sources */,
 				E5A2D5B91F412391007CF64E /* SearchProgress.swift in Sources */,
+				E5275ADE1FC85E0300607EA5 /* SlidingPanelSegue.swift in Sources */,
 				E7A30F047FD234D700000000 /* FormTableDelegate.swift in Sources */,
 				E510C3281F4C76E200008B41 /* MainScanViewController.swift in Sources */,
+				E5275AE01FC864DB00607EA5 /* DetailsPanelViewController.swift in Sources */,
 				E5A2D5BF1F412391007CF64E /* ScanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

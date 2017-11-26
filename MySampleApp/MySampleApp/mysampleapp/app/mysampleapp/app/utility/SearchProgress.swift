@@ -51,7 +51,7 @@ class SearchProgress: UIVisualEffectView {
             let width = superview.frame.size.width / 2.3
             let height: CGFloat = 50.0
             self.frame = CGRect(x: superview.frame.size.width / 2 - width / 2,
-                                y: superview.frame.height / 2 - height / 2,
+                                y: superview.frame.height / 4 - height / 2,
                                 width: width,
                                 height: height)
             vibrancyView.frame = self.bounds

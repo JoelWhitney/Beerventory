@@ -314,23 +314,23 @@ extension BeerventoryViewController: UITableViewDelegate {
         self.performSegue(withIdentifier: "DetailsViewController", sender: self)
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let beerventoryTableCell = cell as? BeerventoryTableCell {
-            // cell formatting
-            beerventoryTableCell.mainBackground.layer.cornerRadius = 8
-            //myCell.mainBackground.layer.masksToBounds = true
-            beerventoryTableCell.totalBackground.layer.cornerRadius = 8
-            //myCell.totalBackground.layer.masksToBounds = true
-            beerventoryTableCell.shadowLayer.layer.masksToBounds = false
-            beerventoryTableCell.shadowLayer.layer.shadowOffset = CGSize.zero
-            beerventoryTableCell.shadowLayer.layer.shadowColor = UIColor.black.cgColor
-            beerventoryTableCell.shadowLayer.layer.shadowOpacity = 0.5
-            beerventoryTableCell.shadowLayer.layer.shadowRadius = 2
-            beerventoryTableCell.shadowLayer.layer.shadowPath = UIBezierPath(roundedRect: beerventoryTableCell.shadowLayer.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8, height: 8)).cgPath
-            beerventoryTableCell.shadowLayer.layer.shouldRasterize = false
-            beerventoryTableCell.shadowLayer.layer.rasterizationScale = UIScreen.main.scale
-        }
-    }
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        if let beerventoryTableCell = cell as? BeerventoryTableCell {
+//            // cell formatting
+//            beerventoryTableCell.mainBackground.layer.cornerRadius = 8
+//            //myCell.mainBackground.layer.masksToBounds = true
+//            beerventoryTableCell.totalBackground.layer.cornerRadius = 8
+//            //myCell.totalBackground.layer.masksToBounds = true
+//            beerventoryTableCell.shadowLayer.layer.masksToBounds = false
+//            beerventoryTableCell.shadowLayer.layer.shadowOffset = CGSize.zero
+//            beerventoryTableCell.shadowLayer.layer.shadowColor = UIColor.black.cgColor
+//            beerventoryTableCell.shadowLayer.layer.shadowOpacity = 0.5
+//            beerventoryTableCell.shadowLayer.layer.shadowRadius = 2
+//            beerventoryTableCell.shadowLayer.layer.shadowPath = UIBezierPath(roundedRect: beerventoryTableCell.shadowLayer.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8, height: 8)).cgPath
+//            beerventoryTableCell.shadowLayer.layer.shouldRasterize = false
+//            beerventoryTableCell.shadowLayer.layer.rasterizationScale = UIScreen.main.scale
+//        }
+//    }
 }
 
 // MARK: - Search bar delegate

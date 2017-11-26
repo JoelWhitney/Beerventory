@@ -37,13 +37,18 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
     var contentScrollView: UIScrollView? {
         return tableView
     }
-    var summaryHeight: CGFloat = 68
+    var summaryHeight: CGFloat = 90
     var searchResultTapped: ((Beer) -> Void)?
     
     // MARK: Outlets
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var noResultsView: UIView!
+    
+    // MARK: Actions
+    @IBAction func unwindToSearchResultsViewController(segue: UIStoryboardSegue) {
+        //
+    }
     
     //MARK: View Lifecycle
     override func viewDidLoad() {
@@ -91,6 +96,7 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
         self.dismiss(animated: true, completion: nil);
         // We dismiss the alert. Here you can add your additional code to execute when cancel is pressed
     }
+    
     func showPickerInActionSheet(sender: AnyObject) {
         pickerQuantity = "1"
         checkButtonTapped(sender: sender)
@@ -143,6 +149,7 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
         alert.view.addSubview(buttonCancel)
         self.present(alert, animated: true, completion: nil)
     }
+    
     func addBeers(sender: UIButton){
         guard let quantity = Int(pickerQuantity) else {
             // handle bad no value or text entry
@@ -177,6 +184,7 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
             self.present(alertController2, animated: true, completion: nil)
         })
     }
+    
     func insertAWSBeer(beer: Beer) {
         let objectMapper = AWSDynamoDBObjectMapper.default()
         let itemToCreate: AWSBeer = AWSBeer()
@@ -195,6 +203,7 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
             print("Item saved.")
         })
     }
+    
     func updateAWSBeer(beer: Beer) {
         let objectMapper = AWSDynamoDBObjectMapper.default()
         let itemToCreate: AWSBeer = AWSBeer()
@@ -213,6 +222,7 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
             print("Item saved.")
         })
     }
+    
     func updateWithScanResults(beers: [Beer]) {
         self.searchResultsBeers = beers
         self.filteredSearchResultsBeers = beers
@@ -229,6 +239,13 @@ class SearchResultsViewController: UIViewController, SlidingPanelContentProvider
             self.filteredSearchResultsBeers = self.searchResultsBeers
             self.filterHandler?(nil)
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowBeerDetails" {
+            let viewController = segue.destination as! DetailsPanelViewController
+            viewController.beer = currentBeer
+        }
     }
 }
 
@@ -294,28 +311,15 @@ extension SearchResultsViewController: UITableViewDataSource {
         searchResult.addBeerButton.addTarget(self, action: #selector(showPickerInActionSheet), for: .touchUpInside)
         return searchResult
     }
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let searchResult = cell as? SearchResultTableCell {
-            // cell formatting
-            searchResult.mainBackground.layer.cornerRadius = 8
-            searchResult.mainBackground.layer.masksToBounds = true
-            searchResult.shadowLayer.layer.masksToBounds = false
-            searchResult.shadowLayer.layer.shadowOffset = CGSize.zero
-            searchResult.shadowLayer.layer.shadowColor = UIColor.black.cgColor
-            searchResult.shadowLayer.layer.shadowOpacity = 0.5
-            searchResult.shadowLayer.layer.shadowRadius = 2
-            searchResult.shadowLayer.layer.shadowPath = UIBezierPath(roundedRect: searchResult.shadowLayer.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8, height: 8)).cgPath
-            searchResult.shadowLayer.layer.shouldRasterize = false
-            searchResult.shadowLayer.layer.rasterizationScale = UIScreen.main.scale
-        }
-    }
+
 }
 
 extension SearchResultsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currentBeer = filteredSearchResultsBeers[indexPath.row]
-        tableView.deselectRow(at: indexPath, animated: true)
-        self.searchResultTapped!(currentBeer)
+        performSegue(withIdentifier: "ShowBeerDetails", sender: self)
+        print("current beer gotten")
+        //self.searchResultTapped!(currentBeer)
         searchBar.resignFirstResponder()
     }
     
@@ -352,6 +356,7 @@ extension SearchResultsViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         print("did begin editing")
+        searchBar.becomeFirstResponder()
         if let slidingPanelViewController = parent as? SlidingPanelViewController {
             slidingPanelViewController.panelPosition = .full
         }

@@ -72,11 +72,13 @@ class ScanViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         toggleTorch(on: false)
         self.refreshScanControllerState()
     }
+    
     func updateTorch() {
         guard let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else { return }
         if device.isTorchActive {
@@ -87,6 +89,7 @@ class ScanViewController: UIViewController {
             flashButton.setImage( #imageLiteral(resourceName: "flashOff"), for: .normal)
         }
     }
+    
     func toggleTorch(on: Bool) {
         guard let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else { return }
         if device.hasTorch {
@@ -105,18 +108,17 @@ class ScanViewController: UIViewController {
             print("Torch is not available")
         }
     }
+    
     func capturePreviewFrame() {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
         let captureRectWidth = CGFloat(200.0)
         let captureRectHeight = CGFloat(200.0)
-        
-        var cgCaptureRect = CGRect(x: (screenWidth / 2 - captureRectWidth / 2),
+        let cgCaptureRect = CGRect(x: (screenWidth / 2 - captureRectWidth / 2),
                                    y: (screenHeight / 4 - captureRectHeight / 2),
                                    width: captureRectWidth,
                                    height: captureRectHeight)
-        
         let captureWindowView = UIView()
         captureWindowView.frame = cgCaptureRect
         
