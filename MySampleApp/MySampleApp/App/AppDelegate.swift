@@ -13,6 +13,7 @@
 
 import UIKit
 import AWSMobileHubHelper
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = UIColor.white
         let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
         statusBarView.backgroundColor = UIColor(red: 235/255, green: 171/255, blue: 28/255, alpha: 1)
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-2852493979363586~5102798503")
         return AWSMobileClient.sharedInstance.didFinishLaunching(application, withOptions: launchOptions)
     }
     

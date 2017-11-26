@@ -15,6 +15,7 @@ import UIKit
 import AWSDynamoDB
 import AWSMobileHubHelper
 import SwiftyJSON
+import GoogleMobileAds
 
 class BeerventoryViewController: UIViewController  {
     // MARK: - variables/constants
@@ -40,6 +41,7 @@ class BeerventoryViewController: UIViewController  {
         refreshControl.addTarget(self, action: #selector(handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
         return refreshControl
     }()
+    var bannerView: GADBannerView!
     
     // MARK: Outlets
     @IBOutlet var tableView: UITableView!
@@ -69,7 +71,17 @@ class BeerventoryViewController: UIViewController  {
         searchbarBackground.backgroundColor = UIColor(red: 235/255, green: 171/255, blue: 28/255, alpha: 1)
         tableView.backgroundView = searchbarBackground
         applyFilter()
+        
+        // In this case, we instantiate the banner with desired ad size.
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        addBannerViewToView(bannerView)
+        
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         fetchBeerventoryBeers()
@@ -80,6 +92,27 @@ class BeerventoryViewController: UIViewController  {
     }
     
     //MARK: - Methods
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: bottomLayoutGuide,
+                                attribute: .top,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
+    }
+    
     func fetchBeerventoryBeers() {
         if AWSSignInManager.sharedInstance().isLoggedIn {
             DynamodbAPI.sharedInstance.queryWithPartitionKeyWithCompletionHandler { (response, error) in
@@ -352,6 +385,46 @@ extension BeerventoryViewController: UISearchBarDelegate {
     }
 }
 
+// MARK: - Search bar delegate
+extension BeerventoryViewController: GADBannerViewDelegate {
+    /// Tells the delegate an ad request loaded an ad.
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("adViewDidReceiveAd")
+        bannerView.alpha = 0
+        UIView.animate(withDuration: 1, animations: {
+            bannerView.alpha = 1
+        })
+    }
+    
+    /// Tells the delegate an ad request failed.
+    func adView(_ bannerView: GADBannerView,
+                didFailToReceiveAdWithError error: GADRequestError) {
+        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+    
+    /// Tells the delegate that a full screen view will be presented in response
+    /// to the user clicking on an ad.
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("adViewWillPresentScreen")
+    }
+    
+    /// Tells the delegate that the full screen view will be dismissed.
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewWillDismissScreen")
+    }
+    
+    /// Tells the delegate that the full screen view has been dismissed.
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewDidDismissScreen")
+    }
+    
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        print("adViewWillLeaveApplication")
+    }
+}
+    
 // MARK: - BeerventoryTableCell
 class BeerventoryTableCell: UITableViewCell {
     
