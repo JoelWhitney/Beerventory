@@ -1,6 +1,0 @@
-framework module AWSCognitoUserPoolsSignIn {
-    umbrella header "AWSCognitoUserPoolsSignIn.h"
-    
-    export *
-    module * { export * }
-}
