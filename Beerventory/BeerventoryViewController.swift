@@ -277,10 +277,12 @@ class BeerventoryViewController: UIViewController  {
         let config = AWSAuthUIConfiguration()
         config.addSignInButtonView(class: AWSFacebookSignInButton.self)
         config.addSignInButtonView(class: AWSGoogleSignInButton.self)
+        
         config.backgroundColor = UIColor(red: 235/255, green: 171/255, blue: 28/255, alpha: 1)
         config.logoImage = #imageLiteral(resourceName: "BeerventoryLogo")
         config.font = UIFont (name: "Helvetica Neue", size: 20)
         config.isBackgroundColorFullScreen = true
+        
         config.canCancel = false
         AWSAuthUIViewController.presentViewController(with: self.navigationController!, configuration: config, completionHandler: { (provider: AWSSignInProvider, error: Error?) in
             if error == nil {
